@@ -1,0 +1,13 @@
+img {
+  object-fit: "cover";
+  width: 450px;
+  height: 450px;
+}
+
+input {
+  width: 447px;
+  height: 47px;
+  border-radius: 3px;
+  background: "rgba(217, 217, 217, 0.7)";
+  padding: 10px;
+}
