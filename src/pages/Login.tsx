@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import logo from "../assets/bonjour-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
-import "./style.css";
+import "./login.css";
 
 const Login = () => {
   const [input, setInput] = useState("");
 
   return (
     <div>
-      <img src={logo} alt="Bonjour Logo" />
+      <img className="logo" src={logo} alt="Bonjour Logo" />
       <form action="javascript:void(0);">
         <input
           type="text"
@@ -20,7 +20,7 @@ const Login = () => {
           placeholder="Enter Password"
         />
         <button>
-          <FontAwesomeIcon icon={faArrowRightToBracket} />
+          <FontAwesomeIcon size="xl" icon={faArrowRightToBracket} />
         </button>
       </form>
     </div>
