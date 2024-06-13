@@ -4,7 +4,7 @@ import RightSide from "../components/layoutComponents/RightSide";
 
 const Home = () => {
   return (
-    <div>
+    <div style={{ display: "flex", width: "100%" }}>
       <LeftSide />
       <RightSide />
     </div>
