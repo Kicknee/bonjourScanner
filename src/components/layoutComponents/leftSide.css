@@ -1,0 +1,33 @@
+.logo {
+  height: 350px;
+  width: auto;
+}
+
+.product-list {
+  width: 100%;
+}
+
+.product-list-headers,
+.list-content-record {
+  display: flex;
+  text-align: left;
+}
+.product-list-headers div {
+  width: 126px;
+}
+.product-list-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow-y: scroll;
+  max-height: 300px;
+}
+.product-list-content div {
+  width: 126px;
+  margin-top: 10px;
+}
+
+.product-list-content div {
+  width: 126px;
+  margin-top: 10px;
+}
