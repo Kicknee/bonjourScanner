@@ -1,5 +1,5 @@
 const Home = () => {
-  return <div style={{ display: "flex", width: "100%" }}></div>;
+  return <div style={{ display: "grid" }}></div>;
 };
 
 export default Home;
