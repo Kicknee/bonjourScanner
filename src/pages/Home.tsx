@@ -4,7 +4,7 @@ import RightSide from "../components/layoutComponents/RightSide";
 
 const Home = () => {
   return (
-    <div>
+    <div className="row">
       <LeftSide />
       <RightSide />
     </div>

@@ -6,16 +6,17 @@ import "./leftSide.css";
 const LeftSide = () => {
   return (
     <div
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "space-around",
-        paddingTop: "50px",
-        // background: "red",
-      }}
+      // style={{
+      //   width: "100%",
+      //   height: "100%",
+      //   display: "flex",
+      //   flexDirection: "column",
+      //   alignItems: "center",
+      //   justifyContent: "space-around",
+      //   paddingTop: "50px",
+      //   // background: "red",
+      // }}
+      className="col-6"
     >
       <ProductList />
       <LogoContainer />
