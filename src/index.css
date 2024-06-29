@@ -12314,5 +12314,37 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+body {
+  background-color: #070707;
+}
+
+.container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+  height: 100vh;
+}
+
+.container-fluid > .row, .container-sm > .row, .container-md > .row, .container-lg > .row, .container-xl > .row, .container-xxl > .row {
+  height: 100%;
+}
+
+.tbody-wrapper {
+  height: 350px;
+  overflow-y: auto;
+}
+
+.tbody-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+
+.tbody-wrapper::-webkit-scrollbar-track {
+  background: rgba(217, 217, 217, 0.7019607843);
+}
+
+.tbody-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4392156863);
+}
+
+.tbody-wrapper th {
+  color: #070707;
+}
 
 /*# sourceMappingURL=index.css.map */

@@ -4,21 +4,17 @@ import LogoContainer from "../LogoContainer";
 
 const LeftSide = () => {
   return (
-    <div
-      // style={{
-      //   width: "100%",
-      //   height: "100%",
-      //   display: "flex",
-      //   flexDirection: "column",
-      //   alignItems: "center",
-      //   justifyContent: "space-around",
-      //   paddingTop: "50px",
-      //   // background: "red",
-      // }}
-      className="col-6"
-    >
-      <ProductList />
-      <LogoContainer />
+    <div className="col-5">
+      <div className="row">
+        <div className="col-12">
+          <ProductList />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-7 mx-auto">
+          <LogoContainer />
+        </div>
+      </div>
     </div>
   );
 };

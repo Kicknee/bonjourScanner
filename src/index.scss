@@ -20,3 +20,37 @@ $custom-colors: (
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+  background-color: $primary;
+}
+
+.container-fluid {
+  height: 100vh;
+}
+.container-fluid > .row {
+  height: 100%;
+}
+
+// table {
+//   margin-bottom: 0;
+// }
+
+.tbody-wrapper {
+  height: 350px;
+  overflow-y: auto;
+}
+
+.tbody-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+.tbody-wrapper::-webkit-scrollbar-track {
+  background: $input-color;
+}
+
+.tbody-wrapper::-webkit-scrollbar-thumb {
+  background: $selection-color;
+}
+.tbody-wrapper th {
+  color: $primary;
+}
