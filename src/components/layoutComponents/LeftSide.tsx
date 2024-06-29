@@ -1,7 +1,6 @@
 import React from "react";
 import ProductList from "../ProductList";
 import LogoContainer from "../LogoContainer";
-import "./leftSide.css";
 
 const LeftSide = () => {
   return (

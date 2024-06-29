@@ -2,7 +2,6 @@ import { useState } from "react";
 import logo from "../assets/bonjour-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
-import "./login.css";
 
 const Login = () => {
   const [input, setInput] = useState("");
