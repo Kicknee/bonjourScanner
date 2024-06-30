@@ -12329,14 +12329,16 @@ body {
 .tbody-wrapper {
   height: 350px;
   overflow-y: auto;
+  scrollbar-color: rgba(255, 255, 255, 0.4392156863) transparent;
+  scrollbar-width: thin;
 }
 
 .tbody-wrapper::-webkit-scrollbar {
-  width: 10px;
+  width: 3px;
 }
 
 .tbody-wrapper::-webkit-scrollbar-track {
-  background: rgba(217, 217, 217, 0.7019607843);
+  background: transparent;
 }
 
 .tbody-wrapper::-webkit-scrollbar-thumb {

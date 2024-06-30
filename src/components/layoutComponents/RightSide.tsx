@@ -5,7 +5,10 @@ import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 const RightSide = () => {
   return (
     <div className="col-7">
-      <div className="search-bar d-flex justify-content-center align-items-center bg-danger">
+      <div
+        className="search-bar d-flex justify-content-center align-items-center bg-danger"
+        style={{ height: "50px" }}
+      >
         <input type="text" className="w-75" />
         <FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff" }} />
         <FontAwesomeIcon icon={faPowerOff} style={{ color: "#ffffff" }} />

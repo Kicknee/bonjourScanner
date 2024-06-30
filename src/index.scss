@@ -35,18 +35,22 @@ body {
 .tbody-wrapper {
   height: 350px;
   overflow-y: auto;
+  scrollbar-color: $selection-color transparent;
+  scrollbar-width: thin;
 }
 
 .tbody-wrapper::-webkit-scrollbar {
-  width: 10px;
+  width: 3px;
 }
+
 .tbody-wrapper::-webkit-scrollbar-track {
-  background: $input-color;
+  background: transparent;
 }
 
 .tbody-wrapper::-webkit-scrollbar-thumb {
   background: $selection-color;
 }
+
 .tbody-wrapper th {
   color: $primary;
 }
