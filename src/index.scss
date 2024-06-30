@@ -54,3 +54,13 @@ body {
 .tbody-wrapper th {
   color: $primary;
 }
+
+input {
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: 2px solid $outline-color;
+  box-shadow: none;
+  border: none;
+}

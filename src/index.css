@@ -12349,4 +12349,14 @@ body {
   color: #070707;
 }
 
+input {
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: 2px solid #787f29;
+  box-shadow: none;
+  border: none;
+}
+
 /*# sourceMappingURL=index.css.map */

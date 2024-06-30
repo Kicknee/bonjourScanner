@@ -6,12 +6,23 @@ const RightSide = () => {
   return (
     <div className="col-7">
       <div
-        className="search-bar d-flex justify-content-center align-items-center bg-danger"
+        className="search-bar d-flex justify-content-around align-items-center"
         style={{ height: "50px" }}
       >
-        <input type="text" className="w-75" />
-        <FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff" }} />
-        <FontAwesomeIcon icon={faPowerOff} style={{ color: "#ffffff" }} />
+        <input
+          type="text"
+          className="opacity-75 w-75 bg-input-color h-100 p-3 text-uppercase"
+        />
+        <FontAwesomeIcon
+          icon={faPlus}
+          style={{ color: "#ffffff" }}
+          className="h-100"
+        />
+        <FontAwesomeIcon
+          icon={faPowerOff}
+          className="h-100"
+          style={{ color: "#ffffff" }}
+        />
       </div>
     </div>
   );
