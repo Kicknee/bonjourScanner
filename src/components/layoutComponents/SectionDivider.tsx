@@ -1,6 +1,9 @@
 const SectionDivider = () => {
   return (
-    <div className="col-1 d-flex align-items-center" style={{ width: "3px" }}>
+    <div
+      className="col-1 d-none d-md-flex align-items-center"
+      style={{ width: "3px" }}
+    >
       <div
         className="row"
         style={{
