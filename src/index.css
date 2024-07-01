@@ -12359,4 +12359,14 @@ input:focus {
   box-shadow: none;
 }
 
+.search-bar {
+  height: 40px;
+}
+
+@media (max-width: 767.98px) {
+  .search-bar {
+    height: 35px;
+  }
+}
+
 /*# sourceMappingURL=index.css.map */
