@@ -7,21 +7,14 @@ const Login = () => {
   const [input, setInput] = useState("");
 
   return (
-    <div>
-      <img className="logo" src={logo} alt="Bonjour Logo" />
-      <form action="javascript:void(0);">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
-          }}
-          placeholder="Enter Password"
-        />
-        <button>
-          <FontAwesomeIcon size="xl" icon={faArrowRightToBracket} />
-        </button>
-      </form>
+    <div className="row h-50 align-items-center">
+      <div className="col-12">
+        <div className="row justify-content-center">
+          <div className="col-md-6 col-12">
+            <img className="logo img-fluid" src={logo} alt="Bonjour Logo" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
