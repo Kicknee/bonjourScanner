@@ -1,8 +1,6 @@
-import LogoContainer from "../components/LogoContainer";
-import ProductList from "../components/ProductList";
-import SearchBar from "../components/SearchBar";
 import LeftSide from "../components/layoutComponents/LeftSide";
 import RightSide from "../components/layoutComponents/RightSide";
+import CenterSide from "../components/layoutComponents/CenterSide";
 import SectionDivider from "../components/layoutComponents/SectionDivider";
 
 const Home = () => {
@@ -15,19 +13,7 @@ const Home = () => {
           <RightSide />
         </div>
         <div className="row d-md-none">
-          <div className="col-12">
-            <div className="row">
-              <div className="col-12">
-                <div className="row justify-content-center">
-                  <div className="col-9">
-                    <LogoContainer />
-                  </div>
-                </div>
-                <SearchBar />
-                <ProductList />
-              </div>
-            </div>
-          </div>
+          <CenterSide />
         </div>
       </div>
     </div>
