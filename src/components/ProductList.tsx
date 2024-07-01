@@ -16,7 +16,7 @@ const ProductList = () => {
         </thead>
       </table>
       <div className="tbody-wrapper">
-        <table className="table table-borderless table-dark">
+        <table className="table table-borderless table-hover table-dark">
           <thead>
             <tr>
               <th>STYLE</th>
