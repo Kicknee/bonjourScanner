@@ -1,10 +1,10 @@
 const ProductRecord = () => {
   return (
     <tr>
-      <td>A1B23</td>
-      <td>KURTKA</td>
-      <td>D5</td>
-      <td>85</td>
+      <td className="py-3">A1B23</td>
+      <td className="py-3">KURTKA</td>
+      <td className="py-3">D5</td>
+      <td className="py-3">85</td>
     </tr>
   );
 };
