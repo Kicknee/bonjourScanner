@@ -1,6 +1,4 @@
-import ProductDetailsTaskbar from "./ProductDetailsTaskbar";
-
-const ProductDetails = () => {
+const ProductDetails = ({ product }) => {
   return (
     <div className="row">
       <div className="col-12">
@@ -40,7 +38,6 @@ const ProductDetails = () => {
             </table>
           </div>
         </div>
-        <ProductDetailsTaskbar />
       </div>
     </div>
   );

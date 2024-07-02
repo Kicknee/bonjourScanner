@@ -26,8 +26,8 @@ const ProductList = () => {
             </tr>
           </thead>
           <tbody>
-            {quantity.map(() => (
-              <ProductRecord />
+            {quantity.map((_, key) => (
+              <ProductRecord key={key} />
             ))}
           </tbody>
         </table>
