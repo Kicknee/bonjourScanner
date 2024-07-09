@@ -2,7 +2,21 @@ import { useEffect, useState } from "react";
 import ProductRecord from "./ProductRecord";
 
 const ProductList = () => {
-  const quantity = new Array(15).fill(2);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const products = await fetch("/.netlify/functions/get_products").then(
+          (response) => response.json()
+        );
+        console.log(products);
+        setProducts(products);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
 
   return (
     <div className="table-container">
@@ -27,7 +41,7 @@ const ProductList = () => {
             </tr>
           </thead>
           <tbody>
-            {quantity.map((_, key) => (
+            {products.map((_, key) => (
               <ProductRecord key={key} />
             ))}
           </tbody>
