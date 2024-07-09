@@ -1,20 +1,13 @@
 import { useEffect, useState } from "react";
 import ProductRecord from "./ProductRecord";
-
+import get_records from "../utils/get_records";
 const ProductList = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     (async () => {
-      try {
-        const products = await fetch("/.netlify/functions/get_products").then(
-          (response) => response.json()
-        );
-        console.log(products);
-        setProducts(products);
-      } catch (error) {
-        console.error(error);
-      }
+      const products = await get_records();
+      setProducts(products);
     })();
   }, []);
 
