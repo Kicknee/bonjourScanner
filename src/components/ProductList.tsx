@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import ProductRecord from "./ProductRecord";
-import get_records from "../utils/get_records";
+import get_products from "../utils/get_products";
 const ProductList = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const products = await get_records();
+      const products = await get_products();
       setProducts(products);
     })();
   }, []);
