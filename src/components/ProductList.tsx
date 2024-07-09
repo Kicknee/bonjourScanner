@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductRecord from "./ProductRecord";
 import get_products from "../utils/get_products";
+
 const ProductList = () => {
   const [products, setProducts] = useState([]);
 
@@ -34,8 +35,8 @@ const ProductList = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((_, key) => (
-              <ProductRecord key={key} />
+            {products.map((product, key) => (
+              <ProductRecord key={key} product={product} />
             ))}
           </tbody>
         </table>
