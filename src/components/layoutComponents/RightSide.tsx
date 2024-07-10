@@ -1,14 +1,14 @@
 import SearchBar from "../SearchBar";
-import ProductDetails from "../ProductDetails";
 import Product from "../Product";
+import useProductState from "../../state/hooks/useProductState";
 
 const RightSide = () => {
-  // const current_state = useProductState;
+  const selected_product = useProductState();
 
   return (
     <div className="col-6">
       <SearchBar />
-      {/* {current_state._id && <Product product={current_state} />} */}
+      {selected_product._id && <Product />}
     </div>
   );
 };

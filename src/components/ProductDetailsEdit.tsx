@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ProductDetails = ({ product }) => {
+const ProductDetailsEdit = ({ product }) => {
   const [input, setInput] = useState({});
 
   return (
@@ -73,4 +73,4 @@ const ProductDetails = ({ product }) => {
   );
 };
 
-export default ProductDetails;
+export default ProductDetailsEdit;
