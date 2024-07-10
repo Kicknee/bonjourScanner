@@ -2,6 +2,7 @@ import { Handler } from "@netlify/functions";
 import { MongoClient } from "mongodb";
 import { config } from "dotenv";
 config();
+
 const client = new MongoClient(process.env.MONGODB_URI);
 
 export const handler: Handler = async () => {
