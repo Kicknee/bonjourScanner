@@ -1,18 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ObjectId } from "mongodb";
+import { ProductType } from "../../types/types";
 
-interface ProductState {
-  _id: ObjectId | undefined;
-  STYLE: string | undefined;
-  TYPE: string | undefined;
-  PLACE: string | undefined;
-  LEFT: number | undefined;
-  COLOR: string | undefined;
-  BRAND: string | undefined;
-  SHIPPING_COMPANY: string | undefined;
-}
-
-const initialState: ProductState = {
+const initialState: ProductType = {
   _id: undefined,
   STYLE: undefined,
   TYPE: undefined,
@@ -27,7 +16,7 @@ const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
-    select: (state, action: PayloadAction<ProductState>) => {
+    select: (state, action: PayloadAction<ProductType>) => {
       return { ...state, ...action.payload };
     },
   },

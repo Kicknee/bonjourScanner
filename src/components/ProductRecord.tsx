@@ -1,15 +1,15 @@
 import { FC } from "react";
+import { useDispatch } from "react-redux";
+import { select } from "../state/slices/productSlice";
+import { ProductType } from "../types/types";
 
-interface Product {
-  STYLE: string;
-  TYPE: string;
-  PLACE: string;
-  LEFT: number;
-}
-
-const ProductRecord: FC<{ product: Product }> = ({ product }) => {
+const ProductRecord: FC<{ product: ProductType }> = ({ product }) => {
+  const dispatch = useDispatch();
   return (
-    <tr className="dropdown">
+    <tr
+      className="dropdown user-select-none"
+      onClick={() => dispatch(select(product))}
+    >
       <td className="py-3">{product.STYLE}</td>
       <td className="py-3">{product.TYPE}</td>
       <td className="py-3">{product.PLACE}</td>
