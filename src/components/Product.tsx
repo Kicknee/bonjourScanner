@@ -7,7 +7,7 @@ const Product = () => {
   return (
     <div className="row">
       <div className="col-12">
-        <ProductDetailsEdit product={{}} />
+        <ProductDetails />
         <ProductDetailsTaskbar />
       </div>
     </div>
