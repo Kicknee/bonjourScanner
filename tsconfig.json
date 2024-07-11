@@ -20,6 +20,10 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "netlify/functions/delete_product",
+    "netlify/functions/get_products"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
