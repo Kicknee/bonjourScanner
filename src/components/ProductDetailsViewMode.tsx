@@ -4,34 +4,19 @@ const ProductDetailsViewMode = ({ product }) => {
       <div className="col-9">
         <table className=" table table-dark table-borderless text-siz fs-5">
           <tbody>
-            <tr>
-              <th>STYLE</th>
-              <th>A1B23</th>
-            </tr>
-            <tr>
-              <th>TYPE</th>
-              <th>KURTKA</th>
-            </tr>
-            <tr>
-              <th>PLACE</th>
-              <th>D5</th>
-            </tr>
-            <tr>
-              <th>LEFT</th>
-              <th>85</th>
-            </tr>
-            <tr>
-              <th>COLOR</th>
-              <th>CZERWONY</th>
-            </tr>
-            <tr>
-              <th>BRAND</th>
-              <th>H@M</th>
-            </tr>
-            <tr>
-              <th>SHIPPING COMPANY</th>
-              <th>ARTUR LLC.</th>
-            </tr>
+            {Object.entries(product)
+              .slice(1)
+              .map((arr) => {
+                let value = arr;
+                if (arr[0] == "SHIPPING_COMPANY") value[0] = "SHIPPING COMPANY";
+
+                return (
+                  <tr key={arr[0]}>
+                    <th>{value[0]}</th>
+                    <th>{value[1]}</th>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

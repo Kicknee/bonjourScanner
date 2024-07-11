@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { EditType } from "../../types/types";
 
-type EditSlice = boolean;
-
-const initialState: EditSlice = false;
+const initialState: EditType = false;
 
 const editSlice = createSlice({
   name: "edit",

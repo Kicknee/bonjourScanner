@@ -1,5 +1,7 @@
 import { ObjectId } from "mongodb";
 
+export type EditType = boolean;
+
 export interface ProductType {
   _id: ObjectId | undefined;
   STYLE: string | undefined;

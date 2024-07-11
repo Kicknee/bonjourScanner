@@ -1,83 +1,35 @@
 import { useState } from "react";
 
 const ProductDetailsEditMode = ({ product }) => {
-  // const [input, setInput] = useState({});
+  // const [input, setInput] = useState({ ...product });
 
+  // function handleInput
   return (
     <div className="row justify-content-center">
       <div className="col-9">
         <table className="table table-dark table-borderless text-siz fs-5">
           <tbody>
-            <tr>
-              <th>STYLE</th>
-              <th>
-                <input
-                  type="text"
-                  form="edit-form"
-                  placeholder={product.STYLE}
-                />
-              </th>
-            </tr>
-            <tr>
-              <th>TYPE</th>
-              <th>
-                <input
-                  type="text"
-                  form="edit-form"
-                  placeholder={product.TYPE}
-                />
-              </th>
-            </tr>
-            <tr>
-              <th>PLACE</th>
-              <th>
-                <input
-                  type="text"
-                  form="edit-form"
-                  placeholder={product.PLACE}
-                />
-              </th>
-            </tr>
-            <tr>
-              <th>LEFT</th>
-              <th>
-                <input
-                  type="text"
-                  form="edit-form"
-                  placeholder={product.LEFT}
-                />
-              </th>
-            </tr>
-            <tr>
-              <th>COLOR</th>
-              <th>
-                <input
-                  type="text"
-                  form="edit-form"
-                  placeholder={product.COLOR}
-                />
-              </th>
-            </tr>
-            <tr>
-              <th>BRAND</th>
-              <th>
-                <input
-                  type="text"
-                  form="edit-form"
-                  placeholder={product.BRAND}
-                />
-              </th>
-            </tr>
-            <tr>
-              <th>SHIPPING COMPANY</th>
-              <th>
-                <input
-                  type="text"
-                  form="edit-form"
-                  placeholder={product.SHIPPING_COMPANY}
-                />
-              </th>
-            </tr>
+            {Object.entries(product)
+              .slice(1)
+              .map((arr) => {
+                let value = arr;
+                if (arr[0] == "SHIPPING_COMPANY") value[0] = "SHIPPING COMPANY";
+
+                return (
+                  <tr key={arr[0]}>
+                    <th>{arr[0]}</th>
+                    <th>
+                      <input
+                        className="text-uppercase"
+                        type="text"
+                        form="edit-form"
+                        placeholder={arr[1] as string}
+                        autoCapitalize="on"
+                      />
+                    </th>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
