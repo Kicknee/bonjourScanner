@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
 import ProductRecord from "./ProductRecord";
-import get_products from "../utils/get_products";
+// import get_products from "../utils/get_products";
+import useProductList from "../utils/useProductList";
+import useProductListState from "../state/hooks/useProductListState";
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const products = await get_products();
-      setProducts(products);
-    })();
-  }, []);
+  const productList = useProductListState();
 
   return (
     <div className="table-container">
@@ -35,7 +30,7 @@ const ProductList = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, key) => (
+            {productList.map((product, key) => (
               <ProductRecord key={key} product={product} />
             ))}
           </tbody>

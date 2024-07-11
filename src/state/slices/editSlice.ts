@@ -13,5 +13,4 @@ const editSlice = createSlice({
 });
 
 export default editSlice.reducer;
-
 export const { enable, disable } = editSlice.actions;
