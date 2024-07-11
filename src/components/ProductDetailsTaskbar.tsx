@@ -1,10 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFilePen,
-  faTrash,
-  faFloppyDisk,
-  faBan,
-} from "@fortawesome/free-solid-svg-icons";
+import ProductDetailsTaskbarViewMode from "./ProductDetailsTaskbarViewMode";
+import ProductDetailsTaskbarEditMode from "./ProductDetailsTaskbarEditMode";
 import ProductQR from "./ProductQR";
 
 const ProductDetailsTaskbar = ({ editMode }) => {
@@ -13,39 +8,9 @@ const ProductDetailsTaskbar = ({ editMode }) => {
       <div className="col-7">
         <div className="row align-items-end justify-content-around">
           {editMode ? (
-            <div className="col-3">
-              <button className="btn">
-                <FontAwesomeIcon
-                  className="fa-3x"
-                  icon={faFloppyDisk}
-                  style={{ color: "#ffffff" }}
-                />
-              </button>
-              <button className="btn">
-                <FontAwesomeIcon
-                  className="fa-3x"
-                  icon={faBan}
-                  style={{ color: "#ffffff" }}
-                />
-              </button>
-            </div>
+            <ProductDetailsTaskbarEditMode />
           ) : (
-            <div className="col-3">
-              <button className="btn">
-                <FontAwesomeIcon
-                  className="fa-3x"
-                  icon={faFilePen}
-                  style={{ color: "#ffffff" }}
-                />
-              </button>
-              <button className="btn">
-                <FontAwesomeIcon
-                  className="fa-3x"
-                  icon={faTrash}
-                  style={{ color: "#ffffff" }}
-                />
-              </button>
-            </div>
+            <ProductDetailsTaskbarViewMode />
           )}
           <ProductQR />
         </div>
