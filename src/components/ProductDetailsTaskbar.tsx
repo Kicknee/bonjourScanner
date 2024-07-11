@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilePen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import qrImg from "../assets/download.png";
 
-const ProductDetailsTaskbar = () => {
+const ProductDetailsTaskbar = ({ editMode }) => {
   return (
     <div className="row justify-content-end">
       <div className="col-7">

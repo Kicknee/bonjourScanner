@@ -1,8 +1,8 @@
 import ProductDetailsTaskbar from "./ProductDetailsTaskbar";
-import ProductDetails from "./ProductDetails";
-import ProductDetailsEdit from "./ProductDetailsEdit";
+import ProductDetailsEditMode from "./ProductDetailsEditMode";
 import useEditState from "../state/hooks/useEditState";
 import useProductState from "../state/hooks/useProductState";
+import ProductDetailsViewMode from "./ProductDetailsViewMode";
 
 const Product = () => {
   const editMode = useEditState();
@@ -12,11 +12,11 @@ const Product = () => {
     <div className="row">
       <div className="col-12">
         {editMode ? (
-          <ProductDetails product={selected_product} />
+          <ProductDetailsEditMode product={selected_product} />
         ) : (
-          <ProductDetailsEdit product={selected_product} />
+          <ProductDetailsViewMode product={selected_product} />
         )}
-        <ProductDetailsTaskbar />
+        <ProductDetailsTaskbar editMode={editMode} />
       </div>
     </div>
   );

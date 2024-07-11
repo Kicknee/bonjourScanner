@@ -1,4 +1,4 @@
-const ProductDetails = ({ product }) => {
+const ProductDetailsViewMode = ({ product }) => {
   return (
     <div className="row">
       <div className="col-12">
@@ -43,4 +43,4 @@ const ProductDetails = ({ product }) => {
   );
 };
 
-export default ProductDetails;
+export default ProductDetailsViewMode;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const ProductDetailsEdit = ({ product }) => {
-  const [input, setInput] = useState({});
+const ProductDetailsEditMode = ({ product }) => {
+  // const [input, setInput] = useState({});
 
   return (
     <div className="row">
@@ -13,7 +13,11 @@ const ProductDetailsEdit = ({ product }) => {
                 <tr>
                   <th>STYLE</th>
                   <th>
-                    <input type="text" form="edit-form" placeholder={"A1B23"} />
+                    <input
+                      type="text"
+                      form="edit-form"
+                      placeholder={product.STYLE}
+                    />
                   </th>
                 </tr>
                 <tr>
@@ -22,20 +26,28 @@ const ProductDetailsEdit = ({ product }) => {
                     <input
                       type="text"
                       form="edit-form"
-                      placeholder={"KURTKA"}
+                      placeholder={product.TYPE}
                     />
                   </th>
                 </tr>
                 <tr>
                   <th>PLACE</th>
                   <th>
-                    <input type="text" form="edit-form" placeholder={"D5"} />
+                    <input
+                      type="text"
+                      form="edit-form"
+                      placeholder={product.PLACE}
+                    />
                   </th>
                 </tr>
                 <tr>
                   <th>LEFT</th>
                   <th>
-                    <input type="text" form="edit-form" placeholder={"85"} />
+                    <input
+                      type="text"
+                      form="edit-form"
+                      placeholder={product.LEFT}
+                    />
                   </th>
                 </tr>
                 <tr>
@@ -44,14 +56,18 @@ const ProductDetailsEdit = ({ product }) => {
                     <input
                       type="text"
                       form="edit-form"
-                      placeholder={"CZERWONY"}
+                      placeholder={product.COLOR}
                     />
                   </th>
                 </tr>
                 <tr>
                   <th>BRAND</th>
                   <th>
-                    <input type="text" form="edit-form" placeholder={"H@M"} />
+                    <input
+                      type="text"
+                      form="edit-form"
+                      placeholder={product.BRAND}
+                    />
                   </th>
                 </tr>
                 <tr>
@@ -60,7 +76,7 @@ const ProductDetailsEdit = ({ product }) => {
                     <input
                       type="text"
                       form="edit-form"
-                      placeholder={"ARTUR LLC."}
+                      placeholder={product.SHIPPING_COMPANY}
                     />
                   </th>
                 </tr>
@@ -73,4 +89,4 @@ const ProductDetailsEdit = ({ product }) => {
   );
 };
 
-export default ProductDetailsEdit;
+export default ProductDetailsEditMode;
