@@ -8,10 +8,16 @@ export default function useQRGenerator() {
     (key, value) => (key === "_id" ? undefined : value)
   );
 
-  const qrElement = createElement(QRCode, {
-    value: selectedProduct,
-    className: "img-fluid",
-  });
+  const qrElement = createElement(
+    "div",
+    {
+      className: "quiet-zone p-2 bg-light",
+    },
+    createElement(QRCode, {
+      value: selectedProduct,
+      className: "img-fluid",
+    })
+  );
 
   return qrElement;
 }
