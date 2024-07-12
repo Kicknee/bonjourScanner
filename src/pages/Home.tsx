@@ -2,8 +2,11 @@ import LeftSide from "../components/layoutComponents/LeftSide";
 import RightSide from "../components/layoutComponents/RightSide";
 import CenterSide from "../components/layoutComponents/CenterSide";
 import SectionDivider from "../components/layoutComponents/SectionDivider";
+import useProductList from "../utils/useProductList";
 
 const Home = () => {
+  useProductList();
+
   return (
     <div className="row align-items-center" style={{ overflow: "hidden" }}>
       <div className="col-12 px-4 px-md-5 mx-auto col-xl-8">

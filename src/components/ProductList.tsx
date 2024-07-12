@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
 import ProductRecord from "./ProductRecord";
-// import get_products from "../utils/get_products";
-import useProductList from "../utils/useProductList";
 import useProductListState from "../state/hooks/useProductListState";
 
 const ProductList = () => {

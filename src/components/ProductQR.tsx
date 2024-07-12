@@ -1,11 +1,9 @@
-import qrImg from "../assets/download.png";
+import useQRGenerator from "../utils/useQRGenerator";
 
 const ProductQR = () => {
-  return (
-    <div className="col-9">
-      <img src={qrImg} className="img-fluid" alt="qr-code" />
-    </div>
-  );
+  console.log(JSON.parse(useQRGenerator().props.value));
+
+  return <div className="col-9">{useQRGenerator()}</div>;
 };
 
 export default ProductQR;
