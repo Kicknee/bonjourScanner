@@ -15,7 +15,7 @@ export const handler: Handler = async (event) => {
     const updatedProduct = event.body ? JSON.parse(event.body) : null;
 
     const response = await collection.updateOne(
-      updatedProduct.STYLE,
+      { STYLE: updatedProduct.STYLE },
       updatedProduct
     );
 
