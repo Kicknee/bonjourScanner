@@ -14,9 +14,11 @@ export const handler: Handler = async (event) => {
 
     const updatedProduct = event.body ? JSON.parse(event.body) : null;
 
+    console.log(updatedProduct);
+
     const response = await collection.updateOne(
       { STYLE: updatedProduct.STYLE },
-      updatedProduct
+      { $set: updatedProduct }
     );
 
     return {
