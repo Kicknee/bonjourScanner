@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { disable } from "../state/slices/editSlice";
-import update_product from "../utils/update_product";
+import updateProduct from "../utils/updateProduct";
 
 const ProductDetailsTaskbarEditMode = () => {
   const disableEditMode = useDispatch();
@@ -13,7 +13,7 @@ const ProductDetailsTaskbarEditMode = () => {
         id="edit-form"
         onSubmit={(e) => {
           e.preventDefault();
-          update_product(e.target);
+          updateProduct(e.target);
         }}
       ></form>
       <button className="btn" form="edit-form">

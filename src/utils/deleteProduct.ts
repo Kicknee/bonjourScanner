@@ -1,6 +1,4 @@
-import { ProductType } from "../types/types";
-
-export default async (style: keyof ProductType) => {
+export default async (style: string) => {
   try {
     const response = await fetch("/.netlify/functions/delete_product", {
       method: "POST",

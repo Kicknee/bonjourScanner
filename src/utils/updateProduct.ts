@@ -1,4 +1,5 @@
 export default async (product) => {
+  console.log(product[0]);
   const obj = {};
   for (let i = 0; i < 7; i++) {
     obj[product[i].id] = product[i].value;
