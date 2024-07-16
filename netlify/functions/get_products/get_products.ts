@@ -14,7 +14,7 @@ export const handler: Handler = async () => {
   } catch (error) {
     return {
       statusCode: 500,
-      body: error.toString(),
+      body: JSON.stringify(error),
     };
   }
 };

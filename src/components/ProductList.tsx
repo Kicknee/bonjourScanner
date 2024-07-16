@@ -28,7 +28,7 @@ const ProductList = () => {
           </thead>
           <tbody>
             {productList.map((product, key) => (
-              <ProductRecord key={key} product={product} />
+              <ProductRecord key={key} productProp={product} />
             ))}
           </tbody>
         </table>

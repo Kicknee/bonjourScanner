@@ -1,19 +1,21 @@
-const ProductDetailsViewMode = ({ product }) => {
+import { ProductProp } from "../types/types";
+
+const ProductDetailsViewMode = ({ productProp }: ProductProp) => {
   return (
     <div className="row my-3 justify-content-center">
       <div className="col-9">
         <table className=" table table-dark table-borderless text-siz fs-5">
           <tbody>
-            {Object.entries(product)
+            {Object.entries(productProp)
               .slice(1)
-              .map((arr) => {
-                let value = arr;
-                if (arr[0] == "SHIPPING_COMPANY") value[0] = "SHIPPING COMPANY";
+              .map(([key, val]) => {
+                const displayKey =
+                  key == "SHIPPING_COMPANY" ? "SHIPPING COMPANY" : key;
 
                 return (
-                  <tr key={arr[0]}>
-                    <th>{value[0]}</th>
-                    <th>{value[1]}</th>
+                  <tr key={displayKey}>
+                    <th>{key}</th>
+                    <th>{val}</th>
                   </tr>
                 );
               })}

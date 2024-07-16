@@ -2,6 +2,10 @@ import { ObjectId } from "mongodb";
 
 export type EditType = boolean;
 
+export interface EditMode {
+  editMode: EditType;
+}
+
 export interface ProductType {
   _id: ObjectId | undefined;
   STYLE: string | undefined;
@@ -11,4 +15,8 @@ export interface ProductType {
   COLOR: string | undefined;
   BRAND: string | undefined;
   SHIPPING_COMPANY: string | undefined;
+}
+
+export interface ProductProp {
+  productProp: ProductType;
 }

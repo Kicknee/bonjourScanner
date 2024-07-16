@@ -6,15 +6,15 @@ import ProductDetailsViewMode from "./ProductDetailsViewMode";
 
 const Product = () => {
   const editMode = useEditState();
-  const selected_product = useProductState();
+  const selectedProduct = useProductState();
 
   return (
     <div className="row">
       <div className="col-12">
         {editMode ? (
-          <ProductDetailsEditMode product={selected_product} />
+          <ProductDetailsEditMode productProp={selectedProduct} />
         ) : (
-          <ProductDetailsViewMode product={selected_product} />
+          <ProductDetailsViewMode productProp={selectedProduct} />
         )}
         <ProductDetailsTaskbar editMode={editMode} />
       </div>

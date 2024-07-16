@@ -1,8 +1,9 @@
 import ProductDetailsTaskbarViewMode from "./ProductDetailsTaskbarViewMode";
 import ProductDetailsTaskbarEditMode from "./ProductDetailsTaskbarEditMode";
 import ProductQR from "./ProductQR";
+import { EditMode } from "../types/types";
 
-const ProductDetailsTaskbar = ({ editMode }) => {
+const ProductDetailsTaskbar = ({ editMode }: EditMode) => {
   return (
     <div className="row justify-content-end">
       <div className="col-7">
