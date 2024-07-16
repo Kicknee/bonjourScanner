@@ -8,7 +8,7 @@ import useProductState from "../state/hooks/useProductState";
 const ProductDetailsTaskbarViewMode = () => {
   const enableEditMode = useDispatch();
 
-  const currentProductStyle = useProductState().STYLE;
+  const currentProductStyle = useProductState().STYLE as string;
 
   return (
     <div className="col-3">
