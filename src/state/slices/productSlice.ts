@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductType } from "../../types/types";
 
-const initialState: ProductType = {
+const initialState: Partial<ProductType> = {
   _id: undefined,
   STYLE: undefined,
   TYPE: undefined,

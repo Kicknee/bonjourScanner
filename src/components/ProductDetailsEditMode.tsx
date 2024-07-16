@@ -16,7 +16,6 @@ const ProductDetailsEditMode = ({ productProp }: ProductProp) => {
       };
     });
   }
-  console.log(input);
   return (
     <div className="row justify-content-center">
       <div className="col-9">

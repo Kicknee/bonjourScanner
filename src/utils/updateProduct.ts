@@ -1,16 +1,13 @@
-export default async (product) => {
-  console.log(product[0]);
-  const obj = {};
-  for (let i = 0; i < 7; i++) {
-    obj[product[i].id] = product[i].value;
-  }
+import { ProductType } from "../types/types";
+
+export default async (product: ProductType) => {
   try {
     const response = await fetch("/.netlify/functions/update_product", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(obj),
+      body: JSON.stringify(product),
     });
 
     if (!response.ok) {

@@ -7,14 +7,14 @@ export interface EditMode {
 }
 
 export interface ProductType {
-  _id: ObjectId | undefined;
-  STYLE: string | undefined;
-  TYPE: string | undefined;
-  PLACE: string | undefined;
-  LEFT: number | undefined;
-  COLOR: string | undefined;
-  BRAND: string | undefined;
-  SHIPPING_COMPANY: string | undefined;
+  _id: ObjectId;
+  STYLE: string;
+  TYPE: string;
+  PLACE: string;
+  LEFT: number;
+  COLOR: string;
+  BRAND: string;
+  SHIPPING_COMPANY: string;
 }
 
 export interface ProductProp {

@@ -3,6 +3,7 @@ import { faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { disable } from "../state/slices/editSlice";
 import updateProduct from "../utils/updateProduct";
+import { ProductType } from "../types/types";
 
 const ProductDetailsTaskbarEditMode = () => {
   const disableEditMode = useDispatch();
@@ -13,7 +14,14 @@ const ProductDetailsTaskbarEditMode = () => {
         id="edit-form"
         onSubmit={(e) => {
           e.preventDefault();
-          updateProduct(e.target);
+          const product = e.target as HTMLFormElement;
+          const obj: Partial<ProductType> = {};
+
+          for (let i = 0; i < product.elements.length; i++) {
+            const { id, value } = product[i] as HTMLInputElement;
+            obj[id] = value;
+          }
+          updateProduct(obj as ProductType);
         }}
       ></form>
       <button className="btn" form="edit-form">
