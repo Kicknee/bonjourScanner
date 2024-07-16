@@ -10,7 +10,7 @@ const ProductDetailsTaskbar = ({ editMode, addMode }) => {
         <div className="row align-items-end justify-content-around">
           {editMode && !addMode && <ProductDetailsTaskbarEditMode />}
           {!editMode && !addMode && <ProductDetailsTaskbarViewMode />}
-          {!editMode && addMode && <ProductDetailsTaskbarAddMode />}
+          {addMode && <ProductDetailsTaskbarAddMode />}
           <ProductQR />
         </div>
       </div>

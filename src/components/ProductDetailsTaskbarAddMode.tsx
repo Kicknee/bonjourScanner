@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { disableAdd } from "../state/slices/addSlice";
-import updateProduct from "../utils/updateProduct";
+import addProduct from "../utils/addProduct";
 import { ProductType } from "../types/types";
 
 const ProductDetailsTaskbarAddMode = () => {
@@ -21,7 +21,7 @@ const ProductDetailsTaskbarAddMode = () => {
             const { id, value } = product[i] as HTMLInputElement;
             obj[id] = value;
           }
-          updateProduct(obj as ProductType);
+          addProduct(obj as ProductType);
         }}
       ></form>
       <button className="btn" form="add-form">

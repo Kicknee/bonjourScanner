@@ -17,8 +17,8 @@ const SearchBar = () => {
       <button
         className="btn"
         onClick={() => {
-          dispatch(disable());
           dispatch(enableAdd());
+          dispatch(disable());
         }}
       >
         <FontAwesomeIcon

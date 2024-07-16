@@ -20,7 +20,7 @@ const Product = () => {
         {!editMode && !addMode && (
           <ProductDetailsViewMode productProp={selectedProduct} />
         )}
-        {!editMode && addMode && <ProductDetailsAddMode />}
+        {addMode && <ProductDetailsAddMode />}
 
         <ProductDetailsTaskbar editMode={editMode} addMode={addMode} />
       </div>
