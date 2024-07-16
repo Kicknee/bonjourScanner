@@ -6,6 +6,8 @@ export interface EditMode {
   editMode: EditType;
 }
 
+export type AddType = boolean;
+
 export interface ProductType {
   _id: ObjectId;
   STYLE: string;
