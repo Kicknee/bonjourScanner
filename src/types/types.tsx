@@ -8,6 +8,10 @@ export interface EditMode {
 
 export type AddType = boolean;
 
+export interface AddMode {
+  addMode: AddType;
+}
+
 export interface ProductType {
   _id: ObjectId;
   STYLE: string;

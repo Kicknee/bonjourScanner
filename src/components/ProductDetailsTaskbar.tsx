@@ -1,18 +1,16 @@
 import ProductDetailsTaskbarViewMode from "./ProductDetailsTaskbarViewMode";
 import ProductDetailsTaskbarEditMode from "./ProductDetailsTaskbarEditMode";
 import ProductQR from "./ProductQR";
-import { EditMode } from "../types/types";
+import ProductDetailsTaskbarAddMode from "./ProductDetailsTaskbarAddMode";
 
-const ProductDetailsTaskbar = ({ editMode }: EditMode) => {
+const ProductDetailsTaskbar = ({ editMode, addMode }) => {
   return (
     <div className="row justify-content-end">
       <div className="col-7">
         <div className="row align-items-end justify-content-around">
-          {editMode ? (
-            <ProductDetailsTaskbarEditMode />
-          ) : (
-            <ProductDetailsTaskbarViewMode />
-          )}
+          {editMode && !addMode && <ProductDetailsTaskbarEditMode />}
+          {!editMode && !addMode && <ProductDetailsTaskbarViewMode />}
+          {!editMode && addMode && <ProductDetailsTaskbarAddMode />}
           <ProductQR />
         </div>
       </div>

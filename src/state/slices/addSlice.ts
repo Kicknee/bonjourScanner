@@ -7,10 +7,10 @@ const addSlice = createSlice({
   name: "add",
   initialState,
   reducers: {
-    enable: () => true,
-    disable: () => false,
+    enableAdd: () => true,
+    disableAdd: () => false,
   },
 });
 
 export default addSlice.reducer;
-export const { enable, disable } = addSlice.actions;
+export const { enableAdd, disableAdd } = addSlice.actions;
