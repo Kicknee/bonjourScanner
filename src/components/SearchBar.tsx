@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
+import { batch, useDispatch } from "react-redux";
 import { disable } from "../state/slices/editSlice";
 import { enableAdd } from "../state/slices/addSlice";
 
@@ -17,8 +17,10 @@ const SearchBar = () => {
       <button
         className="btn"
         onClick={() => {
-          dispatch(enableAdd());
-          dispatch(disable());
+          batch(() => {
+            dispatch(enableAdd());
+            dispatch(disable());
+          });
         }}
       >
         <FontAwesomeIcon
