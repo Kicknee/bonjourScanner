@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductType } from "../../types/types";
-import useProductListState from "../hooks/useProductListState";
 
 const initialState: ProductType[] = [];
 

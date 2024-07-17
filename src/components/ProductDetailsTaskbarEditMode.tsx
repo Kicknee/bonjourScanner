@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
+import { batch, useDispatch } from "react-redux";
 import { disable } from "../state/slices/editSlice";
 import updateProduct from "../utils/updateProduct";
 import { ProductType } from "../types/types";
 
 const ProductDetailsTaskbarEditMode = () => {
-  const disableEditMode = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <div className="col-3">
@@ -22,6 +22,7 @@ const ProductDetailsTaskbarEditMode = () => {
             obj[id] = value;
           }
           updateProduct(obj as ProductType);
+          dispatch(disable());
         }}
       ></form>
       <button className="btn" form="edit-form">
@@ -34,7 +35,7 @@ const ProductDetailsTaskbarEditMode = () => {
       <button
         className="btn"
         onClick={() => {
-          disableEditMode(disable());
+          dispatch(disable());
         }}
       >
         <FontAwesomeIcon
