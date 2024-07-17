@@ -17,7 +17,7 @@ const ProductDetailsTaskbarAddMode = () => {
           const product = e.target as HTMLFormElement;
           const obj: Partial<ProductType> = {};
 
-          for (let i = 0; i < product.elements.length; i++) {
+          for (let i = 0; i < 7; i++) {
             const { id, value } = product[i] as HTMLInputElement;
             obj[id] = value;
           }
