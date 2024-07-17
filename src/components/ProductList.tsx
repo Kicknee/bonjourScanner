@@ -1,8 +1,12 @@
 import ProductRecord from "./ProductRecord";
 import useProductListState from "../state/hooks/useProductListState";
+import useSearchListState from "../state/hooks/useSearchListState";
 
 const ProductList = () => {
-  const productList = useProductListState();
+  const productList =
+    useSearchListState().length > 0
+      ? useSearchListState()
+      : useProductListState();
 
   return (
     <div className="table-container">

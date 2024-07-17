@@ -4,14 +4,33 @@ import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { batch, useDispatch } from "react-redux";
 import { disable } from "../state/slices/editSlice";
 import { enableAdd } from "../state/slices/addSlice";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import { find, reset } from "../state/slices/searchListSlice";
+import useProductListState from "../state/hooks/useProductListState";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
+  const currentList = useProductListState();
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    setInput(event.target.value);
+    const val = event.target.value.trim().toUpperCase();
+    setInput(val);
+  }
+
+  useEffect(() => {
+    findProduct();
+  }, [input]);
+  function findProduct() {
+    console.log(input);
+    if (!input) {
+      dispatch(reset());
+      return;
+    }
+    const searchList = currentList.filter((product) =>
+      product.STYLE.includes(input)
+    );
+    dispatch(find(searchList));
   }
 
   return (
