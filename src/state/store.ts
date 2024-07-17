@@ -3,10 +3,12 @@ import productListReducer from "./slices/productListSlice";
 import productReducer from "./slices/productSlice";
 import editReducer from "./slices/editSlice";
 import addReducer from "./slices/addSlice";
+import searchListReducer from "./slices/searchListSlice";
 
 export const store = configureStore({
   reducer: {
     productList: productListReducer,
+    searchList: searchListReducer,
     product: productReducer,
     add: addReducer,
     edit: editReducer,
