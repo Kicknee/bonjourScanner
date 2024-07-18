@@ -1,7 +1,6 @@
 import ProductRecord from "./ProductRecord";
 import useProductListState from "../state/hooks/useProductListState";
 import useSearchListState from "../state/hooks/useSearchListState";
-
 const ProductList = () => {
   const productList =
     useSearchListState().length > 0

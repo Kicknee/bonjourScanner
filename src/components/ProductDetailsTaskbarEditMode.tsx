@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { disable } from "../state/slices/editSlice";
 import updateProduct from "../utils/updateProduct";
 import { ProductType } from "../types/types";
+import { updateProductState } from "../state/slices/productListSlice";
+import { select } from "../state/slices/productSlice";
 
 const ProductDetailsTaskbarEditMode = () => {
   const dispatch = useDispatch();
@@ -15,6 +17,7 @@ const ProductDetailsTaskbarEditMode = () => {
         onSubmit={(e) => {
           e.preventDefault();
           const product = e.target as HTMLFormElement;
+          const productID = product[0].dataset.id;
           const obj: Partial<ProductType> = {};
 
           for (let i = 0; i < 7; i++) {
@@ -22,6 +25,9 @@ const ProductDetailsTaskbarEditMode = () => {
             obj[id] = value;
           }
           updateProduct(obj as ProductType);
+          obj._id = productID;
+          dispatch(updateProductState(obj));
+          dispatch(select(obj as ProductType));
           dispatch(disable());
         }}
       ></form>
