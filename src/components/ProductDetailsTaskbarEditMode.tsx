@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
-import { batch, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { disable } from "../state/slices/editSlice";
 import updateProduct from "../utils/updateProduct";
 import { ProductType } from "../types/types";

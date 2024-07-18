@@ -1,17 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
-import { batch, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { disable } from "../state/slices/editSlice";
 import { enableAdd } from "../state/slices/addSlice";
 import { ChangeEvent, useEffect, useState } from "react";
-import { find, reset } from "../state/slices/searchListSlice";
-import useProductListState from "../state/hooks/useProductListState";
+import useFindProduct from "../utils/useFindProduct";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
-  const currentList = useProductListState();
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const val = event.target.value.trim().toUpperCase();
@@ -19,19 +17,8 @@ const SearchBar = () => {
   }
 
   useEffect(() => {
-    findProduct();
+    useFindProduct(input);
   }, [input]);
-  function findProduct() {
-    console.log(input);
-    if (!input) {
-      dispatch(reset());
-      return;
-    }
-    const searchList = currentList.filter((product) =>
-      product.STYLE.includes(input)
-    );
-    dispatch(find(searchList));
-  }
 
   return (
     <div className="search-bar mb-4 d-flex align-items-center">
@@ -45,10 +32,8 @@ const SearchBar = () => {
       <button
         className="btn"
         onClick={() => {
-          batch(() => {
-            dispatch(enableAdd());
-            dispatch(disable());
-          });
+          dispatch(enableAdd());
+          dispatch(disable());
         }}
       >
         <FontAwesomeIcon
