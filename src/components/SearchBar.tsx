@@ -5,11 +5,13 @@ import { useDispatch } from "react-redux";
 import { disable } from "../state/slices/editSlice";
 import { enableAdd } from "../state/slices/addSlice";
 import { ChangeEvent, useEffect, useState } from "react";
-import useFindProduct from "../utils/useFindProduct";
+import { find, reset } from "../state/slices/searchListSlice";
+import useProductListState from "../state/hooks/useProductListState";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
+  const currentList = useProductListState();
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const val = event.target.value.trim().toUpperCase();
@@ -17,8 +19,20 @@ const SearchBar = () => {
   }
 
   useEffect(() => {
-    useFindProduct(input);
+    findProduct();
   }, [input]);
+
+  function findProduct() {
+    console.log(input);
+    if (!input) {
+      dispatch(reset());
+      return;
+    }
+    const searchList = currentList.filter((product) =>
+      product.STYLE.includes(input)
+    );
+    dispatch(find(searchList));
+  }
 
   return (
     <div className="search-bar mb-4 d-flex align-items-center">
