@@ -22,7 +22,7 @@ const SearchBar = () => {
     findProduct();
   }, [input]);
 
-  function findProduct() {
+  const findProduct = () => {
     console.log(input);
     if (!input) {
       dispatch(reset());
@@ -32,7 +32,7 @@ const SearchBar = () => {
       product.STYLE.includes(input)
     );
     dispatch(find(searchList));
-  }
+  };
 
   return (
     <div className="search-bar mb-4 d-flex align-items-center">
