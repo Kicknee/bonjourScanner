@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { fill } from "../state/slices/productListSlice";
+import { fillProductListState } from "../state/slices/productListSlice";
 import getProducts from "./getProducts";
 
 export default async function useProductList() {
@@ -7,7 +7,7 @@ export default async function useProductList() {
   try {
     const products = await getProducts();
 
-    dispatch(fill(products));
+    dispatch(fillProductListState(products));
   } catch (error) {
     console.error(error);
   }

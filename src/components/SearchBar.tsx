@@ -2,10 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { disable } from "../state/slices/editSlice";
+import { disableEdit } from "../state/slices/editSlice";
 import { enableAdd } from "../state/slices/addSlice";
 import { ChangeEvent, useEffect, useState } from "react";
-import { find, reset } from "../state/slices/searchListSlice";
+import {
+  setSearchListState,
+  resetSearchListState,
+} from "../state/slices/searchListSlice";
 import useProductListState from "../state/hooks/useProductListState";
 
 const SearchBar = () => {
@@ -25,13 +28,13 @@ const SearchBar = () => {
   const findProduct = () => {
     console.log(input);
     if (!input) {
-      dispatch(reset());
+      dispatch(resetSearchListState());
       return;
     }
     const searchList = currentList.filter((product) =>
       product.STYLE.includes(input)
     );
-    dispatch(find(searchList));
+    dispatch(setSearchListState(searchList));
   };
 
   return (
@@ -47,7 +50,7 @@ const SearchBar = () => {
         className="btn"
         onClick={() => {
           dispatch(enableAdd());
-          dispatch(disable());
+          dispatch(disableEdit());
         }}
       >
         <FontAwesomeIcon

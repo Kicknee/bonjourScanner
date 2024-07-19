@@ -7,10 +7,10 @@ const editSlice = createSlice({
   name: "edit",
   initialState,
   reducers: {
-    enable: () => true,
-    disable: () => false,
+    enableEdit: () => true,
+    disableEdit: () => false,
   },
 });
 
 export default editSlice.reducer;
-export const { enable, disable } = editSlice.actions;
+export const { enableEdit, disableEdit } = editSlice.actions;

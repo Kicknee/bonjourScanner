@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { select } from "../state/slices/productSlice";
+import { selectProductState } from "../state/slices/productSlice";
 import { ProductProp } from "../types/types";
-import { disable } from "../state/slices/editSlice";
+import { disableEdit } from "../state/slices/editSlice";
 import { disableAdd } from "../state/slices/addSlice";
 
 const ProductRecord = ({ productProp }: ProductProp) => {
@@ -10,8 +10,8 @@ const ProductRecord = ({ productProp }: ProductProp) => {
     <tr
       className="dropdown user-select-none"
       onClick={() => {
-        dispatch(select(productProp));
-        dispatch(disable());
+        dispatch(selectProductState(productProp));
+        dispatch(disableEdit());
         dispatch(disableAdd());
       }}
     >

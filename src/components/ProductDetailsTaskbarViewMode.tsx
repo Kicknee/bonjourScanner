@@ -1,16 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilePen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { enable } from "../state/slices/editSlice";
+import { enableEdit } from "../state/slices/editSlice";
 import deleteProduct from "../utils/deleteProduct";
 import useProductState from "../state/hooks/useProductState";
 import { ProductType } from "../types/types";
-import { fill } from "../state/slices/productListSlice";
-import { deselect } from "../state/slices/productSlice";
+import { fillProductListState } from "../state/slices/productListSlice";
+import { deselectProductState } from "../state/slices/productSlice";
 import getProducts from "../utils/getProducts";
 const ProductDetailsTaskbarViewMode = () => {
   const dispatch = useDispatch();
-  const enableEditMode = useDispatch();
 
   const currentProduct = useProductState();
 
@@ -22,7 +21,7 @@ const ProductDetailsTaskbarViewMode = () => {
           icon={faFilePen}
           style={{ color: "#ffffff" }}
           onClick={() => {
-            enableEditMode(enable());
+            dispatch(enableEdit());
           }}
         />
       </button>
@@ -40,12 +39,12 @@ const ProductDetailsTaskbarViewMode = () => {
                 alert("couldn't delete a record");
               } else {
                 alert("successful delete");
-                dispatch(deselect());
+                dispatch(deselectProductState());
                 const refreshedList = await getProducts();
                 if (!refreshedList) {
                   alert("Couldn't refresh product list");
                 } else {
-                  dispatch(fill(refreshedList));
+                  dispatch(fillProductListState(refreshedList));
                 }
               }
             })();

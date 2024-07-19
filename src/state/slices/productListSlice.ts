@@ -7,7 +7,7 @@ const productListSlice = createSlice({
   name: "productList",
   initialState,
   reducers: {
-    fill: (_, action) => action.payload,
+    fillProductListState: (_, action) => action.payload,
     updateProductState: (state, action) => {
       return state.map((product) => {
         if (product._id === action.payload._id) {
@@ -26,5 +26,5 @@ const productListSlice = createSlice({
 });
 
 export default productListSlice.reducer;
-export const { fill, updateProductState, deleteProductState } =
+export const { fillProductListState, updateProductState, deleteProductState } =
   productListSlice.actions;

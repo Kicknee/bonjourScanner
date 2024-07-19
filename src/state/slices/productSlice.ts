@@ -16,12 +16,13 @@ const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
-    select: (state, action: PayloadAction<ProductType>) => {
+    selectProductState: (state, action: PayloadAction<ProductType>) => {
       return { ...state, ...action.payload };
     },
-    deselect: () => initialState,
+    deselectProductState: () => initialState,
   },
 });
 
 export default productSlice.reducer;
-export const { select, deselect } = productSlice.actions;
+export const { selectProductState, deselectProductState } =
+  productSlice.actions;

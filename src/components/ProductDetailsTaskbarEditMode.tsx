@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { disable } from "../state/slices/editSlice";
+import { disableEdit } from "../state/slices/editSlice";
 import updateProduct from "../utils/updateProduct";
 import { ProductType } from "../types/types";
-import { fill } from "../state/slices/productListSlice";
-import { select } from "../state/slices/productSlice";
+import { fillProductListState } from "../state/slices/productListSlice";
+import { selectProductState } from "../state/slices/productSlice";
 import getProducts from "../utils/getProducts";
 
 const ProductDetailsTaskbarEditMode = () => {
@@ -29,17 +29,17 @@ const ProductDetailsTaskbarEditMode = () => {
           if (!response) {
             console.log(response);
             alert("Couldn't update");
-            dispatch(disable());
+            dispatch(disableEdit());
             return;
           } else {
             alert("Successful update");
-            dispatch(select(obj as ProductType));
-            dispatch(disable());
+            dispatch(selectProductState(obj as ProductType));
+            dispatch(disableEdit());
             const refreshedList = await getProducts();
             if (!refreshedList) {
               alert("Couldn't refresh product list");
             } else {
-              dispatch(fill(refreshedList));
+              dispatch(fillProductListState(refreshedList));
             }
           }
           obj._id = productID;
@@ -55,7 +55,7 @@ const ProductDetailsTaskbarEditMode = () => {
       <button
         className="btn"
         onClick={() => {
-          dispatch(disable());
+          dispatch(disableEdit());
         }}
       >
         <FontAwesomeIcon

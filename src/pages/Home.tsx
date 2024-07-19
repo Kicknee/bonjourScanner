@@ -5,7 +5,7 @@ import SectionDivider from "../components/layoutComponents/SectionDivider";
 import { useEffect } from "react";
 import getProducts from "../utils/getProducts";
 import { useDispatch } from "react-redux";
-import { fill } from "../state/slices/productListSlice";
+import { fillProductListState } from "../state/slices/productListSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const Home = () => {
       if (!refreshedList) {
         alert("Couldn't refresh product list");
       } else {
-        dispatch(fill(refreshedList));
+        dispatch(fillProductListState(refreshedList));
       }
     })();
   }, []);
