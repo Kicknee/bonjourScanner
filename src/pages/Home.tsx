@@ -6,8 +6,12 @@ import { useEffect } from "react";
 import getProducts from "../utils/getProducts";
 import { useDispatch } from "react-redux";
 import { fillProductListState } from "../state/slices/productListSlice";
+import Modal from "../components/Modal";
+import useModalState from "../state/hooks/useModalState";
 
 const Home = () => {
+  const showModal = useModalState().show;
+
   const dispatch = useDispatch();
   useEffect(() => {
     console.log("refresh");
@@ -20,8 +24,10 @@ const Home = () => {
       }
     })();
   }, []);
+
   return (
     <div className="row align-items-center" style={{ overflow: "hidden" }}>
+      {showModal && <Modal message="Hello" />}
       <div className="col-12 px-4 px-md-5 mx-auto col-xl-8">
         <div className="row d-none d-md-flex">
           <LeftSide />
