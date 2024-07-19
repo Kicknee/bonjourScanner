@@ -1,11 +1,13 @@
-export default async (style: string) => {
+import { ProductType } from "../types/types";
+
+export default async (product: ProductType) => {
   try {
     const response = await fetch("/.netlify/functions/delete_product", {
-      method: "POST",
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ STYLE: style }),
+      body: JSON.stringify(product._id),
     });
 
     if (!response.ok) {
@@ -13,7 +15,7 @@ export default async (style: string) => {
     }
 
     const jsonResponse = await response.json();
-    console.log(jsonResponse);
+    return jsonResponse;
   } catch (error) {
     console.error("Fetch error:", error);
   }

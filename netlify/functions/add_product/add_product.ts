@@ -5,8 +5,6 @@ export const handler: Handler = async (event) => {
   try {
     const newProduct = event.body ? JSON.parse(event.body) : null;
 
-    console.log(newProduct);
-
     const response = await connect_db(async (collection) => {
       return await collection.insertOne(newProduct);
     });

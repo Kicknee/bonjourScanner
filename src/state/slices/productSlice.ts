@@ -19,8 +19,9 @@ const productSlice = createSlice({
     select: (state, action: PayloadAction<ProductType>) => {
       return { ...state, ...action.payload };
     },
+    deselect: () => initialState,
   },
 });
 
 export default productSlice.reducer;
-export const { select } = productSlice.actions;
+export const { select, deselect } = productSlice.actions;

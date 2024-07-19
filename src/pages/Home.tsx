@@ -2,11 +2,24 @@ import LeftSide from "../components/layoutComponents/LeftSide";
 import RightSide from "../components/layoutComponents/RightSide";
 import CenterSide from "../components/layoutComponents/CenterSide";
 import SectionDivider from "../components/layoutComponents/SectionDivider";
-import useProductList from "../utils/useProductList";
+import { useEffect } from "react";
+import getProducts from "../utils/getProducts";
+import { useDispatch } from "react-redux";
+import { fill } from "../state/slices/productListSlice";
 
 const Home = () => {
-  useProductList();
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log("refresh");
+    (async () => {
+      const refreshedList = await getProducts();
+      if (!refreshedList) {
+        alert("Couldn't refresh product list");
+      } else {
+        dispatch(fill(refreshedList));
+      }
+    })();
+  }, []);
   return (
     <div className="row align-items-center" style={{ overflow: "hidden" }}>
       <div className="col-12 px-4 px-md-5 mx-auto col-xl-8">

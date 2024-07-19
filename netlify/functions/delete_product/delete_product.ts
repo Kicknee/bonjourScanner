@@ -3,10 +3,9 @@ import connect_db from "../../utils/connect_db";
 
 export const handler: Handler = async (event) => {
   try {
-    const { STYLE } = event.body ? JSON.parse(event.body) : null;
-
+    const product = event.body ? JSON.parse(event.body) : null;
     const response = await connect_db(async (collection) => {
-      return await collection.deleteOne({ STYLE });
+      return await collection.deleteOne(product._id);
     });
 
     return {

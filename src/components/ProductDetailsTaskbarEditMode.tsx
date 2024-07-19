@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 import { disable } from "../state/slices/editSlice";
 import updateProduct from "../utils/updateProduct";
 import { ProductType } from "../types/types";
-import { updateProductState } from "../state/slices/productListSlice";
+import { fill } from "../state/slices/productListSlice";
 import { select } from "../state/slices/productSlice";
+import getProducts from "../utils/getProducts";
 
 const ProductDetailsTaskbarEditMode = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const ProductDetailsTaskbarEditMode = () => {
     <div className="col-3">
       <form
         id="edit-form"
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
           const product = e.target as HTMLFormElement;
           const productID = product[0].dataset.id;
@@ -24,11 +25,24 @@ const ProductDetailsTaskbarEditMode = () => {
             const { id, value } = product[i] as HTMLInputElement;
             obj[id] = value;
           }
-          updateProduct(obj as ProductType);
+          const response = await updateProduct(obj as ProductType);
+          if (!response) {
+            console.log(response);
+            alert("Couldn't update");
+            dispatch(disable());
+            return;
+          } else {
+            alert("Successful update");
+            dispatch(select(obj as ProductType));
+            dispatch(disable());
+            const refreshedList = await getProducts();
+            if (!refreshedList) {
+              alert("Couldn't refresh product list");
+            } else {
+              dispatch(fill(refreshedList));
+            }
+          }
           obj._id = productID;
-          dispatch(updateProductState(obj));
-          dispatch(select(obj as ProductType));
-          dispatch(disable());
         }}
       ></form>
       <button className="btn" form="edit-form">
