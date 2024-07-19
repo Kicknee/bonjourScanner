@@ -7,7 +7,7 @@ export default async (product: ProductType) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(product._id),
+      body: JSON.stringify(product),
     });
 
     if (!response.ok) {
