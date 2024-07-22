@@ -38,17 +38,14 @@ const ProductDetailsTaskbarViewMode = () => {
                 currentProduct as ProductType
               );
               if (!response) {
-                // alert("couldn't delete a record");
                 dispatch(messageModalState("Couldn't delete the record"));
                 dispatch(showModalState(true));
               } else {
-                // alert("successful delete");
                 dispatch(messageModalState("Successful delete"));
                 dispatch(showModalState(true));
                 dispatch(deselectProductState());
                 const refreshedList = await getProducts();
                 if (!refreshedList) {
-                  // alert("Couldn't refresh product list");
                   dispatch(messageModalState("Couldn't refresh product list"));
                   dispatch(showModalState(true));
                 } else {

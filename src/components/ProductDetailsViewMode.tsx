@@ -1,15 +1,7 @@
 import { ProductProp } from "../types/types";
+import { examineEntries } from "../utils/examineEntries";
 
 const ProductDetailsViewMode = ({ productProp }: ProductProp) => {
-  const examineEntries = (key: string, value: string) => {
-    const displayKey = key == "SHIPPING_COMPANY" ? "SHIPPING COMPANY" : key;
-    const displayValue =
-      typeof value === "string" && value.length > 11
-        ? `${value.substring(0, 9)}...`
-        : value;
-
-    return { displayKey, displayValue };
-  };
   return (
     <div className="row my-3 justify-content-center">
       <div className="col-9">
