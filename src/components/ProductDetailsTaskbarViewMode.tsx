@@ -8,6 +8,8 @@ import { ProductType } from "../types/types";
 import { fillProductListState } from "../state/slices/productListSlice";
 import { deselectProductState } from "../state/slices/productSlice";
 import getProducts from "../utils/getProducts";
+import { messageModalState, showModalState } from "../state/slices/modalSlice";
+
 const ProductDetailsTaskbarViewMode = () => {
   const dispatch = useDispatch();
 
@@ -36,13 +38,19 @@ const ProductDetailsTaskbarViewMode = () => {
                 currentProduct as ProductType
               );
               if (!response) {
-                alert("couldn't delete a record");
+                // alert("couldn't delete a record");
+                dispatch(messageModalState("Couldn't delete the record"));
+                dispatch(showModalState(true));
               } else {
-                alert("successful delete");
+                // alert("successful delete");
+                dispatch(messageModalState("Successful delete"));
+                dispatch(showModalState(true));
                 dispatch(deselectProductState());
                 const refreshedList = await getProducts();
                 if (!refreshedList) {
-                  alert("Couldn't refresh product list");
+                  // alert("Couldn't refresh product list");
+                  dispatch(messageModalState("Couldn't refresh product list"));
+                  dispatch(showModalState(true));
                 } else {
                   dispatch(fillProductListState(refreshedList));
                 }

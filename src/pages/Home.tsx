@@ -8,17 +8,20 @@ import { useDispatch } from "react-redux";
 import { fillProductListState } from "../state/slices/productListSlice";
 import Modal from "../components/Modal";
 import useModalState from "../state/hooks/useModalState";
+import { showModalState, messageModalState } from "../state/slices/modalSlice";
 
 const Home = () => {
-  const showModal = useModalState().show;
-
+  const { show: showModal } = useModalState();
   const dispatch = useDispatch();
+
   useEffect(() => {
     console.log("refresh");
     (async () => {
       const refreshedList = await getProducts();
       if (!refreshedList) {
-        alert("Couldn't refresh product list");
+        dispatch(messageModalState("Couldn't refresh product list"));
+        dispatch(showModalState(true));
+        // alert("Couldn't refresh product list");
       } else {
         dispatch(fillProductListState(refreshedList));
       }
@@ -27,7 +30,7 @@ const Home = () => {
 
   return (
     <div className="row align-items-center" style={{ overflow: "hidden" }}>
-      {showModal && <Modal message="Hello" />}
+      {showModal && <Modal />}
       <div className="col-12 px-4 px-md-5 mx-auto col-xl-8">
         <div className="row d-none d-md-flex">
           <LeftSide />

@@ -7,7 +7,7 @@ import { ProductType } from "../types/types";
 import { fillProductListState } from "../state/slices/productListSlice";
 import { selectProductState } from "../state/slices/productSlice";
 import getProducts from "../utils/getProducts";
-
+import { messageModalState, showModalState } from "../state/slices/modalSlice";
 const ProductDetailsTaskbarEditMode = () => {
   const dispatch = useDispatch();
 
@@ -28,16 +28,22 @@ const ProductDetailsTaskbarEditMode = () => {
           const response = await updateProduct(obj as ProductType);
           if (!response) {
             console.log(response);
-            alert("Couldn't update");
+            // alert("Couldn't update");
+            dispatch(messageModalState("Couldn't update the record"));
+            dispatch(showModalState(true));
             dispatch(disableEdit());
             return;
           } else {
-            alert("Successful update");
+            // alert("Successful update");
+            dispatch(messageModalState("Successful update"));
+            dispatch(showModalState(true));
             dispatch(selectProductState(obj as ProductType));
             dispatch(disableEdit());
             const refreshedList = await getProducts();
             if (!refreshedList) {
-              alert("Couldn't refresh product list");
+              // alert("Couldn't refresh product list");
+              dispatch(messageModalState("Couldn't refresh product list"));
+              dispatch(showModalState(true));
             } else {
               dispatch(fillProductListState(refreshedList));
             }
