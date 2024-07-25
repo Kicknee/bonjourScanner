@@ -26,3 +26,7 @@ export interface ProductType {
 export interface ProductProp {
   productProp: ProductType;
 }
+export interface ModalType {
+  show: boolean;
+  message: string;
+}
