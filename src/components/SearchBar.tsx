@@ -26,7 +26,6 @@ const SearchBar = () => {
   }, [input]);
 
   const findProduct = () => {
-    console.log(input);
     if (!input) {
       dispatch(resetSearchListState());
       return;

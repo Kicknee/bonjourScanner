@@ -15,13 +15,11 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("refresh");
     (async () => {
       const refreshedList = await getProducts();
       if (!refreshedList) {
         dispatch(messageModalState("Couldn't refresh product list"));
         dispatch(showModalState(true));
-        // alert("Couldn't refresh product list");
       } else {
         dispatch(fillProductListState(refreshedList));
       }

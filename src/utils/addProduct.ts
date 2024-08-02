@@ -14,8 +14,7 @@ export default async (product: ProductType) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const jsonResponse = await response.json();
-    console.log(jsonResponse);
+    // const jsonResponse = await response.json();
   } catch (error) {
     console.error("Fetch error:", error);
   }

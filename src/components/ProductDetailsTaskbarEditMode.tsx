@@ -27,7 +27,6 @@ const ProductDetailsTaskbarEditMode = () => {
           }
           const response = await updateProduct(obj as ProductType);
           if (!response) {
-            console.log(response);
             dispatch(messageModalState("Couldn't update the record"));
             dispatch(showModalState(true));
             dispatch(disableEdit());
