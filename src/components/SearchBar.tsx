@@ -54,8 +54,8 @@ const SearchBar = () => {
       >
         <FontAwesomeIcon
           icon={faPlus}
-          style={{ color: "#ffffff" }}
           className="fa-2x"
+          style={{ color: "#ffffff" }}
         />
       </button>
       <button className="btn">
