@@ -18,11 +18,11 @@ const ProductDetailsTaskbarAddMode = () => {
           e.preventDefault();
           console.log("sss");
           const product = e.target as HTMLFormElement;
-          const obj: Partial<ProductType> = {};
+          const obj: Record<string, any> = {};
 
           for (let i = 0; i < 7; i++) {
             const { id, value } = product[i] as HTMLInputElement;
-            obj[id as keyof ProductType] = value;
+            obj[id] = value;
           }
           const response = await addProduct(obj as ProductType);
           if (!response) {

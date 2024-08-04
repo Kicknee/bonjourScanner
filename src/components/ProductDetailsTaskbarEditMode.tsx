@@ -18,7 +18,7 @@ const ProductDetailsTaskbarEditMode = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           const product = e.target as HTMLFormElement;
-          const productID = product[0].dataset.id;
+          const productID = (product[0] as HTMLInputElement).dataset.id;
           const obj: Record<string, any> = {};
 
           for (let i = 0; i < 7; i++) {
