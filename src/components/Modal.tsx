@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
 const Modal = () => {
+  const [fadeClass, setFadeClass] = useState("");
   const { message } = useModalState();
   const dispatch = useDispatch();
-  const [fadeClass, setFadeClass] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {

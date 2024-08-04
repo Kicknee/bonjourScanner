@@ -7,9 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { deselectProductState } from "../../state/slices/productSlice";
+import useAddState from "../../state/hooks/useAddState";
 
 const CenterSide = () => {
   const { _id: currentProductID } = useProductState();
+  const addMode = useAddState();
   const dispatch = useDispatch();
 
   return (

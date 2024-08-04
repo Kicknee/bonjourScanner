@@ -19,7 +19,7 @@ const ProductDetailsTaskbarEditMode = () => {
           e.preventDefault();
           const product = e.target as HTMLFormElement;
           const productID = product[0].dataset.id;
-          const obj: Partial<ProductType> = {};
+          const obj: Record<string, any> = {};
 
           for (let i = 0; i < 7; i++) {
             const { id, value } = product[i] as HTMLInputElement;
@@ -51,7 +51,7 @@ const ProductDetailsTaskbarEditMode = () => {
         <FontAwesomeIcon
           className="fa-3x"
           icon={faFloppyDisk}
-          style={{ color: "#ffffff" }}
+          style={{ color: "#fff" }}
         />
       </button>
       <button
@@ -63,7 +63,7 @@ const ProductDetailsTaskbarEditMode = () => {
         <FontAwesomeIcon
           className="fa-3x"
           icon={faBan}
-          style={{ color: "#ffffff" }}
+          style={{ color: "#fff" }}
         />
       </button>
     </div>
