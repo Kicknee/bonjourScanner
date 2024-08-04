@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { disableEdit } from "../state/slices/editSlice";
 import { enableAdd } from "../state/slices/addSlice";
@@ -58,9 +57,14 @@ const SearchBar = () => {
           style={{ color: "#ffffff" }}
         />
       </button>
-      <button className="btn">
+      <button
+        className="btn"
+        onClick={() => {
+          window.location.reload();
+        }}
+      >
         <FontAwesomeIcon
-          icon={faPowerOff}
+          icon={faArrowsRotate}
           className="fa-2x"
           style={{ color: "#ffffff" }}
         />
