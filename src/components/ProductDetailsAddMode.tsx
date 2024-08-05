@@ -29,8 +29,7 @@ const ProductDetailsAddMode = () => {
         <table className="table table-dark table-borderless text-siz fs-5">
           <tbody>
             {Object.entries(input).map(([key, val]) => {
-              const displayKey =
-                key === "SHIPPING_COMPANY" ? "SHIPPING COMPANY" : key;
+              const displayKey = key === "SHIPPING_COMPANY" ? "SHIPPING" : key;
 
               return (
                 <tr key={key}>

@@ -28,17 +28,16 @@ const ProductDetailsEditMode = ({ productProp }: ProductProp) => {
                 return;
               }
 
-              const displayKey =
-                key === "SHIPPING_COMPANY" ? "SHIPPING COMPANY" : key;
+              const displayKey = key === "SHIPPING_COMPANY" ? "SHIPPING" : key;
 
               return (
-                <tr key={key}>
+                <tr style={{ height: "48px" }} key={key}>
                   <th>{displayKey}</th>
                   <th>
                     <input
                       id={key}
                       data-id={_id.current}
-                      className="text-uppercase"
+                      className="opacity-75 border-0 bg-input-color h-50 p-1 text-uppercase"
                       type="text"
                       form="edit-form"
                       placeholder={val as string}
