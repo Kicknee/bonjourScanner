@@ -16,7 +16,8 @@ export default function useQRGenerator() {
   const qrElement = createElement(
     "div",
     {
-      className: "quiet-zone p-2 bg-light",
+      className: "quiet-zone p-2 bg-light text-center",
+      style: { width: "200px" },
     },
     createElement(QRCode, {
       value: selectedProduct,
