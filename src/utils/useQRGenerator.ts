@@ -6,21 +6,21 @@ import useAddState from "../state/hooks/useAddState";
 export default function useQRGenerator() {
   const addMode = useAddState();
 
-  const selectedProduct = JSON.stringify(
-    { ...useProductState() },
-    (key, value) => (key === "_id" ? undefined : value)
-  );
+  const selectedProduct = useProductState();
 
-  if (addMode) return;
-
+  const qrValue = addMode
+    ? "{}"
+    : JSON.stringify({ ...selectedProduct }, (key, value) =>
+        key === "_id" ? undefined : value
+      );
   const qrElement = createElement(
     "div",
     {
       className: "quiet-zone p-2 bg-light text-center",
-      style: { width: "200px" },
+      style: { width: "210px" },
     },
     createElement(QRCode, {
-      value: selectedProduct,
+      value: qrValue,
       className: "img-fluid",
     })
   );
