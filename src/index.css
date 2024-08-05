@@ -12363,6 +12363,11 @@ input:focus {
   height: 40px;
 }
 
+.product-taskbar button {
+  width: 75px;
+  aspect-ratio: 1/1;
+}
+
 @media (max-width: 767.98px) {
   .search-bar {
     height: 35px;

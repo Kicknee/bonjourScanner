@@ -10,7 +10,7 @@ const ProductDetailsTaskbar: FC<{ editMode: EditType; addMode: AddType }> = ({
   addMode,
 }) => {
   return (
-    <div className="row justify-content-end">
+    <div className="product-taskbar row justify-content-end">
       <div className="col-7">
         <div className="row align-items-end justify-content-around">
           {editMode && !addMode && <ProductDetailsTaskbarEditMode />}

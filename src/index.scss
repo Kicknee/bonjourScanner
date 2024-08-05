@@ -77,6 +77,11 @@ input:focus {
   height: 40px;
 }
 
+.product-taskbar button {
+  width: 75px;
+  aspect-ratio: 1 /1;
+}
+
 @include media-breakpoint-down(md) {
   .search-bar {
     height: 35px;

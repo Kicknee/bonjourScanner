@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilePen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { enableEdit } from "../state/slices/editSlice";
 import deleteProduct from "../utils/deleteProduct";
@@ -19,8 +19,8 @@ const ProductDetailsTaskbarViewMode = () => {
     <div className="col-3">
       <button className="btn">
         <FontAwesomeIcon
-          className="fa-3x"
-          icon={faFilePen}
+          className="fa-3x w-100"
+          icon={faPenToSquare}
           style={{ color: "#ffffff" }}
           onClick={() => {
             dispatch(enableEdit());
@@ -29,7 +29,7 @@ const ProductDetailsTaskbarViewMode = () => {
       </button>
       <button className="btn">
         <FontAwesomeIcon
-          className="fa-3x"
+          className="fa-3x w-100"
           icon={faTrash}
           style={{ color: "#ffffff" }}
           onClick={() => {

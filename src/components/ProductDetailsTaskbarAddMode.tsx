@@ -46,7 +46,7 @@ const ProductDetailsTaskbarAddMode = () => {
       ></form>
       <button className="btn" form="add-form">
         <FontAwesomeIcon
-          className="fa-3x"
+          className="fa-3x w-100"
           icon={faFloppyDisk}
           style={{ color: "#fff" }}
         />
@@ -58,7 +58,7 @@ const ProductDetailsTaskbarAddMode = () => {
         }}
       >
         <FontAwesomeIcon
-          className="fa-3x"
+          className="fa-3x w-100"
           icon={faBan}
           style={{ color: "#fff" }}
         />
