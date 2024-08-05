@@ -8,6 +8,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { deselectProductState } from "../../state/slices/productSlice";
 import useAddState from "../../state/hooks/useAddState";
+import { disableAdd } from "../../state/slices/addSlice";
 
 const CenterSide = () => {
   const { _id: currentProductID } = useProductState();
@@ -22,14 +23,19 @@ const CenterSide = () => {
         </div>
       </div>
       <SearchBar />
-      {!currentProductID ? (
+      {!currentProductID && !addMode ? (
         <ProductList />
       ) : (
         <div className="col-11 position-relative">
           <button
             className="btn"
             onClick={() => {
-              dispatch(deselectProductState());
+              if (currentProductID) {
+                dispatch(deselectProductState());
+              }
+              if (addMode) {
+                dispatch(disableAdd());
+              }
             }}
           >
             <FontAwesomeIcon
