@@ -1,5 +1,6 @@
 import { ChangeEvent, useRef, useState } from "react";
 import { ProductProp, ProductType } from "../types/types";
+import { examineEntries } from "../utils/examineEntries";
 
 const ProductDetailsEditMode = ({ productProp }: ProductProp) => {
   const [input, setInput] = useState({ ...productProp });
@@ -28,7 +29,7 @@ const ProductDetailsEditMode = ({ productProp }: ProductProp) => {
                 return;
               }
 
-              const displayKey = key === "SHIPPING_COMPANY" ? "SHIPPING" : key;
+              const { displayKey } = examineEntries(key);
 
               return (
                 <tr style={{ height: "48px" }} key={key}>

@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from "react";
+import { examineEntries } from "../utils/examineEntries";
 
 const ProductDetailsAddMode = () => {
   const [input, setInput] = useState({
@@ -29,7 +30,7 @@ const ProductDetailsAddMode = () => {
         <table className="table table-dark table-borderless text-siz fs-5">
           <tbody>
             {Object.entries(input).map(([key, val]) => {
-              const displayKey = key === "SHIPPING_COMPANY" ? "SHIPPING" : key;
+              const { displayKey } = examineEntries(key);
 
               return (
                 <tr key={key}>
