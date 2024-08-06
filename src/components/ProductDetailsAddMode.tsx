@@ -38,7 +38,7 @@ const ProductDetailsAddMode = () => {
                   <th>
                     <input
                       id={key}
-                      className="text-uppercase"
+                      className="opacity-75 border-0 bg-input-color h-50 p-1 text-uppercase"
                       type="text"
                       form="add-form"
                       autoCapitalize="on"
