@@ -82,6 +82,13 @@ input:focus {
   aspect-ratio: 1 / 1;
 }
 
+button:hover {
+  transform: scale(0.95);
+  transition: all 0.5s;
+}
+button > *:hover {
+  color: $selection-color !important;
+}
 @include media-breakpoint-down(md) {
   .search-bar {
     height: 35px;
