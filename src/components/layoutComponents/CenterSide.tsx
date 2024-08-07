@@ -18,7 +18,7 @@ const CenterSide = () => {
   return (
     <div className="col-12">
       <div className="row justify-content-center">
-        <div className="col-9">
+        <div className="col-9 text-center">
           <LogoContainer />
         </div>
       </div>

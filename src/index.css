@@ -12377,7 +12377,15 @@ button > *:hover {
   color: rgba(255, 255, 255, 0.4392156863) !important;
 }
 
+.logo {
+  width: 170px;
+}
+
 @media (max-width: 767.98px) {
+  .logo {
+    width: 250px;
+    margin-bottom: 30px;
+  }
   .search-bar {
     height: 35px;
   }

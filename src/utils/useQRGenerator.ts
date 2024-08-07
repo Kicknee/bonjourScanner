@@ -17,7 +17,7 @@ export default function useQRGenerator() {
     "div",
     {
       className: "quiet-zone p-2 bg-light text-center",
-      style: { width: "210px" },
+      style: { width: "210px", marginLeft: "10px" },
     },
     createElement(QRCode, {
       value: qrValue,

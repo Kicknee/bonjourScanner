@@ -89,7 +89,14 @@ button:hover {
 button > *:hover {
   color: $selection-color !important;
 }
+.logo {
+  width: 170px;
+}
 @include media-breakpoint-down(md) {
+  .logo {
+    width: 250px;
+    margin-bottom: 30px;
+  }
   .search-bar {
     height: 35px;
   }
