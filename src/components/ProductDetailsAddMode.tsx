@@ -18,7 +18,7 @@ const ProductDetailsAddMode = () => {
 
     if (id === "LEFT" && (value === " " || isNaN(Number(value)))) return;
 
-    setInput((prev) => {
+    setInput((prev: ProductType) => {
       return {
         ...prev,
         [id]: id === "LEFT" ? Number(value) : value.toUpperCase(),
@@ -31,10 +31,8 @@ const ProductDetailsAddMode = () => {
       <div className="col-9">
         <table className="table table-dark table-borderless text-siz fs-5">
           <tbody>
-            {Object.entries(input).map(([key, val]) => {
-              // const { displayKey } = examineEntries(key);
-              const displayKey =
-                key === "SHIPPING_COMPANY" ? "SHIPPING COMPANY" : key;
+            {Object.entries(input).map(([key, _]) => {
+              const { displayKey } = examineEntries(key);
               return (
                 <tr key={key}>
                   <th>{displayKey}</th>
@@ -46,9 +44,8 @@ const ProductDetailsAddMode = () => {
                       className="opacity-75 border-0 bg-input-color h-50 p-1 text-uppercase"
                       type="text"
                       autoCapitalize="on"
-                      value={val}
+                      value={input[key as keyof ProductType] as string}
                       onChange={handleInput}
-                      required
                     />
                   </th>
                 </tr>

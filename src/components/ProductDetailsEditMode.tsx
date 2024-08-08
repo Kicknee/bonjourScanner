@@ -36,11 +36,12 @@ const ProductDetailsEditMode = ({ productProp }: ProductProp) => {
                   <th>{displayKey}</th>
                   <th>
                     <input
+                      form="edit-form"
                       id={key}
+                      name={key}
                       data-id={_id.current}
                       className="opacity-75 border-0 bg-input-color h-50 p-1 text-uppercase"
                       type="text"
-                      form="edit-form"
                       placeholder={val as string}
                       autoCapitalize="on"
                       value={input[key as keyof ProductType] as string}

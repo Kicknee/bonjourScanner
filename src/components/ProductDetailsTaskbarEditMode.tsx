@@ -22,8 +22,8 @@ const ProductDetailsTaskbarEditMode = () => {
           const obj: Record<string, any> = {};
 
           for (let i = 0; i < 7; i++) {
-            const { id, value } = product[i] as HTMLInputElement;
-            obj[id] = value;
+            const { name, value } = product[i] as HTMLInputElement;
+            obj[name] = value;
           }
           const response = await updateProduct(obj as ProductType);
           if (!response) {
