@@ -25,17 +25,16 @@ const ProductDetailsAddMode = () => {
       };
     });
   }
-  // useEffect(() => {
-  //   console.log(input);
-  // }, [input]);
+
   return (
     <div className="row justify-content-center">
       <div className="col-9">
         <table className="table table-dark table-borderless text-siz fs-5">
           <tbody>
             {Object.entries(input).map(([key, val]) => {
-              const { displayKey } = examineEntries(key);
-
+              // const { displayKey } = examineEntries(key);
+              const displayKey =
+                key === "SHIPPING_COMPANY" ? "SHIPPING COMPANY" : key;
               return (
                 <tr key={key}>
                   <th>{displayKey}</th>
@@ -47,7 +46,7 @@ const ProductDetailsAddMode = () => {
                       className="opacity-75 border-0 bg-input-color h-50 p-1 text-uppercase"
                       type="text"
                       autoCapitalize="on"
-                      value={input[key as keyof ProductType] as string}
+                      value={val}
                       onChange={handleInput}
                       required
                     />
