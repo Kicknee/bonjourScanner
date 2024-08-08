@@ -17,34 +17,34 @@ const ProductDetailsTaskbarAddMode = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           console.log("sss");
-          const product = e.target as HTMLFormElement;
-          const obj: Record<string, any> = {};
+          // const product = e.target as HTMLFormElement;
+          // const obj: Record<string, any> = {};
 
-          for (let i = 0; i < 7; i++) {
-            const { id, value } = product[i] as HTMLInputElement;
-            obj[id] = value;
-          }
-          const response = await addProduct(obj as ProductType);
-          if (!response) {
-            dispatch(messageModalState("Couldn't add the record"));
-            dispatch(showModalState(true));
-            dispatch(disableAdd());
-            return;
-          } else {
-            dispatch(messageModalState("Successful add"));
-            dispatch(showModalState(true));
-            dispatch(disableAdd());
-            const refreshedList = await getProducts();
-            if (!refreshedList) {
-              dispatch(messageModalState("Couldn't refresh product list"));
-              dispatch(showModalState(true));
-            } else {
-              dispatch(fillProductListState(refreshedList));
-            }
-          }
+          // for (let i = 0; i < 7; i++) {
+          //   const { id, value } = product[i] as HTMLInputElement;
+          //   obj[id] = value;
+          // }
+          // const response = await addProduct(obj as ProductType);
+          // if (!response) {
+          //   dispatch(messageModalState("Couldn't add the record"));
+          //   dispatch(showModalState(true));
+          //   dispatch(disableAdd());
+          //   return;
+          // } else {
+          //   dispatch(messageModalState("Successful add"));
+          //   dispatch(showModalState(true));
+          //   dispatch(disableAdd());
+          //   const refreshedList = await getProducts();
+          //   if (!refreshedList) {
+          //     dispatch(messageModalState("Couldn't refresh product list"));
+          //     dispatch(showModalState(true));
+          //   } else {
+          //     dispatch(fillProductListState(refreshedList));
+          //   }
+          // }
         }}
       ></form>
-      <button className="btn" form="add-form">
+      <button className="btn" form="add-form" type="submit">
         <FontAwesomeIcon
           className="fa-3x w-100"
           icon={faFloppyDisk}

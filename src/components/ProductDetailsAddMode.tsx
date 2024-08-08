@@ -1,12 +1,13 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { examineEntries } from "../utils/examineEntries";
+import { ProductType } from "../types/types";
 
 const ProductDetailsAddMode = () => {
-  const [input, setInput] = useState({
+  const [input, setInput] = useState<ProductType>({
     STYLE: "",
     TYPE: "",
     PLACE: "",
-    LEFT: "",
+    LEFT: 0,
     COLOR: "",
     BRAND: "",
     SHIPPING_COMPANY: "",
@@ -24,6 +25,9 @@ const ProductDetailsAddMode = () => {
       };
     });
   }
+  // useEffect(() => {
+  //   console.log(input);
+  // }, [input]);
   return (
     <div className="row justify-content-center">
       <div className="col-9">
@@ -37,12 +41,13 @@ const ProductDetailsAddMode = () => {
                   <th>{displayKey}</th>
                   <th>
                     <input
+                      form="add-form"
                       id={key}
+                      name={key}
                       className="opacity-75 border-0 bg-input-color h-50 p-1 text-uppercase"
                       type="text"
-                      form="add-form"
                       autoCapitalize="on"
-                      value={val}
+                      value={input[key as keyof ProductType] as string}
                       onChange={handleInput}
                       required
                     />

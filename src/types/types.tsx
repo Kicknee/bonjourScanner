@@ -13,7 +13,7 @@ export interface AddMode {
 }
 
 export interface ProductType {
-  _id: ObjectId;
+  _id?: ObjectId;
   STYLE: string;
   TYPE: string;
   PLACE: string;

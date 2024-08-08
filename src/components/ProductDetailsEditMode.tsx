@@ -3,7 +3,7 @@ import { ProductProp, ProductType } from "../types/types";
 import { examineEntries } from "../utils/examineEntries";
 
 const ProductDetailsEditMode = ({ productProp }: ProductProp) => {
-  const [input, setInput] = useState({ ...productProp });
+  const [input, setInput] = useState<ProductType>({ ...productProp });
   const _id = useRef({});
 
   function handleInput(event: ChangeEvent<HTMLInputElement>) {
