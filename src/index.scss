@@ -1,8 +1,13 @@
 //change default font-family
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap");
-
-$font-family-sans-serif: "Inter", sans-serif;
+@font-face {
+  font-family: "Inter";
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  src: url("./assets/fonts/Inter-VariableFont.ttf") format("truetype");
+}
+$font-family-sans-serif: "Inter";
 
 //change default color variables
 
