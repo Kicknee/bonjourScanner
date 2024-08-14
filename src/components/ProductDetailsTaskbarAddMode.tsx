@@ -16,7 +16,6 @@ const ProductDetailsTaskbarAddMode = () => {
         id="add-form"
         onSubmit={async (e) => {
           e.preventDefault();
-          console.log("sss");
           const product = e.target as HTMLFormElement;
           const obj: Record<string, any> = {};
 
