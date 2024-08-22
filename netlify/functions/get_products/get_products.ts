@@ -10,9 +10,9 @@ export const handler: Handler = async () => {
     return {
       statusCode: 200,
       headers: {
-        "Access-Control-Allow-Origin": "*", // Pozwala na żądania z dowolnej domeny
+        "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Methods": "GET",
       },
       body: JSON.stringify(products),
     };
@@ -23,15 +23,3 @@ export const handler: Handler = async () => {
     };
   }
 };
-
-// exports.handler = async (event, context) => {
-//   return {
-//     statusCode: 200,
-//     headers: {
-//       'Access-Control-Allow-Origin': '*', // Pozwala na żądania z dowolnej domeny
-//       'Access-Control-Allow-Headers': 'Content-Type',
-//       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-//     },
-//     body: JSON.stringify({ message: "Hello, World!" }),
-//   };
-// };
