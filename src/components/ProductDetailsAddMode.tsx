@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { examineEntries } from "../utils/examineEntries";
 import { ProductType } from "../types/types";
 
@@ -31,7 +31,7 @@ const ProductDetailsAddMode = () => {
       <div className="col-9">
         <table className="table table-dark table-borderless text-siz fs-5">
           <tbody>
-            {Object.entries(input).map(([key, _]) => {
+            {Object.entries(input).map(([key]) => {
               const { displayKey } = examineEntries(key);
               return (
                 <tr key={key}>
@@ -42,9 +42,9 @@ const ProductDetailsAddMode = () => {
                       id={key}
                       name={key}
                       className="opacity-75 border-0 bg-input-color h-50 p-1 text-uppercase"
-                      type="text"
+                      type={key === "LEFT" ? "number" : "text"}
                       autoCapitalize="on"
-                      value={input[key as keyof ProductType] as string}
+                      value={input[key as keyof ProductType]!.toString()}
                       onChange={handleInput}
                     />
                   </th>

@@ -41,10 +41,10 @@ const ProductDetailsEditMode = ({ productProp }: ProductProp) => {
                       name={key}
                       data-id={_id.current}
                       className="opacity-75 border-0 bg-input-color h-50 p-1 text-uppercase"
-                      type="text"
+                      type={key === "LEFT" ? "number" : "text"}
                       placeholder={val as string}
                       autoCapitalize="on"
-                      value={input[key as keyof ProductType] as string}
+                      value={input[key as keyof ProductType]!.toString()}
                       onChange={handleInput}
                       required
                     />

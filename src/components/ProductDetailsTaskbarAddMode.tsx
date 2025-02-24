@@ -17,11 +17,11 @@ const ProductDetailsTaskbarAddMode = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           const product = e.target as HTMLFormElement;
-          const obj: Record<string, any> = {};
+          const obj: Partial<ProductType> = {};
 
           for (let i = 0; i < 7; i++) {
             const { name, value } = product[i] as HTMLInputElement;
-            obj[name] = value;
+            obj[name] = name === "LEFT" ? Number(value) : value;
           }
           const response = await addProduct(obj as ProductType);
           if (!response) {
