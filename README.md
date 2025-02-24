@@ -1,30 +1,35 @@
-# React + TypeScript + Vite
+## BonjourScanner
+#### English description below
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<br>
 
-Currently, two official plugins are available:
+![BonjourScanner_desktop](https://github.com/user-attachments/assets/f2ea0b24-689f-4890-8f7b-5aded69327d1)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+https://bonjour-scanner.netlify.app/
+### Opis / Description
 
-## Expanding the ESLint configuration
+Strona obsługuje stan asortymentu magazynu z odzieżą. Została zbudowana w React.js z wykorzystaniem Bootstrap i Sass. Pobiera dostępne produkty z bazy MongoDB, a następnie wyświetla informacje na temat danego produktu w formie tekstu i kodu QR. Dane te obejmują m.in. rodzaj odzieży, kolor, pozostałą ilość, a także firmę przewozową. Pracownicy mogą edytować te informacje, a także całkowicie usuwać produkty z systemu. Kod QR, zawierający dane produktu w formacie JSON, może zostać zeskanowany przez dedykowaną aplikację mobilną zbudowaną - [BonjourScanner App](https://github.com/Kicknee/bonjourScannerApp). Dzięki temu pracownik może udać się do wskazanego przez aplikację miejsca w magazynie i zaznaczyć, ile sztuk danego produktu bierze do wysyłki. Po podaniu liczby aplikacja zaktualizuje bieżący stan asortymentu w bazie MongoDB.
+<br><br>
+The website manages the inventory of a clothing warehouse. It is built with React.js, using Bootstrap and Sass. It retrieves available products from a MongoDB database and displays information about each item in text and QR code format. This data includes details such as the type of clothing, color, remaining quantity, and shipping company. Employees can edit this information or delete products from the system entirely. The QR code, containing product data in JSON format, can be scanned using a dedicated mobile app built with React Native – [BonjourScanner App](https://github.com/Kicknee/bonjourScannerApp). With this app, employees can navigate to the location specified by the system and mark the number of items they are picking for shipment. Once the quantity is entered, the app updates the current inventory in the MongoDB database.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+![Zrzut ekranu 2025-02-24 005856](https://github.com/user-attachments/assets/e1cba6b4-d2c6-48e8-807f-b60257bc6716)
+*Główna strona z listą dostępnych produktów po lewerj i szczegółami wybranego produktu po prawej / Home page with a list of available products on the left and details of the selected product on the right*
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+---
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+![Zrzut ekranu 2025-02-24 010033](https://github.com/user-attachments/assets/756e5c38-784d-44ef-9993-69d30a14c556)
+*Możemy zawęzić wyniki wyszukiwania do interesującego na produktu na podstawie stylu / We can narrow down the search results based on the style of our product*
+
+---
+
+![Zrzut ekranu 2025-02-24 005942](https://github.com/user-attachments/assets/3b5589e9-23af-493a-aa57-2446cf423e81)
+*Możemy wprowadzić do bazy nowy produkt / We can enter a new product into the database*
+
+---
+
+![Zrzut ekranu 2025-02-24 025240](https://github.com/user-attachments/assets/20ac6a78-d1a7-4d96-be9d-e714875cc55a)![BonjourScanner_mobile](https://github.com/user-attachments/assets/4b7d4ac1-96fb-47d4-8af8-414902bb3791)
+<br>*Mobilna wersja / Mobile version*
+
+---
