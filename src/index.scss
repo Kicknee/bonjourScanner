@@ -87,11 +87,11 @@ input:focus {
   aspect-ratio: 1 / 1;
 }
 
-button:hover {
+button:hover:not(.not-hover) {
   transform: scale(0.95);
   transition: all 0.3s;
 }
-button:hover > * {
+button:hover:not(.not-hover) > * {
   color: $selection-color !important;
 }
 .logo {

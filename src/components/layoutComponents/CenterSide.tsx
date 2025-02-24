@@ -28,7 +28,7 @@ const CenterSide = () => {
       ) : (
         <div className="col-11 position-relative">
           <button
-            className="btn"
+            className="btn not-hover"
             onClick={() => {
               if (currentProductID) {
                 dispatch(deselectProductState());
