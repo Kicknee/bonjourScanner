@@ -24,6 +24,7 @@ const ProductDetailsTaskbarAddMode = () => {
             obj[name] = name === "LEFT" ? Number(value) : value;
           }
           const response = await addProduct(obj as ProductType);
+          console.log(response);
           if (!response) {
             dispatch(messageModalState("Couldn't add the record"));
             dispatch(showModalState(true));

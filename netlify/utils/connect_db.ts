@@ -1,8 +1,8 @@
-import { Collection, MongoClient } from "mongodb";
+import { MongoClient } from "mongodb";
 import { config } from "dotenv";
 config();
 
-type DataCallback = (collection: Collection) => Promise<object>;
+// type DataCallback = (collection: Collection) => Promise<object>;
 
 const uri = process.env.MONGODB_URI;
 const dbName = process.env.MONGODB_DATABASE;
@@ -14,7 +14,7 @@ if (!uri || !dbName || !collectionName) {
 
 const client = new MongoClient(uri);
 
-export default async (callback: DataCallback) => {
+export default async (callback) => {
   try {
     await client.connect();
 
