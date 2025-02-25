@@ -26,7 +26,7 @@ const ProductDetailsTaskbarAddMode = () => {
           const response = await addProduct(obj as ProductType);
           console.log(response);
           if (!response) {
-            dispatch(messageModalState("Already exists"));
+            dispatch(messageModalState("Couldn't add the record"));
             dispatch(showModalState(true));
             dispatch(disableAdd());
             return;
