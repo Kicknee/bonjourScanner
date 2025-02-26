@@ -28,6 +28,16 @@ const ProductDetailsEditMode = ({ productProp }: ProductProp) => {
                 _id.current = val;
                 return;
               }
+              if (key === "STYLE") {
+                const { displayKey, displayValue } = examineEntries(key, val);
+
+                return (
+                  <tr style={{ height: "48px" }} key={displayKey}>
+                    <th>{displayKey}</th>
+                    <th>{displayValue}</th>
+                  </tr>
+                );
+              }
 
               const { displayKey } = examineEntries(key);
 

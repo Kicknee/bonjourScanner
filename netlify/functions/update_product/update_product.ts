@@ -8,11 +8,11 @@ export const handler: Handler = async (event) => {
     if (!updatedProduct) return { statusCode: 400, message: "Wrong request" };
 
     const response = await connect_db(async (collection) => {
-      const alreadyExists = await collection.findOne({
-        STYLE: updatedProduct.STYLE,
-      });
+      // const alreadyExists = await collection.findOne({
+      //   STYLE: updatedProduct.STYLE,
+      // });
 
-      if (alreadyExists) return { statusCode: 403, message: "Already exists" };
+      // if (alreadyExists) return { statusCode: 403, message: "Already exists" };
 
       const updatedEntry = await await collection.updateOne(
         { STYLE: updatedProduct.STYLE },
