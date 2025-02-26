@@ -3,24 +3,36 @@ import connect_db from "../../utils/connect_db";
 
 export const handler: Handler = async (event) => {
   try {
-    const updatedProduct = event.body ? JSON.parse(event.body) : null;
+    if (!event.body) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: "Wrong request" }),
+      };
+    }
 
-    if (!updatedProduct) return { statusCode: 400, message: "Wrong request" };
+    const updatedProduct = JSON.parse(event.body);
 
+    if (!updatedProduct.STYLE) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: "Missing STYLE property" }),
+      };
+    }
     const response = await connect_db(async (collection) => {
-      // const alreadyExists = await collection.findOne({
-      //   STYLE: updatedProduct.STYLE,
-      // });
-
-      // if (alreadyExists) return { statusCode: 403, message: "Already exists" };
-
-      const updatedEntry = await await collection.updateOne(
+      const result = await collection.updateOne(
         { STYLE: updatedProduct.STYLE },
         { $set: updatedProduct }
       );
 
-      if (updatedEntry.insertedId)
-        return { statusCode: 200, message: "A new record has been updated" };
+      if (result.matchedCount === 0) {
+        return { statusCode: 404, message: "Product not found" };
+      }
+
+      if (result.modifiedCount === 0) {
+        return { statusCode: 400, message: "No changes were made" };
+      }
+
+      return { statusCode: 200, message: "The product has been updated" };
     });
 
     return {
@@ -30,7 +42,7 @@ export const handler: Handler = async (event) => {
         "Access-Control-Allow-Headers": "Content-Type",
         "Access-Control-Allow-Methods": "POST",
       },
-      body: JSON.stringify(response),
+      body: JSON.stringify({ message: response.message }),
     };
   } catch (error) {
     return {

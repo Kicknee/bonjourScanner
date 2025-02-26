@@ -28,16 +28,6 @@ const ProductDetailsEditMode = ({ productProp }: ProductProp) => {
                 _id.current = val;
                 return;
               }
-              if (key === "STYLE") {
-                const { displayKey, displayValue } = examineEntries(key, val);
-
-                return (
-                  <tr style={{ height: "48px" }} key={displayKey}>
-                    <th>{displayKey}</th>
-                    <th>{displayValue}</th>
-                  </tr>
-                );
-              }
 
               const { displayKey } = examineEntries(key);
 
@@ -50,13 +40,17 @@ const ProductDetailsEditMode = ({ productProp }: ProductProp) => {
                       id={key}
                       name={key}
                       data-id={_id.current}
-                      className="opacity-75 border-0 bg-input-color h-50 p-1 text-uppercase"
+                      className={
+                        "opacity-75 border-0 bg-input-color h-50 p-1 text-uppercase" +
+                        `${key === "STYLE" && "bg-transparent"}`
+                      }
                       type={key === "LEFT" ? "number" : "text"}
                       placeholder={val as string}
                       autoCapitalize="on"
                       value={input[key as keyof ProductType]!.toString()}
                       onChange={handleInput}
                       required
+                      readOnly={key === "STYLE"}
                     />
                   </th>
                 </tr>
