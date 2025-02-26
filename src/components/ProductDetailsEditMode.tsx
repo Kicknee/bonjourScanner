@@ -9,12 +9,12 @@ const ProductDetailsEditMode = ({ productProp }: ProductProp) => {
   function handleInput(event: ChangeEvent<HTMLInputElement>) {
     const { id, value } = event.target;
 
-    if (id === "LEFT" && (value === " " || isNaN(Number(value)))) return;
+    if (id === "LEFT" && !Number.isInteger(Number(value))) return;
 
     setInput((prev: ProductType) => {
       return {
         ...prev,
-        [id]: id === "LEFT" ? Number(value) : value.toUpperCase(),
+        [id]: id === "LEFT" ? Math.max(0, Number(value)) : value.toUpperCase(),
       };
     });
   }
