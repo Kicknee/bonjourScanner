@@ -41,8 +41,12 @@ const ProductDetailsEditMode = ({ productProp }: ProductProp) => {
                       name={key}
                       data-id={_id.current}
                       className={
-                        "opacity-75 border-0 bg-input-color h-50 p-1 text-uppercase" +
-                        `${key === "STYLE" && "bg-transparent"}`
+                        "opacity-75 border-0 h-50 p-1 text-uppercase" +
+                        `${
+                          key === "STYLE"
+                            ? "bg-transparent text-text-color"
+                            : "bg-input-color"
+                        }`
                       }
                       type={key === "LEFT" ? "number" : "text"}
                       placeholder={val as string}
