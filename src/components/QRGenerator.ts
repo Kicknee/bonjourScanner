@@ -3,7 +3,7 @@ import useProductState from "../store/hooks/useProductState";
 import { createElement } from "react";
 import useAddState from "../store/hooks/useAddState";
 
-export default function useQRGenerator() {
+export default function QRGenerator() {
   const addMode = useAddState();
 
   const selectedProduct = useProductState();
