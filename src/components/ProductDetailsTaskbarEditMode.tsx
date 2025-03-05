@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { disableEdit } from "../state/slices/editSlice";
-import updateProduct from "../utils/updateProduct";
+import { disableEdit } from "../store/slices/editSlice";
+import updateProduct from "../services/updateProduct";
 import { ProductType } from "../types/types";
-import { fillProductListState } from "../state/slices/productListSlice";
-import { selectProductState } from "../state/slices/productSlice";
-import getProducts from "../utils/getProducts";
-import { messageModalState, showModalState } from "../state/slices/modalSlice";
+import { fillProductListState } from "../store/slices/productListSlice";
+import { selectProductState } from "../store/slices/productSlice";
+import getProducts from "../services/getProducts";
+import { messageModalState, showModalState } from "../store/slices/modalSlice";
 const ProductDetailsTaskbarEditMode = () => {
   const dispatch = useDispatch();
 

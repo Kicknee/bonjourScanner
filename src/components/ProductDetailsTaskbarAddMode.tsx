@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { disableAdd } from "../state/slices/addSlice";
-import addProduct from "../utils/addProduct";
+import { disableAdd } from "../store/slices/addSlice";
+import addProduct from "../services/addProduct";
 import { ProductType } from "../types/types";
-import { messageModalState, showModalState } from "../state/slices/modalSlice";
-import getProducts from "../utils/getProducts";
-import { fillProductListState } from "../state/slices/productListSlice";
+import { messageModalState, showModalState } from "../store/slices/modalSlice";
+import getProducts from "../services/getProducts";
+import { fillProductListState } from "../store/slices/productListSlice";
 const ProductDetailsTaskbarAddMode = () => {
   const dispatch = useDispatch();
 

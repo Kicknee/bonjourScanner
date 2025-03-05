@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { fillProductListState } from "../state/slices/productListSlice";
-import getProducts from "./getProducts";
+import { fillProductListState } from "../store/slices/productListSlice";
+import getProducts from "../services/getProducts";
 
 export default async function useProductList() {
   const dispatch = useDispatch();

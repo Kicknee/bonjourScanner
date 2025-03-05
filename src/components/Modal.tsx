@@ -1,5 +1,5 @@
-import useModalState from "../state/hooks/useModalState";
-import { showModalState } from "../state/slices/modalSlice";
+import useModalState from "../store/hooks/useModalState";
+import { showModalState } from "../store/slices/modalSlice";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 

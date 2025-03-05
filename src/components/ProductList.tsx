@@ -1,6 +1,6 @@
 import ProductRecord from "./ProductRecord";
-import useProductListState from "../state/hooks/useProductListState";
-import useSearchListState from "../state/hooks/useSearchListState";
+import useProductListState from "../store/hooks/useProductListState";
+import useSearchListState from "../store/hooks/useSearchListState";
 
 const ProductList = () => {
   const productList =

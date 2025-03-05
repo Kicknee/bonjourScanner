@@ -1,8 +1,8 @@
 import ProductDetailsEditMode from "./ProductDetailsEditMode";
-import useEditState from "../state/hooks/useEditState";
-import useProductState from "../state/hooks/useProductState";
+import useEditState from "../store/hooks/useEditState";
+import useProductState from "../store/hooks/useProductState";
 import ProductDetailsViewMode from "./ProductDetailsViewMode";
-import useAddState from "../state/hooks/useAddState";
+import useAddState from "../store/hooks/useAddState";
 import ProductDetailsAddMode from "./ProductDetailsAddMode";
 import ProductDetailsTaskbar from "./ProductDetailsTaskbar";
 

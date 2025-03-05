@@ -3,12 +3,12 @@ import RightSide from "../components/layoutComponents/RightSide";
 import CenterSide from "../components/layoutComponents/CenterSide";
 import SectionDivider from "../components/layoutComponents/SectionDivider";
 import { useEffect } from "react";
-import getProducts from "../utils/getProducts";
+import getProducts from "../services/getProducts";
 import { useDispatch } from "react-redux";
-import { fillProductListState } from "../state/slices/productListSlice";
+import { fillProductListState } from "../store/slices/productListSlice";
 import Modal from "../components/Modal";
-import useModalState from "../state/hooks/useModalState";
-import { showModalState, messageModalState } from "../state/slices/modalSlice";
+import useModalState from "../store/hooks/useModalState";
+import { showModalState, messageModalState } from "../store/slices/modalSlice";
 
 const Home = () => {
   const { show: showModal } = useModalState();

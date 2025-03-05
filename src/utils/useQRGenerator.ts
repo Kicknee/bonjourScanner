@@ -1,7 +1,7 @@
 import QRCode from "react-qr-code";
-import useProductState from "../state/hooks/useProductState";
+import useProductState from "../store/hooks/useProductState";
 import { createElement } from "react";
-import useAddState from "../state/hooks/useAddState";
+import useAddState from "../store/hooks/useAddState";
 
 export default function useQRGenerator() {
   const addMode = useAddState();

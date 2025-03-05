@@ -1,14 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { disableEdit } from "../state/slices/editSlice";
-import { enableAdd } from "../state/slices/addSlice";
+import { disableEdit } from "../store/slices/editSlice";
+import { enableAdd } from "../store/slices/addSlice";
 import { ChangeEvent, useEffect, useState } from "react";
 import {
   setSearchListState,
   resetSearchListState,
-} from "../state/slices/searchListSlice";
-import useProductListState from "../state/hooks/useProductListState";
+} from "../store/slices/searchListSlice";
+import useProductListState from "../store/hooks/useProductListState";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");

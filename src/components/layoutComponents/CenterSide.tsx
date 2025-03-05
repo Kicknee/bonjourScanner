@@ -1,14 +1,14 @@
 import LogoContainer from "../LogoContainer";
 import SearchBar from "../SearchBar";
 import ProductList from "../ProductList";
-import useProductState from "../../state/hooks/useProductState";
+import useProductState from "../../store/hooks/useProductState";
 import Product from "../Product";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { deselectProductState } from "../../state/slices/productSlice";
-import useAddState from "../../state/hooks/useAddState";
-import { disableAdd } from "../../state/slices/addSlice";
+import { deselectProductState } from "../../store/slices/productSlice";
+import useAddState from "../../store/hooks/useAddState";
+import { disableAdd } from "../../store/slices/addSlice";
 
 const CenterSide = () => {
   const { _id: currentProductID } = useProductState();

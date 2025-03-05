@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { selectProductState } from "../state/slices/productSlice";
+import { selectProductState } from "../store/slices/productSlice";
 import { ProductProp } from "../types/types";
-import { disableEdit } from "../state/slices/editSlice";
-import { disableAdd } from "../state/slices/addSlice";
+import { disableEdit } from "../store/slices/editSlice";
+import { disableAdd } from "../store/slices/addSlice";
 
 const ProductRecord = ({ productProp }: ProductProp) => {
   const dispatch = useDispatch();
