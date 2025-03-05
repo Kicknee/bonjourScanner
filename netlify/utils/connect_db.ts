@@ -2,8 +2,6 @@ import { MongoClient } from "mongodb";
 import { config } from "dotenv";
 config();
 
-// type DataCallback = (collection: Collection) => Promise<object>;
-
 const uri = process.env.MONGODB_URI;
 const dbName = process.env.MONGODB_DATABASE;
 const collectionName = process.env.MONGODB_COLLECTION;
