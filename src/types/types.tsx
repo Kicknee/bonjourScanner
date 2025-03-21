@@ -2,15 +2,7 @@ import { ObjectId } from "mongodb";
 
 export type EditType = boolean;
 
-export interface EditMode {
-  editMode: EditType;
-}
-
 export type AddType = boolean;
-
-export interface AddMode {
-  addMode: AddType;
-}
 
 export interface ProductType {
   _id?: ObjectId;
