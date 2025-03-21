@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import { disableAdd } from "../store/slices/addSlice";
 import addProduct from "../services/addProduct";
 import { ProductType } from "../types/types";
-import { messageModalState, showModalState } from "../store/slices/modalSlice";
 import getProducts from "../services/getProducts";
 import { fillProductListState } from "../store/slices/productListSlice";
+import { triggerModal } from "../utils/triggerModal";
 const ProductDetailsTaskbarAddMode = () => {
   const dispatch = useDispatch();
 
@@ -26,18 +26,15 @@ const ProductDetailsTaskbarAddMode = () => {
           const response = await addProduct(obj as ProductType);
           console.log(response);
           if (!response) {
-            dispatch(messageModalState("Couldn't add the record"));
-            dispatch(showModalState(true));
+            triggerModal("Couldn't add the record");
             dispatch(disableAdd());
             return;
           } else {
-            dispatch(messageModalState("A new record has been added"));
-            dispatch(showModalState(true));
+            triggerModal("A new record has been added");
             dispatch(disableAdd());
             const refreshedList = await getProducts();
             if (!refreshedList) {
-              dispatch(messageModalState("Couldn't refresh product list"));
-              dispatch(showModalState(true));
+              triggerModal("Couldn't refresh product list");
             } else {
               dispatch(fillProductListState(refreshedList));
             }

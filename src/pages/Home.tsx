@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { fillProductListState } from "../store/slices/productListSlice";
 import Modal from "../components/Modal";
 import useModalState from "../store/hooks/useModalState";
-import { showModalState, messageModalState } from "../store/slices/modalSlice";
+import { triggerModal } from "../utils/triggerModal";
 
 const Home = () => {
   const { show: showModal } = useModalState();
@@ -18,8 +18,7 @@ const Home = () => {
     (async () => {
       const refreshedList = await getProducts();
       if (!refreshedList) {
-        dispatch(messageModalState("Couldn't refresh product list"));
-        dispatch(showModalState(true));
+        triggerModal("Couldn't refresh product list");
       } else {
         dispatch(fillProductListState(refreshedList));
       }
