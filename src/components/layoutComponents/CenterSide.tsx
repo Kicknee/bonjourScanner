@@ -28,7 +28,7 @@ const CenterSide = () => {
       ) : (
         <div className="col-11 position-relative">
           <button
-            className="btn not-hover"
+            className="btn not-hover position-absolute end-0"
             onClick={() => {
               if (currentProductID) {
                 dispatch(deselectProductState());
@@ -40,7 +40,7 @@ const CenterSide = () => {
           >
             <FontAwesomeIcon
               icon={faXmark}
-              className="position-absolute end-0 fa-2x text-cancel-color"
+              className="fa-2x text-cancel-color"
             />
           </button>
           <Product />
