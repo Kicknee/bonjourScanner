@@ -12333,7 +12333,7 @@ body {
   height: 100%;
 }
 
-.tbody-wrapper {
+.table-container {
   height: 350px;
   overflow-y: auto;
   scrollbar-color: rgba(255, 255, 255, 0.4392156863) transparent;
