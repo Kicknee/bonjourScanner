@@ -3,9 +3,12 @@ import { examineEntries } from "../utils/examineEntries";
 
 const ProductDetailsViewMode = ({ productProp }: ProductProp) => {
   return (
-    <div className="row justify-content-center">
-      <div className="col-9">
-        <table className="table table-dark table-borderless text-siz fs-5">
+    <div className="row">
+      <div className="col-12">
+        <table
+          className="table table-dark table-borderless fs-5 mx-lg-auto"
+          style={{ width: "400px" }}
+        >
           <tbody>
             {Object.entries(productProp)
               .slice(1)
@@ -14,7 +17,7 @@ const ProductDetailsViewMode = ({ productProp }: ProductProp) => {
 
                 return (
                   <tr style={{ height: "48px" }} key={displayKey}>
-                    <th style={{ width: "150px" }}>{displayKey}</th>
+                    <th style={{ width: "170px" }}>{displayKey}</th>
                     <th>{displayValue}</th>
                   </tr>
                 );

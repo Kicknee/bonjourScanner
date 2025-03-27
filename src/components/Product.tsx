@@ -13,7 +13,7 @@ const Product = () => {
 
   return (
     <div className="row">
-      <div className="col-12">
+      <div className="col-12 d-flex flex-column">
         {addMode && <ProductDetailsAddMode />}
         {selectedProduct._id && editMode && !addMode && (
           <ProductDetailsEditMode productProp={selectedProduct} />

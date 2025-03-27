@@ -29,7 +29,7 @@ const ProductDetailsAddMode = () => {
   return (
     <div className="row justify-content-center">
       <div className="col-9">
-        <table className="table table-dark table-borderless text-siz fs-5">
+        <table className="table table-dark table-borderless fs-5">
           <tbody>
             {Object.entries(input).map(([key]) => {
               const { displayKey } = examineEntries(key);
