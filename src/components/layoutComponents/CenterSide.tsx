@@ -26,9 +26,9 @@ const CenterSide = () => {
       {!currentProductID && !addMode ? (
         <ProductList />
       ) : (
-        <div className="col-11 position-relative">
+        <div className="col-11 d-flex flex-column align-items-center">
           <button
-            className="btn not-hover position-absolute end-0"
+            className="btn not-hover align-self-end"
             onClick={() => {
               if (currentProductID) {
                 dispatch(deselectProductState());
