@@ -11,6 +11,7 @@ const ProductDetailsForm = ({
   mode,
   initialProduct,
 }: ProductDetailsFormProps) => {
+  // Default values for adding a new product
   const defaultInput: ProductType = {
     STYLE: "",
     TYPE: "",
@@ -21,26 +22,29 @@ const ProductDetailsForm = ({
     SHIPPING_COMPANY: "",
   };
 
-  // Inicjujemy stan – jeżeli w trybie edycji przekazano produkt, wykorzystujemy jego dane,
-  // w przeciwnym razie ustawiamy domyślne wartości.
+  // Initialize state: if in edit mode and an initial product is provided, use its values; otherwise, use default values
   const [input, setInput] = useState<ProductType>(
     initialProduct ? { ...initialProduct } : defaultInput
   );
+
+  // Reference to store the _id, useful in edit mode if needed
   const _id = useRef<any>({});
 
+  // Handler for input changes
   function handleInput(event: ChangeEvent<HTMLInputElement>) {
     const { id, value } = event.target;
 
-    // Dla pola LEFT sprawdzamy, czy wartość jest liczbą całkowitą
+    // For the "LEFT" field, ensure the value is an integer
     if (id === "LEFT" && !Number.isInteger(Number(value))) return;
 
+    // Update the state: for "LEFT" ensure non-negative value, for others convert to uppercase
     setInput((prev) => ({
       ...prev,
       [id]: id === "LEFT" ? Math.max(0, Number(value)) : value.toUpperCase(),
     }));
   }
 
-  // W zależności od trybu ustawiamy atrybut form – może mieć różne nazwy
+  // Determine the form name based on the mode
   const formName = mode === "edit" ? "edit-form" : "add-form";
 
   return (
@@ -49,11 +53,12 @@ const ProductDetailsForm = ({
         <table className="table table-dark table-borderless fs-5">
           <tbody>
             {Object.entries(input).map(([key, val]) => {
-              // W trybie edycji pole _id pomijamy przy renderowaniu, ale możemy je zapisać
+              // In edit mode, skip rendering the _id field but save its value in the ref
               if (key === "_id") {
                 _id.current = val;
                 return null;
               }
+              // Get the display name for the key
               const { displayKey } = examineEntries(key);
 
               return (
@@ -76,7 +81,7 @@ const ProductDetailsForm = ({
                       value={input[key as keyof ProductType]!.toString()}
                       onChange={handleInput}
                       required
-                      // W trybie edycji pole STYLE ustawione jako readOnly
+                      // In edit mode, set the "STYLE" field to read-only
                       readOnly={key === "STYLE" && mode === "edit"}
                     />
                   </th>
