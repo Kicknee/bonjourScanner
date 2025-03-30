@@ -4,13 +4,10 @@ import { examineEntries } from "../utils/examineEntries";
 
 interface ProductDetailsFormProps {
   mode: "add" | "edit";
-  initialProduct?: ProductType;
+  productProp?: Partial<ProductType>;
 }
 
-const ProductDetailsForm = ({
-  mode,
-  initialProduct,
-}: ProductDetailsFormProps) => {
+const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
   // Default values for adding a new product
   const defaultInput: ProductType = {
     STYLE: "",
@@ -24,7 +21,7 @@ const ProductDetailsForm = ({
 
   // Initialize state: if in edit mode and an initial product is provided, use its values; otherwise, use default values
   const [input, setInput] = useState<ProductType>(
-    initialProduct ? { ...initialProduct } : defaultInput
+    productProp ? { ...productProp } : defaultInput
   );
 
   // Reference to store the _id, useful in edit mode if needed
