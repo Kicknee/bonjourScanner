@@ -1,9 +1,8 @@
 import ProductDetailsTaskbarViewMode from "./ProductDetailsTaskbarViewMode";
-import ProductDetailsTaskbarEditMode from "./ProductDetailsTaskbarEditMode";
 import ProductQR from "./ProductQR";
-import ProductDetailsTaskbarAddMode from "./ProductDetailsTaskbarAddMode";
 import { FC } from "react";
 import { AddType, EditType } from "../types/types";
+import ProductDetailsTaskbarForm from "./ProductDetailsTaskbarForm";
 
 const ProductDetailsTaskbar: FC<{ editMode: EditType; addMode: AddType }> = ({
   editMode,
@@ -13,9 +12,9 @@ const ProductDetailsTaskbar: FC<{ editMode: EditType; addMode: AddType }> = ({
     <div className="product-taskbar row justify-content-center justify-content-lg-end">
       <div className="col-7">
         <div className="row align-items-end">
-          {editMode && !addMode && <ProductDetailsTaskbarEditMode />}
+          {editMode && !addMode && <ProductDetailsTaskbarForm mode="edit" />}
           {!editMode && !addMode && <ProductDetailsTaskbarViewMode />}
-          {addMode && <ProductDetailsTaskbarAddMode />}
+          {addMode && <ProductDetailsTaskbarForm mode="add" />}
           <ProductQR />
         </div>
       </div>
