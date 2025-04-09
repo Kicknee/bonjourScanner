@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 
 const Modal = () => {
   const [fadeClass, setFadeClass] = useState("");
-  const { message } = useModalState();
+  const { show, message } = useModalState();
   const dispatch = useDispatch();
+
+  if (!show) return;
 
   useEffect(() => {
     const timer = setTimeout(() => {
