@@ -77,7 +77,6 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
                       autoCapitalize="on"
                       value={input[key as keyof ProductType]!.toString()}
                       onChange={handleInput}
-                      required
                       // In edit mode, set the "STYLE" field to read-only
                       readOnly={key === "STYLE" && mode === "edit"}
                     />
