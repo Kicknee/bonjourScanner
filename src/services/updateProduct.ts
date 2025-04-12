@@ -3,7 +3,7 @@ import { ProductType } from "../types/types";
 export default async (product: ProductType) => {
   try {
     const response = await fetch("/.netlify/functions/update_product", {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
