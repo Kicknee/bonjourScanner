@@ -1,42 +1,29 @@
 import { Handler } from "@netlify/functions";
 import connect_db from "../../utils/connect_db";
+import createResponse from "../../utils/createResponse";
 
-interface ResponseType {
-  statusCode: number;
-  message: string;
-}
 export const handler: Handler = async (event) => {
+  const method = "POST";
   try {
     const newProduct = event.body ? JSON.parse(event.body) : null;
 
-    if (!newProduct) return { statusCode: 400, message: "Wrong request" };
+    if (!newProduct) return createResponse(400, method, "Wrong request");
 
-    const response = (await connect_db(async (collection) => {
+    const response = await connect_db(async (collection) => {
       const alreadyExists = await collection.findOne({
         STYLE: newProduct.STYLE,
       });
 
-      if (alreadyExists) return { statusCode: 403, message: "Already exists" };
+      if (alreadyExists) return createResponse(400, method, "Already exists");
 
       const newEntry = await collection.insertOne(newProduct);
 
       if (newEntry.insertedId)
-        return { statusCode: 200, message: "A new record has been added" };
-    })) as ResponseType;
+        return createResponse(200, method, "A new record has been added");
+    });
 
-    return {
-      statusCode: response.statusCode,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "POST",
-      },
-      body: JSON.stringify(response.message),
-    };
+    return createResponse(400, method, "Wrong Request");
   } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify(error),
-    };
+    return createResponse(500, method, "Internal Server Error");
   }
 };
