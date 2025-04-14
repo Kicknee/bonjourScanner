@@ -44,7 +44,7 @@ const ProductDetailsTaskbarFormMode = ({
       const response = await addProduct(obj as ProductType);
 
       if (!response) {
-        triggerModal("Couldn't add the record");
+        triggerModal("Couldn't add the  record");
         dispatch(disableAdd());
         return;
       } else {
