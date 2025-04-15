@@ -22,7 +22,7 @@ export const handler: Handler = async (event) => {
         return createResponse(200, method, "A new record has been added");
     });
 
-    return createResponse(400, method, "Wrong Request");
+    return response;
   } catch (error) {
     return createResponse(500, method, "Internal Server Error");
   }
