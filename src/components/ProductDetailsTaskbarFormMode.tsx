@@ -42,7 +42,8 @@ const ProductDetailsTaskbarFormMode = ({
     if (mode === "add") {
       // Perform add operation for new product
       const response = await addProduct(obj as ProductType);
-
+      console.log(response?.status);
+      console.log(response?.statusCode);
       if (!response) {
         triggerModal("Couldn't add the  record");
         dispatch(disableAdd());
