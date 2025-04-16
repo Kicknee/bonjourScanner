@@ -14,6 +14,6 @@ export default function createResponse(
       "Access-Control-Allow-Headers": "Content-Type",
       "Access-Control-Allow-Methods": method,
     },
-    body: JSON.stringify({ message }),
+    body: JSON.stringify({ status: statusCode, message }),
   };
 }
