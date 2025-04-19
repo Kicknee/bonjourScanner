@@ -1,12 +1,33 @@
 import type { HandlerResponse } from "@netlify/functions";
+import { ObjectId } from "mongodb";
 
 type Methods = "POST" | "PATCH" | "DELETE";
+
+// interface ProductType {
+//   _id?: ObjectId;
+//   STYLE: string;
+//   TYPE: string;
+//   PLACE: string;
+//   LEFT: number;
+//   COLOR: string;
+//   BRAND: string;
+//   SHIPPING_COMPANY: string;
+// }
 
 export default function createResponse(
   statusCode: number,
   method: Methods,
-  message: string
+  message: string,
+  payload = undefined
 ): HandlerResponse {
+  const body: Record<string, unknown> = {
+    statusCode,
+    message,
+  };
+
+  if (payload !== undefined) {
+    body.payload = payload;
+  }
   return {
     statusCode,
     headers: {
@@ -14,6 +35,6 @@ export default function createResponse(
       "Access-Control-Allow-Headers": "Content-Type",
       "Access-Control-Allow-Methods": method,
     },
-    body: JSON.stringify({ status: statusCode, message }),
+    body: JSON.stringify(body),
   };
 }
