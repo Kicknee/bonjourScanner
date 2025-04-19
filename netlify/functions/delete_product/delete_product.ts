@@ -18,16 +18,6 @@ export const handler: Handler = async (event) => {
     }
 
     return createResponse(200, method, "The record has been deleted");
-
-    // return {
-    //   statusCode: 200,
-    //   headers: {
-    //     "Access-Control-Allow-Origin": "*",
-    //     "Access-Control-Allow-Headers": "Content-Type",
-    //     "Access-Control-Allow-Methods": "DELETE",
-    //   },
-    //   body: JSON.stringify({ response }),
-    // };
   } catch (error) {
     return {
       statusCode: 500,
