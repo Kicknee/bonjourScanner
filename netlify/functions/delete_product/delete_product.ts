@@ -19,9 +19,10 @@ export const handler: Handler = async (event) => {
 
     return createResponse(200, method, "The record has been deleted");
   } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify(error),
-    };
+    return createResponse(
+      500,
+      method,
+      error instanceof Error ? error.message : "Unexpected Error"
+    );
   }
 };
