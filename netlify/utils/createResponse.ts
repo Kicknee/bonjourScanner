@@ -1,7 +1,7 @@
 import type { HandlerResponse } from "@netlify/functions";
 import { ObjectId } from "mongodb";
 
-type Methods = "POST" | "PATCH" | "DELETE";
+type Methods = "GET" | "POST" | "PATCH" | "DELETE";
 
 // interface ProductType {
 //   _id?: ObjectId;
@@ -21,7 +21,7 @@ export default function createResponse(
   payload = undefined
 ): HandlerResponse {
   const body: Record<string, unknown> = {
-    statusCode,
+    status: statusCode,
     message,
   };
 
