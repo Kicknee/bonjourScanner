@@ -16,11 +16,11 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      const refreshedList = await getProducts();
-      if (!refreshedList) {
-        triggerModal("Couldn't refresh product list");
+      const response = await getProducts();
+      if (response.status === 400 || response.status === 404) {
+        triggerModal(response.message);
       } else {
-        dispatch(fillProductListState(refreshedList));
+        dispatch(fillProductListState(response.payload));
       }
     })();
   }, []);
