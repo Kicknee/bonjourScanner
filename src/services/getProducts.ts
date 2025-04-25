@@ -6,8 +6,8 @@ export default async () => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const products = await response.json();
-    return products;
+    const jsonResponse = await response.json();
+    return jsonResponse;
   } catch (error) {
     console.error("err", error);
   }
