@@ -41,44 +41,44 @@ const ProductDetailsTaskbarFormMode = ({
 
     if (mode === "add") {
       // Perform add operation for new product
-      const response = await addProduct(obj as ProductType);
-      console.log(response, typeof response);
-      if (!response) {
-        triggerModal("Couldn't add the  record");
+      let response = await addProduct(obj as ProductType);
+
+      if (!response || response.status === 400 || response.status === 404) {
+        triggerModal(response.message || "Couldn't add product");
         dispatch(disableAdd());
         return;
       } else {
-        triggerModal("A new record has been added");
+        triggerModal(response.message);
         dispatch(disableAdd());
-        const refreshedList = await getProducts();
-        if (!refreshedList) {
-          triggerModal("Couldn't refresh product list");
+        response = await getProducts();
+        if (response.status === 400 || response.status === 404) {
+          triggerModal(response.message || "Couldn't refresh product list");
         } else {
-          dispatch(fillProductListState(refreshedList));
+          dispatch(fillProductListState(response.payload));
         }
       }
     } else if (mode === "edit") {
       // Extract the product ID from the first input field's data attribute
       const productID = (form[0] as HTMLInputElement).dataset.id;
       // Perform update operation for existing product
-      const response = await updateProduct(obj as ProductType);
+      let response = await updateProduct(obj as ProductType);
 
-      if (response === undefined) {
-        triggerModal("Couldn't update the record");
+      if (!response || response.status === 400 || response.status === 404) {
+        triggerModal(response.message);
         dispatch(disableEdit());
         return;
       } else {
-        triggerModal("Successful update");
+        triggerModal(response.message);
         dispatch(selectProductState(obj as ProductType));
         dispatch(disableEdit());
-        const refreshedList = await getProducts();
-        if (!refreshedList) {
-          triggerModal("Couldn't refresh product list");
+        response = await getProducts();
+        if (response.status === 400 || response.status === 404) {
+          triggerModal(response.message);
         } else {
-          dispatch(fillProductListState(refreshedList));
+          dispatch(fillProductListState(response.payload));
         }
       }
-      // Assign the product ID to the product object (if needed later)
+      // Assign the product ID to the product object (if neede d later)
       obj._id = productID;
     }
   };
