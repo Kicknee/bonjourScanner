@@ -34,19 +34,27 @@ const ProductDetailsTaskbarViewMode = () => {
           style={{ color: "#ffffff" }}
           onClick={() => {
             (async () => {
-              const response = await deleteProduct(
-                currentProduct as ProductType
-              );
-              if (!response) {
-                triggerModal("Couldn't delete the record");
+              let response = await deleteProduct(currentProduct as ProductType);
+              if (
+                !response ||
+                response.status === 400 ||
+                response.status === 404
+              ) {
+                triggerModal(response.message || "Couldn't delete the record");
               } else {
-                triggerModal("Successful delete");
+                triggerModal(response.message);
                 dispatch(deselectProductState());
-                const refreshedList = await getProducts();
-                if (!refreshedList) {
-                  triggerModal("Couldn't refresh product list");
+                response = await getProducts();
+                if (
+                  !response ||
+                  response.status === 400 ||
+                  response.status === 404
+                ) {
+                  triggerModal(
+                    response.message || "Couldn't refresh product list"
+                  );
                 } else {
-                  dispatch(fillProductListState(refreshedList));
+                  dispatch(fillProductListState(response));
                 }
               }
             })();
