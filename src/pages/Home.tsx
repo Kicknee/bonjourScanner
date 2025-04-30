@@ -17,8 +17,8 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       const response = await getProducts();
-      if (response.status === 400 || response.status === 404) {
-        triggerModal(response.message);
+      if (!response || response.status === 400 || response.status === 404) {
+        triggerModal(response.message || "Couldn't refresh product list");
       } else {
         dispatch(fillProductListState(response.payload));
       }
