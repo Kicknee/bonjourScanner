@@ -54,7 +54,7 @@ const ProductDetailsTaskbarViewMode = () => {
                     response.message || "Couldn't refresh product list"
                   );
                 } else {
-                  dispatch(fillProductListState(response));
+                  dispatch(fillProductListState(response.payload));
                 }
               }
             })();
