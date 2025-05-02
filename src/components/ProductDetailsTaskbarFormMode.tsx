@@ -36,6 +36,10 @@ const ProductDetailsTaskbarFormMode = ({
     // Loop through the 7 input fields to build the product object
     for (let i = 0; i < 7; i++) {
       const { name, value } = form[i] as HTMLInputElement;
+      if (!value) {
+        triggerModal("Fill in all fields");
+        return;
+      }
       obj[name] = name === "LEFT" ? Number(value) : value;
     }
 
