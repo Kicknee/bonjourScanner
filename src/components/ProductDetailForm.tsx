@@ -1,6 +1,7 @@
 import { ChangeEvent, useRef, useState } from "react";
 import { ProductType } from "../types/types";
 import { examineEntries } from "../utils/examineEntries";
+import { triggerModal } from "../utils/triggerModal";
 
 interface ProductDetailsFormProps {
   mode: "add" | "edit";
@@ -32,7 +33,10 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
     const { id, value } = event.target;
 
     // For the "LEFT" field, ensure the value is an integer
-    if (id === "LEFT" && !Number.isInteger(Number(value))) return;
+    if (id === "LEFT" && !Number.isInteger(Number(value))) {
+      triggerModal("Enter quantity");
+      return;
+    }
 
     // Update the state: for "LEFT" ensure non-negative value, for others convert to uppercase
     setInput((prev) => ({
