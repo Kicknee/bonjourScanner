@@ -14,7 +14,7 @@ const Modal = () => {
     const timer = setTimeout(() => {
       dispatch(showModalState(false));
       setFadeClass("fade");
-    }, 5000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
