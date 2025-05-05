@@ -33,15 +33,25 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
     const { id, value } = event.target;
 
     // For the "LEFT" field, ensure the value is an integer
-    if (id === "LEFT" && !Number.isInteger(Number(value))) {
+    const leftNumber =
+      id === "LEFT" && Number.isInteger(Number(value)) ? Number(value) : null;
+
+    // if (id === "LEFT" && !Number.isInteger(Number(value))) {
+    //   triggerModal("Enter quantity");
+    //   return;
+    // }
+    if (leftNumber === null) {
       triggerModal("Enter quantity");
       return;
     }
-
-    // Update the state: for "LEFT" ensure non-negative value, for others convert to uppercase
+    if (leftNumber > 1000) {
+      triggerModal("Can't enter more than 1000");
+      return;
+    }
+    // Update the state: for "LEFT" ensure non-negative value , for others convert to uppercase
     setInput((prev) => ({
       ...prev,
-      [id]: id === "LEFT" ? Math.max(0, Number(value)) : value.toUpperCase(),
+      [id]: id === "LEFT" ? Math.max(0, leftNumber) : value.toUpperCase(),
     }));
   }
 
