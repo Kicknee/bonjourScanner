@@ -40,12 +40,12 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
     //   triggerModal("Enter quantity");
     //   return;
     // }
-    if (leftNumber === null) {
+    if (id === "LEFT" && leftNumber === null) {
       triggerModal("Enter quantity");
       return;
     }
-    if (leftNumber > 1000) {
-      triggerModal("Can't enter more than 1000");
+    if (id === "LEFT" && leftNumber! > 10000) {
+      triggerModal("Can't enter more than 10000");
       return;
     }
     // Update the state: for "LEFT" ensure non-negative value , for others convert to uppercase
