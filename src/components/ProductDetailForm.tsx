@@ -32,23 +32,15 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
   function handleInput(event: ChangeEvent<HTMLInputElement>) {
     const { id, value } = event.target;
 
-    // For the "LEFT" field, ensure the value is an integer
+    // Ensure the value is an integer for the LEFT field
     const leftNumber =
       id === "LEFT" && Number.isInteger(Number(value)) ? Number(value) : null;
 
-    // if (id === "LEFT" && !Number.isInteger(Number(value))) {
-    //   triggerModal("Enter quantity");
-    //   return;
-    // }
-    if (id === "LEFT" && leftNumber === null) {
-      triggerModal("Enter quantity");
-      return;
-    }
     if (id === "LEFT" && leftNumber! > 10000) {
       triggerModal("Can't enter more than 10000");
       return;
     }
-    // Update the state: for "LEFT" ensure non-negative value , for others convert to uppercase
+    // Update the state: for LEFT ensure non-negative value , for others convert to uppercase
     setInput((prev) => ({
       ...prev,
       [id]: id === "LEFT" ? Math.max(0, leftNumber) : value.toUpperCase(),
@@ -93,6 +85,7 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
                       onChange={handleInput}
                       // In edit mode, set the "STYLE" field to read-only
                       readOnly={key === "STYLE" && mode === "edit"}
+                      maxLength={17}
                     />
                   </th>
                 </tr>
