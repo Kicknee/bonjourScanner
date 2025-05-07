@@ -7,6 +7,13 @@
   font-style: normal;
   src: url("./assets/fonts/Inter-VariableFont.ttf") format("truetype");
 }
+@font-face {
+  font-family: "InterBold";
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  src: url("./assets/fonts/Inter-VariableFont.ttf") format("truetype");
+}
 $font-family-sans-serif: "Inter";
 
 //change default color variables
@@ -97,6 +104,32 @@ button:hover:not(.not-hover) > * {
 .logo {
   width: 170px;
 }
+
+.custom-modal {
+  z-index: 1000;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-modal-dialog {
+  opacity: 1;
+  padding: 20px 40px;
+  background-color: rgb(225, 223, 223);
+  border-radius: 10px;
+  font-family: "InterBold";
+  transition: all 1s 2s linear;
+}
+
+.custom-modal.custom-fade .custom-modal-dialog {
+  opacity: 0;
+  transform: translateY(30px);
+  background-color: $cancel-color;
+}
+
 @include media-breakpoint-down(md) {
   .logo {
     width: 250px;
