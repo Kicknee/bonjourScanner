@@ -20,9 +20,17 @@ const ProductList = () => {
           </tr>
         </thead>
         <tbody>
-          {productList.map((product, key) => (
-            <ProductRecord key={key} productProp={product} />
-          ))}
+          {productList[0] === false && (
+            <tr>
+              <td colSpan={4} className="text-center">
+                Not found
+              </td>
+            </tr>
+          )}
+          {productList[0] !== false &&
+            productList.map((product, key) => (
+              <ProductRecord key={key} productProp={product} />
+            ))}
         </tbody>
       </table>
     </div>
