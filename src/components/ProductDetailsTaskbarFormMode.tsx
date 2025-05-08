@@ -12,6 +12,7 @@ import getProducts from "../services/getProducts";
 import { fillProductListState } from "../store/slices/productListSlice";
 import { selectProductState } from "../store/slices/productSlice";
 import { triggerModal } from "../utils/triggerModal";
+import productService from "../services/productService";
 
 // Define the prop types for the combined taskbar component
 interface ProductDetailsTaskbarProps {
@@ -45,7 +46,8 @@ const ProductDetailsTaskbarFormMode = ({
 
     if (mode === "add") {
       // Perform add operation for new product
-      let response = await addProduct(obj as ProductType);
+      // let response = await addProduct(obj as ProductType);
+      let response = await productService.add(obj as ProductType);
 
       if (!response || response.status === 400 || response.status === 404) {
         triggerModal(response.message || "Couldn't add product");
