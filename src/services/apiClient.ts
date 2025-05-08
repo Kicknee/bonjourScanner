@@ -1,8 +1,8 @@
-export const apiClient = async <T>(
+export const apiClient = async (
   url: string,
   method: string,
   data?: unknown
-): Promise<T | undefined> => {
+) => {
   try {
     const response = await fetch(url, {
       method,

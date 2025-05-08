@@ -11,8 +11,7 @@ const productService = {
   update: (product: ProductType) =>
     apiClient("/.netlify/functions/update_product", "PATCH", product),
 
-  get: () =>
-    apiClient<ProductType[]>("/.netlify/functions/get_products", "GET"),
+  get: () => apiClient("/.netlify/functions/get_products", "GET"),
 };
 
 export default productService;
