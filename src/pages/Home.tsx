@@ -3,7 +3,6 @@ import RightSide from "../components/layoutComponents/RightSide";
 import CenterSide from "../components/layoutComponents/CenterSide";
 import SectionDivider from "../components/layoutComponents/SectionDivider";
 import { useEffect } from "react";
-// import getProducts from "../services/getProducts";
 import { useDispatch } from "react-redux";
 import { fillProductListState } from "../store/slices/productListSlice";
 import Modal from "../components/Modal";
@@ -18,7 +17,6 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       const response = await productService.get();
-      console.log(response);
       if (!response || response.status === 400 || response.status === 404) {
         triggerModal(response.message || "Couldn't refresh product list");
       } else {

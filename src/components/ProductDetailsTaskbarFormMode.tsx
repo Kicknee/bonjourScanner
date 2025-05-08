@@ -5,10 +5,7 @@ import { useDispatch } from "react-redux";
 // Import actions and services for both modes
 import { disableAdd } from "../store/slices/addSlice";
 import { disableEdit } from "../store/slices/editSlice";
-import addProduct from "../services/addProduct";
-import updateProduct from "../services/updateProduct";
 import { ProductType } from "../types/types";
-import getProducts from "../services/getProducts";
 import { fillProductListState } from "../store/slices/productListSlice";
 import { selectProductState } from "../store/slices/productSlice";
 import { triggerModal } from "../utils/triggerModal";
@@ -56,7 +53,7 @@ const ProductDetailsTaskbarFormMode = ({
       } else {
         triggerModal(response.message);
         dispatch(disableAdd());
-        response = await getProducts();
+        response = await productService.get();
         if (response.status === 400 || response.status === 404) {
           triggerModal(response.message || "Couldn't refresh product list");
         } else {
@@ -67,7 +64,7 @@ const ProductDetailsTaskbarFormMode = ({
       // Extract the product ID from the first input field's data attribute
       const productID = (form[0] as HTMLInputElement).dataset.id;
       // Perform update operation for existing product
-      let response = await updateProduct(obj as ProductType);
+      let response = await productService.update(obj as ProductType);
 
       if (!response || response.status === 400 || response.status === 404) {
         triggerModal(response.message);
@@ -77,7 +74,7 @@ const ProductDetailsTaskbarFormMode = ({
         triggerModal(response.message);
         dispatch(selectProductState(obj as ProductType));
         dispatch(disableEdit());
-        response = await getProducts();
+        response = await productService.get();
         if (response.status === 400 || response.status === 404) {
           triggerModal(response.message);
         } else {
@@ -91,10 +88,8 @@ const ProductDetailsTaskbarFormMode = ({
 
   return (
     <div className="col-3">
-      {/* The form has a dynamic id based on the mode */}
       <form id={formName} onSubmit={handleSubmit}></form>
 
-      {/* Submit button: when clicked, it triggers the submit event of the dynamic form */}
       <button className="btn" form={formName} type="submit">
         <FontAwesomeIcon
           className="fa-3x w-100"
@@ -103,7 +98,6 @@ const ProductDetailsTaskbarFormMode = ({
         />
       </button>
 
-      {/* Cancel button: dispatches the proper action to disable the current mode */}
       <button
         className="btn"
         onClick={() => {

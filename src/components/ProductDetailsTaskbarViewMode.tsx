@@ -2,13 +2,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { enableEdit } from "../store/slices/editSlice";
-import deleteProduct from "../services/deleteProduct";
 import useProductState from "../store/hooks/useProductState";
 import { ProductType } from "../types/types";
 import { fillProductListState } from "../store/slices/productListSlice";
 import { deselectProductState } from "../store/slices/productSlice";
-import getProducts from "../services/getProducts";
 import { triggerModal } from "../utils/triggerModal";
+import productService from "../services/productService";
 
 const ProductDetailsTaskbarViewMode = () => {
   const dispatch = useDispatch();
@@ -34,7 +33,9 @@ const ProductDetailsTaskbarViewMode = () => {
           style={{ color: "#ffffff" }}
           onClick={() => {
             (async () => {
-              let response = await deleteProduct(currentProduct as ProductType);
+              let response = await productService.delete(
+                currentProduct as ProductType
+              );
               if (
                 !response ||
                 response.status === 400 ||
@@ -44,7 +45,7 @@ const ProductDetailsTaskbarViewMode = () => {
               } else {
                 triggerModal(response.message);
                 dispatch(deselectProductState());
-                response = await getProducts();
+                response = await productService.get();
                 if (
                   !response ||
                   response.status === 400 ||
