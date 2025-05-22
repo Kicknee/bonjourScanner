@@ -52,7 +52,7 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
 
   return (
     <div className="row justify-content-center">
-      <div className="col-9">
+      <div className="col-12">
         <table className="table table-dark table-borderless fs-5">
           <tbody>
             {Object.entries(input).map(([key, val]) => {
@@ -65,9 +65,9 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
               const { displayKey } = examineEntries(key);
 
               return (
-                <tr key={key} style={{ height: "48px" }}>
-                  <th>{displayKey}</th>
-                  <th>
+                <tr key={key} style={{ height: "48px", width: "340px" }}>
+                  <th style={{ width: "170px" }}>{displayKey}</th>
+                  <th style={{ width: "170px" }}>
                     <input
                       form={formName}
                       id={key}

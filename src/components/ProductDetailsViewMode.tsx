@@ -16,9 +16,12 @@ const ProductDetailsViewMode = ({ productProp }: ProductProp) => {
                 const { displayKey, displayValue } = examineEntries(key, value);
 
                 return (
-                  <tr style={{ height: "48px" }} key={displayKey}>
+                  <tr
+                    style={{ height: "48px", width: "340px" }}
+                    key={displayKey}
+                  >
                     <th style={{ width: "170px" }}>{displayKey}</th>
-                    <th>{displayValue}</th>
+                    <th style={{ width: "170px" }}>{displayValue}</th>
                   </tr>
                 );
               })}
