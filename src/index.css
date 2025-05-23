@@ -12368,14 +12368,20 @@ body {
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
-  table-layout: fixed;
-  word-wrap: break-word;
 }
 .product-details-table th:first-child {
   width: 170px;
 }
-.product-details-table input {
-  width: 100%;
+@media (max-width: 576px) {
+  .product-details-table {
+    font-size: 0.9rem;
+  }
+  .product-details-table th:first-child {
+    width: 130px;
+  }
+  .product-details-table input {
+    font-size: 0.9rem;
+  }
 }
 
 input {

@@ -5,10 +5,7 @@ const ProductDetailsViewMode = ({ productProp }: ProductProp) => {
   return (
     <div className="row">
       <div className="col-12">
-        <table
-          className="table table-dark table-borderless fs-5 mx-lg-auto"
-          style={{ width: "400px" }}
-        >
+        <table className="table table-dark table-borderless fs-5 product-details-table">
           <tbody>
             {Object.entries(productProp)
               .slice(1)
@@ -16,12 +13,9 @@ const ProductDetailsViewMode = ({ productProp }: ProductProp) => {
                 const { displayKey, displayValue } = examineEntries(key, value);
 
                 return (
-                  <tr
-                    style={{ height: "48px", width: "340px" }}
-                    key={displayKey}
-                  >
-                    <th style={{ width: "170px" }}>{displayKey}</th>
-                    <th style={{ width: "170px" }}>{displayValue}</th>
+                  <tr style={{ height: "48px" }} key={displayKey}>
+                    <th>{displayKey}</th>
+                    <th>{displayValue}</th>
                   </tr>
                 );
               })}

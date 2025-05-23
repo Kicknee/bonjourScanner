@@ -9,7 +9,7 @@ const ProductDetailsTaskbar = () => {
 
   return (
     <div className="product-taskbar row justify-content-center justify-content-lg-end">
-      <div className="col-7">
+      <div className="col-9">
         <div className="row align-items-end">
           {(mode === "add" || mode === "edit") && (
             <ProductDetailsTaskbarFormMode />

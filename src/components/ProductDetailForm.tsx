@@ -51,9 +51,9 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
   const formName = mode === "edit" ? "edit-form" : "add-form";
 
   return (
-    <div className="row justify-content-center">
+    <div className="row">
       <div className="col-12">
-        <table className="table table-dark table-borderless fs-5">
+        <table className="table table-dark table-borderless fs-5 product-details-table">
           <tbody>
             {Object.entries(input).map(([key, val]) => {
               // In edit mode, skip rendering the _id field but save its value in the ref
@@ -65,9 +65,9 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
               const { displayKey } = examineEntries(key);
 
               return (
-                <tr key={key} style={{ height: "48px", width: "340px" }}>
-                  <th style={{ width: "170px" }}>{displayKey}</th>
-                  <th style={{ width: "170px" }}>
+                <tr key={key} style={{ height: "48px" }}>
+                  <th>{displayKey}</th>
+                  <th>
                     <input
                       form={formName}
                       id={key}

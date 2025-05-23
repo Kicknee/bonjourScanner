@@ -36,7 +36,7 @@ const Product = () => {
 
   return (
     <div className="row">
-      <div className="col-12 d-flex flex-column">
+      <div className="col-10 d-flex flex-column">
         {renderProductDetails()}
         {shouldShowTaskbar && <ProductDetailsTaskbar />}
       </div>
