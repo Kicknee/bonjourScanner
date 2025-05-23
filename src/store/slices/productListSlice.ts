@@ -1,17 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ProductType } from "../../types/types";
 
-const initialState: ProductType[] = [
-  {
-    STYLE: "ss",
-    TYPE: "sss",
-    PLACE: "ss",
-    LEFT: 23,
-    COLOR: "ss",
-    BRAND: "sa",
-    SHIPPING_COMPANY: "sss",
-  },
-];
+const initialState: ProductType[] = [];
 
 const productListSlice = createSlice({
   name: "productList",

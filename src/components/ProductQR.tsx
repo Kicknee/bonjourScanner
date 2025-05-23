@@ -2,11 +2,10 @@ import QRCode from "react-qr-code";
 import useProductState from "../store/hooks/useProductState";
 import { createElement } from "react";
 import { useSelector } from "react-redux";
-import { ProductMode } from "../store/slices/productStateSlice";
 import { RootState } from "../store/store";
 
 function QRGenerator() {
-  const mode: ProductMode = useSelector((state: RootState) => state.mode.mode);
+  const { mode } = useSelector((state: RootState) => state.mode);
 
   const selectedProduct = useProductState();
 

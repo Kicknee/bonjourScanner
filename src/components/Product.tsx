@@ -6,19 +6,20 @@ import { ProductType } from "../types/types";
 
 const Product = () => {
   const product = useSelector((state: RootState) => state.product);
-  const mode = useSelector((state: RootState) => state.mode.mode);
+  const { mode } = useSelector((state: RootState) => state.mode);
+  const productId = product._id;
 
   if (mode === "add") {
     return <ProductFormContainer mode="add" />;
   }
 
-  if (mode === "edit" && product) {
+  if (mode === "edit" && productId) {
     return (
       <ProductFormContainer mode="edit" productProp={product as ProductType} />
     );
   }
 
-  if (mode === "view" && product) {
+  if (mode === "view" && productId) {
     return <ProductViewContainer />;
   }
 

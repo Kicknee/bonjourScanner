@@ -10,7 +10,7 @@ import { RootState } from "../../store/store";
 import { setMode } from "../../store/slices/productStateSlice";
 
 const CenterSide = () => {
-  const mode = useSelector((state: RootState) => state.mode.mode);
+  const { mode } = useSelector((state: RootState) => state.mode);
   const dispatch = useDispatch();
 
   const handleClose = () => {
