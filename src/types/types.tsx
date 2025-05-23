@@ -1,11 +1,7 @@
 import { ObjectId } from "mongodb";
 
-export type EditType = boolean;
-
-export type AddType = boolean;
-
 export interface ProductType {
-  _id?: string;
+  _id?: ObjectId;
   STYLE: string;
   TYPE: string;
   PLACE: string;
