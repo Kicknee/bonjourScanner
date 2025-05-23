@@ -12,10 +12,9 @@ import { RootState } from "../store/store";
 
 const ProductDetailsTaskbarFormMode = () => {
   const dispatch = useDispatch();
-
   const mode = useSelector((state: RootState) => state.mode.mode);
 
-  if (mode !== "add" && mode !== "edit") return null; // komponent nie powinien być widoczny
+  if (mode !== "add" && mode !== "edit") return null;
 
   const formName = mode === "edit" ? "edit-form" : "add-form";
 
@@ -23,21 +22,25 @@ const ProductDetailsTaskbarFormMode = () => {
     e.preventDefault();
 
     const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
     const obj: Partial<ProductType> = {};
 
-    for (let i = 0; i < 7; i++) {
-      const { name, value } = form[i] as HTMLInputElement;
-      if (!value) {
-        triggerModal("Fill in all fields");
-        return;
+    for (const [name, value] of formData.entries()) {
+      if (name === "LEFT") {
+        obj["LEFT"] = Number(value);
+      } else if (name === "_id") {
+        // Zakładamy, że _id to string z MongoDB
+        obj["_id"] = value.toString() as any;
+      } else {
+        obj[name as keyof Omit<ProductType, "LEFT" | "_id">] = value
+          .toString()
+          .toUpperCase();
       }
-      obj[name] = name === "LEFT" ? Number(value) : value;
     }
 
     try {
       if (mode === "add") {
         const response = await productService.add(obj as ProductType);
-
         if (!response || response.status >= 400) {
           triggerModal(response.message || "Couldn't add product");
         } else {
@@ -52,9 +55,12 @@ const ProductDetailsTaskbarFormMode = () => {
           }
         }
       } else if (mode === "edit") {
-        const productID = (form[0] as HTMLInputElement).dataset.id;
-        const response = await productService.update(obj as ProductType);
+        const productID = form
+          .querySelector("input[name='_id']")
+          ?.getAttribute("data-val");
+        if (productID) obj._id = productID as any;
 
+        const response = await productService.update(obj as ProductType);
         if (!response || response.status >= 400) {
           triggerModal(response.message || "Couldn't update product");
         } else {
@@ -69,8 +75,6 @@ const ProductDetailsTaskbarFormMode = () => {
             dispatch(fillProductListState(listResponse.payload));
           }
         }
-
-        obj._id = productID;
       }
 
       dispatch(setMode("view"));

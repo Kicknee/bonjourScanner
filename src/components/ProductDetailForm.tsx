@@ -1,15 +1,14 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { ProductType } from "../types/types";
 import { examineEntries } from "../utils/examineEntries";
 import { triggerModal } from "../utils/triggerModal";
 
 interface ProductDetailsFormProps {
   mode: "add" | "edit";
-  productProp?: Partial<ProductType>;
+  productProp?: ProductType;
 }
 
 const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
-  // Default values for adding a new product
   const defaultInput: ProductType = {
     STYLE: "",
     TYPE: "",
@@ -20,19 +19,13 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
     SHIPPING_COMPANY: "",
   };
 
-  // Initialize state: if in edit mode and an initial product is provided, use its values; otherwise, use default values
   const [input, setInput] = useState<ProductType>(
     productProp ? { ...productProp } : defaultInput
   );
 
-  // Reference to store the _id, useful in edit mode if needed
-  const _id = useRef<any>({});
-
-  // Handler for input changes
   function handleInput(event: ChangeEvent<HTMLInputElement>) {
     const { id, value } = event.target;
 
-    // Ensure the value is an integer for the LEFT field
     const leftNumber =
       id === "LEFT" && Number.isInteger(Number(value)) ? Number(value) : null;
 
@@ -40,14 +33,13 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
       triggerModal("Can't enter more than 10000");
       return;
     }
-    // Update the state: for LEFT ensure non-negative value , for others convert to uppercase
+
     setInput((prev) => ({
       ...prev,
-      [id]: id === "LEFT" ? Math.max(0, leftNumber) : value.toUpperCase(),
+      [id]: id === "LEFT" ? Math.max(0, leftNumber!) : value.toUpperCase(),
     }));
   }
 
-  // Determine the form name based on the mode
   const formName = mode === "edit" ? "edit-form" : "add-form";
 
   return (
@@ -55,24 +47,28 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
       <div className="col-12">
         <table className="table table-dark table-borderless fs-5 product-details-table">
           <tbody>
+            {input._id && (
+              <input
+                type="hidden"
+                id="_id"
+                name="_id"
+                value={input._id.toString()}
+                data-val={input._id.toString()}
+              />
+            )}
             {Object.entries(input).map(([key, val]) => {
-              // In edit mode, skip rendering the _id field but save its value in the ref
-              if (key === "_id") {
-                _id.current = val;
-                return null;
-              }
-              // Get the display name for the key
+              if (key === "_id") return null;
               const { displayKey } = examineEntries(key);
 
               return (
-                <tr key={key} style={{ height: "48px" }}>
+                <tr key={key} style={{ height: "48px", display: "block" }}>
                   <th>{displayKey}</th>
                   <th>
                     <input
                       form={formName}
                       id={key}
                       name={key}
-                      data-id={_id.current}
+                      data-val={val}
                       className={
                         "opacity-75 border-0 h-50 p-1 text-uppercase " +
                         (key === "STYLE" && mode === "edit"
@@ -81,9 +77,8 @@ const ProductDetailsForm = ({ mode, productProp }: ProductDetailsFormProps) => {
                       }
                       type={key === "LEFT" ? "number" : "text"}
                       autoCapitalize="on"
-                      value={input[key as keyof ProductType]!.toString()}
+                      value={val?.toString() ?? ""}
                       onChange={handleInput}
-                      // In edit mode, set the "STYLE" field to read-only
                       readOnly={key === "STYLE" && mode === "edit"}
                       maxLength={17}
                     />
