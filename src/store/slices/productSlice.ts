@@ -1,7 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ProductType } from "../../types/types";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: Partial<ProductType> = {
+const initialState = {
   _id: undefined,
   STYLE: undefined,
   TYPE: undefined,
@@ -16,7 +15,7 @@ const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
-    selectProductState: (state, action: PayloadAction<ProductType>) => {
+    selectProductState: (state, action) => {
       return { ...state, ...action.payload };
     },
     deselectProductState: () => initialState,

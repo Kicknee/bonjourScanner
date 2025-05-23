@@ -1,22 +1,20 @@
+import { useSelector } from "react-redux";
 import ProductDetailsTaskbarViewMode from "./ProductDetailsTaskbarViewMode";
-import ProductQR from "./ProductQR";
-import { FC } from "react";
-import { AddType, EditType } from "../types/types";
 import ProductDetailsTaskbarFormMode from "./ProductDetailsTaskbarFormMode";
+import ProductQR from "./ProductQR";
+import { RootState } from "../store/store";
 
-const ProductDetailsTaskbar: FC<{ editMode: EditType; addMode: AddType }> = ({
-  editMode,
-  addMode,
-}) => {
+const ProductDetailsTaskbar = () => {
+  const mode = useSelector((state: RootState) => state.mode.mode);
+
   return (
     <div className="product-taskbar row justify-content-center justify-content-lg-end">
       <div className="col-7">
         <div className="row align-items-end">
-          {editMode && !addMode && (
-            <ProductDetailsTaskbarFormMode mode="edit" />
+          {(mode === "add" || mode === "edit") && (
+            <ProductDetailsTaskbarFormMode />
           )}
-          {!editMode && !addMode && <ProductDetailsTaskbarViewMode />}
-          {addMode && <ProductDetailsTaskbarFormMode mode="add" />}
+          {mode === "view" && <ProductDetailsTaskbarViewMode />}
           <ProductQR />
         </div>
       </div>

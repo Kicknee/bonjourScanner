@@ -1,19 +1,22 @@
 import LogoContainer from "../LogoContainer";
 import SearchBar from "../SearchBar";
 import ProductList from "../ProductList";
-import useProductState from "../../store/hooks/useProductState";
 import Product from "../Product";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deselectProductState } from "../../store/slices/productSlice";
-import useAddState from "../../store/hooks/useAddState";
-import { disableAdd } from "../../store/slices/addSlice";
+import { RootState } from "../../store/store";
+import { setMode } from "../../store/slices/productStateSlice";
 
 const CenterSide = () => {
-  const { _id: currentProductID } = useProductState();
-  const addMode = useAddState();
+  const mode = useSelector((state: RootState) => state.mode.mode);
   const dispatch = useDispatch();
+
+  const handleClose = () => {
+    dispatch(deselectProductState());
+    dispatch(setMode("idle"));
+  };
 
   return (
     <div className="col-12">
@@ -23,20 +26,13 @@ const CenterSide = () => {
         </div>
       </div>
       <SearchBar />
-      {!currentProductID && !addMode ? (
+      {mode === "idle" ? (
         <ProductList />
       ) : (
         <div className="col-11 d-flex flex-column align-items-center">
           <button
             className="btn not-hover align-self-end"
-            onClick={() => {
-              if (currentProductID) {
-                dispatch(deselectProductState());
-              }
-              if (addMode) {
-                dispatch(disableAdd());
-              }
-            }}
+            onClick={handleClose}
           >
             <FontAwesomeIcon
               icon={faXmark}

@@ -5,7 +5,7 @@ export type EditType = boolean;
 export type AddType = boolean;
 
 export interface ProductType {
-  _id?: ObjectId;
+  _id?: string;
   STYLE: string;
   TYPE: string;
   PLACE: string;

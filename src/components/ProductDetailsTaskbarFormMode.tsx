@@ -1,37 +1,30 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-// Import actions and services for both modes
-import { disableAdd } from "../store/slices/addSlice";
-import { disableEdit } from "../store/slices/editSlice";
 import { ProductType } from "../types/types";
 import { fillProductListState } from "../store/slices/productListSlice";
 import { selectProductState } from "../store/slices/productSlice";
 import { triggerModal } from "../utils/triggerModal";
 import productService from "../services/productService";
+import { setMode } from "../store/slices/productStateSlice";
+import { RootState } from "../store/store";
 
-// Define the prop types for the combined taskbar component
-interface ProductDetailsTaskbarProps {
-  mode: "add" | "edit";
-}
-
-const ProductDetailsTaskbarFormMode = ({
-  mode,
-}: ProductDetailsTaskbarProps) => {
+const ProductDetailsTaskbarFormMode = () => {
   const dispatch = useDispatch();
 
-  // Determine the form id based on the mode
+  const mode = useSelector((state: RootState) => state.mode.mode);
+
+  if (mode !== "add" && mode !== "edit") return null; // komponent nie powinien być widoczny
+
   const formName = mode === "edit" ? "edit-form" : "add-form";
 
-  // Handler for form submission (both add and edit)
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = e.target as HTMLFormElement;
     const obj: Partial<ProductType> = {};
 
-    // Loop through the 7 input fields to build the product object
     for (let i = 0; i < 7; i++) {
       const { name, value } = form[i] as HTMLInputElement;
       if (!value) {
@@ -41,49 +34,54 @@ const ProductDetailsTaskbarFormMode = ({
       obj[name] = name === "LEFT" ? Number(value) : value;
     }
 
-    if (mode === "add") {
-      // Perform add operation for new product
-      // let response = await addProduct(obj as ProductType);
-      let response = await productService.add(obj as ProductType);
+    try {
+      if (mode === "add") {
+        const response = await productService.add(obj as ProductType);
 
-      if (!response || response.status === 400 || response.status === 404) {
-        triggerModal(response.message || "Couldn't add product");
-        dispatch(disableAdd());
-        return;
-      } else {
-        triggerModal(response.message);
-        dispatch(disableAdd());
-        response = await productService.get();
-        if (response.status === 400 || response.status === 404) {
-          triggerModal(response.message || "Couldn't refresh product list");
+        if (!response || response.status >= 400) {
+          triggerModal(response.message || "Couldn't add product");
         } else {
-          dispatch(fillProductListState(response.payload));
-        }
-      }
-    } else if (mode === "edit") {
-      // Extract the product ID from the first input field's data attribute
-      const productID = (form[0] as HTMLInputElement).dataset.id;
-      // Perform update operation for existing product
-      let response = await productService.update(obj as ProductType);
-
-      if (!response || response.status === 400 || response.status === 404) {
-        triggerModal(response.message);
-        dispatch(disableEdit());
-        return;
-      } else {
-        triggerModal(response.message);
-        dispatch(selectProductState(obj as ProductType));
-        dispatch(disableEdit());
-        response = await productService.get();
-        if (response.status === 400 || response.status === 404) {
           triggerModal(response.message);
-        } else {
-          dispatch(fillProductListState(response.payload));
+          const listResponse = await productService.get();
+          if (listResponse.status >= 400) {
+            triggerModal(
+              listResponse.message || "Couldn't refresh product list"
+            );
+          } else {
+            dispatch(fillProductListState(listResponse.payload));
+          }
         }
+      } else if (mode === "edit") {
+        const productID = (form[0] as HTMLInputElement).dataset.id;
+        const response = await productService.update(obj as ProductType);
+
+        if (!response || response.status >= 400) {
+          triggerModal(response.message || "Couldn't update product");
+        } else {
+          triggerModal(response.message);
+          dispatch(selectProductState(obj as ProductType));
+          const listResponse = await productService.get();
+          if (listResponse.status >= 400) {
+            triggerModal(
+              listResponse.message || "Couldn't refresh product list"
+            );
+          } else {
+            dispatch(fillProductListState(listResponse.payload));
+          }
+        }
+
+        obj._id = productID;
       }
-      // Assign the product ID to the product object (if neede d later)
-      obj._id = productID;
+
+      dispatch(setMode("view"));
+    } catch (err) {
+      triggerModal("Unexpected error occurred.");
+      dispatch(setMode("view"));
     }
+  };
+
+  const handleCancel = () => {
+    dispatch(setMode("view"));
   };
 
   return (
@@ -98,16 +96,7 @@ const ProductDetailsTaskbarFormMode = ({
         />
       </button>
 
-      <button
-        className="btn"
-        onClick={() => {
-          if (mode === "add") {
-            dispatch(disableAdd());
-          } else if (mode === "edit") {
-            dispatch(disableEdit());
-          }
-        }}
-      >
+      <button className="btn" type="button" onClick={handleCancel}>
         <FontAwesomeIcon
           className="fa-3x w-100"
           icon={faBan}
