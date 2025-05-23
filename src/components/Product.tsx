@@ -1,47 +1,28 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-
-import useProductState from "../store/hooks/useProductState";
-
-import ProductDetailsForm from "./ProductDetailForm";
-import ProductDetailsViewMode from "./ProductDetailsViewMode";
-import ProductDetailsTaskbar from "./ProductDetailsTaskbar";
-import { ProductMode } from "../store/slices/productStateSlice";
+import ProductFormContainer from "./ProductFormContainer";
+import ProductViewContainer from "./ProductViewContainer";
+import { ProductType } from "../types/types";
 
 const Product = () => {
-  const selectedProduct = useProductState();
-  const mode: ProductMode = useSelector((state: RootState) => state.mode.mode);
+  const product = useSelector((state: RootState) => state.product);
+  const mode = useSelector((state: RootState) => state.mode.mode);
 
-  const hasProduct = Boolean(selectedProduct._id);
-  const shouldShowTaskbar = mode === "add" || (mode !== "idle" && hasProduct);
+  if (mode === "add") {
+    return <ProductFormContainer mode="add" />;
+  }
 
-  const renderProductDetails = () => {
-    switch (mode) {
-      case "add":
-        return <ProductDetailsForm mode="add" />;
-      case "edit":
-        return (
-          hasProduct && (
-            <ProductDetailsForm mode="edit" productProp={selectedProduct} />
-          )
-        );
-      case "view":
-        return (
-          hasProduct && <ProductDetailsViewMode productProp={selectedProduct} />
-        );
-      default:
-        return null;
-    }
-  };
+  if (mode === "edit" && product) {
+    return (
+      <ProductFormContainer mode="edit" productProp={product as ProductType} />
+    );
+  }
 
-  return (
-    <div className="row">
-      <div className="col-10 d-flex flex-column">
-        {renderProductDetails()}
-        {shouldShowTaskbar && <ProductDetailsTaskbar />}
-      </div>
-    </div>
-  );
+  if (mode === "view" && product) {
+    return <ProductViewContainer />;
+  }
+
+  return null;
 };
 
 export default Product;
