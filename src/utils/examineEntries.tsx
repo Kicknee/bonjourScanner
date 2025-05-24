@@ -1,7 +1,7 @@
 function examineEntries(key: string): { displayKey: string };
 function examineEntries(
   key: string,
-  value?: string
+  value: string
 ): { displayKey: string; displayValue: string };
 function examineEntries(
   key: string,
