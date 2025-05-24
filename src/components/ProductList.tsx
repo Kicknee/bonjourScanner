@@ -1,6 +1,7 @@
 import ProductRecord from "./ProductRecord";
 import useProductListState from "../store/hooks/useProductListState";
 import useSearchListState from "../store/hooks/useSearchListState";
+import { ProductType } from "../types/types";
 
 const ProductList = () => {
   const productList =
@@ -29,7 +30,7 @@ const ProductList = () => {
           )}
           {productList[0] !== false &&
             productList.map((product, key) => (
-              <ProductRecord key={key} productProp={product} />
+              <ProductRecord key={key} productProp={product as ProductType} />
             ))}
         </tbody>
       </table>
