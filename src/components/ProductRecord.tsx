@@ -1,9 +1,12 @@
 import { useDispatch } from "react-redux";
 import { selectProductState } from "../store/slices/productSlice";
-import { ProductProp } from "../types/types";
+import { ProductType } from "../types/types";
 import { setMode } from "../store/slices/productStateSlice";
 
-const ProductRecord = ({ productProp }: ProductProp) => {
+interface Props {
+  productProp: ProductType;
+}
+const ProductRecord = ({ productProp }: Props) => {
   const dispatch = useDispatch();
 
   return (
