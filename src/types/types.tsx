@@ -11,10 +11,6 @@ export interface ProductType {
   SHIPPING_COMPANY: string;
 }
 
-export interface ProductProp {
-  productProp: ProductType;
-}
-
 export interface ModalType {
   show: boolean;
   message: string;
