@@ -1,6 +1,7 @@
 import { Handler } from "@netlify/functions";
 import connect_db from "../../utils/connect_db";
 import createResponse from "../../utils/createResponse";
+import { ObjectId } from "mongodb";
 
 export const handler: Handler = async (event) => {
   const method = "PATCH";
@@ -14,11 +15,12 @@ export const handler: Handler = async (event) => {
     if (!updatedProduct.STYLE) {
       return createResponse(400, method, "Missing STYLE property");
     }
+    const newID = updatedProduct._id;
     delete updatedProduct._id;
 
     const response = await connect_db(async (collection) => {
       const result = await collection.updateOne(
-        { STYLE: updatedProduct.STYLE },
+        { _id: new ObjectId(newID) },
         { $set: updatedProduct }
       );
 
