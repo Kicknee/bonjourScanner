@@ -24,6 +24,10 @@ export const handler: Handler = async (event) => {
 
     return response;
   } catch (error) {
-    return createResponse(500, method, "Internal Server Error");
+    return createResponse(
+      500,
+      method,
+      error instanceof Error ? error.message : "Internal Server Error"
+    );
   }
 };

@@ -22,7 +22,7 @@ export const handler: Handler = async (event) => {
     return createResponse(
       500,
       method,
-      error instanceof Error ? error.message : "Unexpected Error"
+      error instanceof Error ? error.message : "Internal Server Error"
     );
   }
 };
