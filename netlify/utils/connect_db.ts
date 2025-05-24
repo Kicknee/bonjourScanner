@@ -1,4 +1,4 @@
-import { MongoClient, Collection } from "mongodb";
+import { MongoClient } from "mongodb";
 import { config } from "dotenv";
 config();
 
@@ -12,9 +12,7 @@ if (!uri || !dbName || !collectionName) {
 
 let cachedClient: MongoClient | null = null;
 
-export default async function connect_db<T>(
-  callback: (collection: Collection) => Promise<T>
-): Promise<T> {
+export default async function connect_db(callback) {
   if (!cachedClient) {
     cachedClient = new MongoClient(uri);
     await cachedClient.connect();

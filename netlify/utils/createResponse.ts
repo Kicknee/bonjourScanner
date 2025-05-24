@@ -6,7 +6,7 @@ export default function createResponse(
   statusCode: number,
   method: Methods,
   message: string,
-  payload = undefined
+  payload: unknown = undefined
 ): HandlerResponse {
   const body: Record<string, unknown> = {
     status: statusCode,
