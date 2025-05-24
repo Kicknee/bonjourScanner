@@ -22,7 +22,7 @@ const ProductViewContainer = () => {
 
   const handleDeleteClick = async () => {
     let response = await productService.delete(product as ProductType);
-
+    console.log("Product", product, "Response", response);
     if (!response || response.status === 400 || response.status === 404) {
       triggerModal(response.message || "Couldn't delete the record");
       return;

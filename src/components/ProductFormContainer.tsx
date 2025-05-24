@@ -80,7 +80,8 @@ const ProductFormContainer = ({ mode, productProp }: Props) => {
           triggerModal("Product ID is missing");
           return;
         }
-        const response = await productService.update(fields);
+        const response = await productService.update(fields as ProductType);
+        console.log("Fields", fields, "Response", response);
         if (!response || response.status >= 400) {
           triggerModal(response.message || "Couldn't update product");
         } else {

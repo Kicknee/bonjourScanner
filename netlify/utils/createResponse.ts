@@ -1,18 +1,6 @@
 import type { HandlerResponse } from "@netlify/functions";
-import { ObjectId } from "mongodb";
 
 type Methods = "GET" | "POST" | "PATCH" | "DELETE";
-
-// interface ProductType {
-//   _id?: ObjectId;
-//   STYLE: string;
-//   TYPE: string;
-//   PLACE: string;
-//   LEFT: number;
-//   COLOR: string;
-//   BRAND: string;
-//   SHIPPING_COMPANY: string;
-// }
 
 export default function createResponse(
   statusCode: number,
