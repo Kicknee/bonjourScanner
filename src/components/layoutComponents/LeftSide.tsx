@@ -3,7 +3,7 @@ import LogoContainer from "../LogoContainer";
 
 const LeftSide = () => {
   return (
-    <div className="col-5">
+    <div className="col-5 d-flex flex-column justify-content-between">
       <div className="row">
         <div className="col-12 mb-5">
           <ProductList />
