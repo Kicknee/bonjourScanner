@@ -100,13 +100,13 @@ const ProductFormContainer = ({ mode, productProp }: Props) => {
   };
 
   const handleCancel = () => {
-    dispatch(setMode("idle"));
+    dispatch(setMode("view"));
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="col-11 d-flex flex-column align-items-center"
+      className="col-9 d-flex flex-column align-items-end mx-auto"
     >
       <table className="table table-dark table-borderless fs-5 product-details-table">
         <tbody>
@@ -114,7 +114,7 @@ const ProductFormContainer = ({ mode, productProp }: Props) => {
             if (key === "_id") return null;
             const { displayKey } = examineEntries(key);
             return (
-              <tr key={key} style={{ height: "48px", display: "block" }}>
+              <tr key={key} style={{ height: "48px" }}>
                 <th>{displayKey}</th>
                 <th>
                   <input
@@ -132,6 +132,7 @@ const ProductFormContainer = ({ mode, productProp }: Props) => {
                     onChange={handleInput}
                     readOnly={key === "STYLE" && mode === "edit"}
                     maxLength={17}
+                    style={{ width: "150px" }}
                   />
                 </th>
               </tr>
@@ -140,18 +141,18 @@ const ProductFormContainer = ({ mode, productProp }: Props) => {
         </tbody>
       </table>
 
-      <div className="d-flex gap-2 mt-3">
-        <div className="d-flex flex-column align-items-end justify-content-end">
+      <div className="col-9 d-flex gap-2 mt-3">
+        <div className="d-flex flex-column justify-content-end">
           <button className="btn" type="submit">
             <FontAwesomeIcon
-              className="fa-3x w-100"
+              className="fa-3x"
               icon={faFloppyDisk}
               style={{ color: "#fff" }}
             />
           </button>
           <button className="btn" type="button" onClick={handleCancel}>
             <FontAwesomeIcon
-              className="fa-3x w-100"
+              className="fa-3x"
               icon={faBan}
               style={{ color: "#fff" }}
             />

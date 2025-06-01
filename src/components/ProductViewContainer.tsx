@@ -40,43 +40,35 @@ const ProductViewContainer = () => {
   };
 
   return (
-    <>
-      <div className="row">
-        <div className="col-12">
-          <table className="table table-dark table-borderless fs-5 product-details-table">
-            <tbody>
-              {Object.entries(product)
-                .slice(1)
-                .map(([key, value]) => {
-                  const { displayKey, displayValue } = examineEntries(
-                    key,
-                    value
-                  );
+    <div className="col-9 d-flex flex-column align-items-end justify-content-end mx-auto">
+      <table className="table table-dark table-borderless fs-5 product-details-table">
+        <tbody>
+          {Object.entries(product).map(([key, value]) => {
+            if (key === "_id") return;
+            const { displayKey, displayValue } = examineEntries(key, value);
 
-                  return (
-                    <tr style={{ height: "48px" }} key={displayKey}>
-                      <th>{displayKey}</th>
-                      <th>{displayValue}</th>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
-        </div>
-      </div>
+            return (
+              <tr style={{ height: "48px" }} key={displayKey}>
+                <th>{displayKey}</th>
+                <th style={{ width: "150px" }}>{displayValue}</th>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
 
-      <div className="d-flex gap-2 mt-3">
+      <div className="col-9 d-flex gap-2 mt-3">
         <div className="d-flex flex-column justify-content-end">
           <button className="btn" onClick={handleEditClick}>
             <FontAwesomeIcon
-              className="fa-3x w-100"
+              className="fa-3x"
               icon={faPenToSquare}
               style={{ color: "#ffffff" }}
             />
           </button>
           <button className="btn" onClick={handleDeleteClick}>
             <FontAwesomeIcon
-              className="fa-3x w-100"
+              className="fa-3x"
               icon={faTrash}
               style={{ color: "#ffffff" }}
             />
@@ -84,7 +76,7 @@ const ProductViewContainer = () => {
         </div>
         <ProductQR />
       </div>
-    </>
+    </div>
   );
 };
 
