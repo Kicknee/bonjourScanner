@@ -1,23 +1,22 @@
+import axios from "axios";
+
+const axiosInstance = axios.create({
+  timeout: 2000,
+});
+
 export const apiClient = async (
   url: string,
   method: string,
   data?: unknown
 ) => {
   try {
-    const response = await fetch(url, {
+    const response = await axiosInstance({
+      url,
       method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      ...(data !== undefined && { body: JSON.stringify(data) }),
+      data,
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const jsonResponse = await response.json();
-    return jsonResponse;
+    return response.data;
   } catch (error) {
     console.log("API error:", error);
   }
