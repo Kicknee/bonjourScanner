@@ -11,13 +11,16 @@ const ProductList = () => {
 
   return (
     <div className="table-container">
-      <table className="table table-borderless table-hover table-dark">
+      <table
+        className="table table-borderless table-hover table-dark"
+        style={{ tableLayout: "fixed", width: "100%" }}
+      >
         <thead>
           <tr>
-            <th>STYLE</th>
-            <th>TYPE</th>
-            <th>PLACE</th>
-            <th>LEFT</th>
+            <th style={{ width: "20%" }}>STYLE</th>
+            <th style={{ width: "40%" }}>TYPE</th>
+            <th style={{ width: "20%" }}>PLACE</th>
+            <th style={{ width: "20%" }}>LEFT</th>
           </tr>
         </thead>
         <tbody>

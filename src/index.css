@@ -12342,7 +12342,7 @@ body {
 
 .table-container {
   height: 350px;
-  overflow-y: auto;
+  overflow-y: scroll;
   scrollbar-color: rgba(255, 255, 255, 0.4392156863) transparent;
   scrollbar-width: thin;
 }

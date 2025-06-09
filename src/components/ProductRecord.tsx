@@ -17,10 +17,46 @@ const ProductRecord = ({ productProp }: Props) => {
         dispatch(setMode("view"));
       }}
     >
-      <td className="py-3">{productProp.STYLE}</td>
-      <td className="py-3">{productProp.TYPE}</td>
-      <td className="py-3">{productProp.PLACE}</td>
-      <td className="py-3">{productProp.LEFT}</td>
+      <td
+        className="py-3"
+        style={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        {productProp.STYLE}
+      </td>
+      <td
+        className="py-3"
+        style={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        {productProp.TYPE}
+      </td>
+      <td
+        className="py-3"
+        style={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        {productProp.PLACE}
+      </td>
+      <td
+        className="py-3"
+        style={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        {productProp.LEFT}
+      </td>
     </tr>
   );
 };

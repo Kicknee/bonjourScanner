@@ -55,7 +55,7 @@ body {
 
 .table-container {
   height: 350px;
-  overflow-y: auto;
+  overflow-y: scroll;
   scrollbar-color: $selection-color transparent;
   scrollbar-width: thin;
 }
