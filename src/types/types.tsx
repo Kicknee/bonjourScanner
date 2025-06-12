@@ -15,3 +15,9 @@ export interface ModalType {
   show: boolean;
   message: string;
 }
+
+export interface ResponseType {
+  status: string;
+  message: string;
+  payload?: ProductType | ProductType[];
+}
