@@ -1,9 +1,11 @@
 import ProductRecord from "./ProductRecord";
 import { ProductType } from "../types/types";
 import { useProducts } from "../store/hooks/useProducts";
+import useSearchInput from "../store/hooks/useSearchInput";
 
 const ProductList = () => {
   const { data, isLoading, error } = useProducts();
+  const searchInput = useSearchInput();
 
   if (isLoading)
     return <div className="text-center text-white ">Loading...</div>;
@@ -13,7 +15,9 @@ const ProductList = () => {
       <div className="text-center text-white ">Error loading product list.</div>
     );
 
-  const productList: ProductType[] = data.payload;
+  const productList: ProductType[] = data.payload.filter(
+    (product: ProductType) => product.STYLE.includes(searchInput)
+  );
 
   return (
     <div className="table-container">

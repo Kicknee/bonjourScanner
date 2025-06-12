@@ -1,14 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import productListReducer from "./slices/productListSlice";
 import productReducer from "./slices/productSlice";
-import searchListReducer from "./slices/searchListSlice";
+import searchInputReducer from "./slices/searchInputSlice";
 import modalReducer from "./slices/modalSlice";
 import productModeReducer from "./slices/productModeSlice";
 
 export const store = configureStore({
   reducer: {
-    productList: productListReducer,
-    searchList: searchListReducer,
+    searchInput: searchInputReducer,
     product: productReducer,
     modal: modalReducer,
     mode: productModeReducer,

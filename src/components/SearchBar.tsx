@@ -3,17 +3,12 @@ import { faPlus, faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { ChangeEvent, useEffect, useState } from "react";
 
-import {
-  setSearchListState,
-  resetSearchListState,
-} from "../store/slices/searchListSlice";
-import useProductListState from "../store/hooks/useProductListState";
+import { setSearchInputSlice } from "../store/slices/searchInputSlice";
 import { setMode } from "../store/slices/productModeSlice";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
-  const currentList = useProductListState();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const val = event.target.value.trim().toUpperCase();
@@ -21,20 +16,8 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-    findProduct();
+    dispatch(setSearchInputSlice(input));
   }, [input]);
-
-  const findProduct = () => {
-    if (!input) {
-      dispatch(resetSearchListState());
-      return;
-    }
-
-    const searchList = currentList.filter((product) =>
-      product.STYLE.includes(input)
-    );
-    dispatch(setSearchListState(searchList));
-  };
 
   const handleAddClick = () => {
     dispatch(setMode("add"));
