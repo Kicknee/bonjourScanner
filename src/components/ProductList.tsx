@@ -5,10 +5,13 @@ import { useProducts } from "../store/hooks/useProducts";
 const ProductList = () => {
   const { data, isLoading, error } = useProducts();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return <div className="text-center text-white ">Loading...</div>;
 
   if (error || !Array.isArray(data?.payload))
-    return <div>Error loading product list.</div>;
+    return (
+      <div className="text-center text-white ">Error loading product list.</div>
+    );
 
   const productList: ProductType[] = data.payload;
 
