@@ -7,7 +7,7 @@ import { ProductType, ResponseType } from "../types/types";
 import { examineEntries } from "../utils/examineEntries";
 import { triggerModal } from "../utils/triggerModal";
 import { deselectProductState } from "../store/slices/productSlice";
-import { setMode } from "../store/slices/productStateSlice";
+import { setMode } from "../store/slices/productModeSlice";
 import ProductQR from "./ProductQR";
 import { useAddProduct, useUpdateProduct } from "../store/hooks/useProducts";
 

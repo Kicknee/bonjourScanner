@@ -7,7 +7,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { deselectProductState } from "../../store/slices/productSlice";
 import { RootState } from "../../store/store";
-import { setMode } from "../../store/slices/productStateSlice";
+import { setMode } from "../../store/slices/productModeSlice";
 
 const CenterSide = () => {
   const { mode } = useSelector((state: RootState) => state.mode);

@@ -8,7 +8,7 @@ import {
   resetSearchListState,
 } from "../store/slices/searchListSlice";
 import useProductListState from "../store/hooks/useProductListState";
-import { setMode } from "../store/slices/productStateSlice";
+import { setMode } from "../store/slices/productModeSlice";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
