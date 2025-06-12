@@ -7,7 +7,7 @@ interface ProductModeState {
 }
 
 const initialState: ProductModeState = {
-  mode: "view",
+  mode: "idle",
 };
 
 const productModeSlice = createSlice({
