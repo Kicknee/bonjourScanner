@@ -3,39 +3,30 @@ import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 
 import useProductState from "../store/hooks/useProductState";
-import { ProductType } from "../types/types";
 import { examineEntries } from "../utils/examineEntries";
-import { fillProductListState } from "../store/slices/productListSlice";
-import { deselectProductState } from "../store/slices/productSlice";
 import { triggerModal } from "../utils/triggerModal";
-import productService from "../services/productService";
 import { setMode } from "../store/slices/productStateSlice";
 import ProductQR from "./ProductQR";
+import { useDeleteProduct } from "../store/hooks/useProducts";
+import { ResponseType } from "../types/types";
 
 const ProductViewContainer = () => {
   const dispatch = useDispatch();
   const product = useProductState();
+  const deleteProduct = useDeleteProduct();
 
   const handleEditClick = () => {
     dispatch(setMode("edit"));
   };
 
   const handleDeleteClick = async () => {
-    let response = await productService.delete(product as ProductType);
-    if (!response || response.status === 400 || response.status === 404) {
-      triggerModal(response.message || "Couldn't delete the record");
-      return;
-    }
-
-    triggerModal(response.message);
-    dispatch(deselectProductState());
-    dispatch(setMode("idle"));
-
-    response = await productService.get();
-    if (!response || response.status === 400 || response.status === 404) {
-      triggerModal(response.message || "Couldn't refresh product list");
-    } else {
-      dispatch(fillProductListState(response.payload));
+    try {
+      const response: ResponseType = await deleteProduct.mutateAsync(product);
+      triggerModal(response.message);
+      dispatch(setMode("idle"));
+    } catch (error) {
+      triggerModal("Unexpected error occurred.");
+      dispatch(setMode("idle"));
     }
   };
 

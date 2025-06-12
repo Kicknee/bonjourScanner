@@ -3,14 +3,13 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
 
-import { ProductType } from "../types/types";
+import { ProductType, ResponseType } from "../types/types";
 import { examineEntries } from "../utils/examineEntries";
 import { triggerModal } from "../utils/triggerModal";
-import productService from "../services/productService";
-import { fillProductListState } from "../store/slices/productListSlice";
-import { selectProductState } from "../store/slices/productSlice";
+import { deselectProductState } from "../store/slices/productSlice";
 import { setMode } from "../store/slices/productStateSlice";
 import ProductQR from "./ProductQR";
+import { useAddProduct, useUpdateProduct } from "../store/hooks/useProducts";
 
 interface Props {
   mode: "add" | "edit";
@@ -30,6 +29,10 @@ const defaultInput: ProductType = {
 const ProductFormContainer = ({ mode, productProp }: Props) => {
   const dispatch = useDispatch();
   const [input, setInput] = useState<ProductType>(productProp ?? defaultInput);
+  const addProduct = useAddProduct();
+  const updateProduct = useUpdateProduct();
+
+  const mutation = mode === "add" ? addProduct : updateProduct;
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
@@ -50,13 +53,15 @@ const ProductFormContainer = ({ mode, productProp }: Props) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const fields = { ...input };
+    const productData = { ...input };
 
     // Validate
-    const allFieldsFilled = Object.entries(fields).every(([key, value]) => {
-      if (key === "_id") return true;
-      return value !== undefined && value !== null && value !== "";
-    });
+    const allFieldsFilled = Object.entries(productData).every(
+      ([key, value]) => {
+        if (key === "_id") return true;
+        return value !== undefined && value !== null && value !== "";
+      }
+    );
 
     if (!allFieldsFilled) {
       triggerModal("Fill in all fields");
@@ -64,38 +69,13 @@ const ProductFormContainer = ({ mode, productProp }: Props) => {
     }
 
     try {
-      if (mode === "add") {
-        const response = await productService.add(fields);
-        if (!response || response.status >= 400) {
-          triggerModal(response.message || "Couldn't add product");
-        } else {
-          triggerModal(response.message);
-          const listResponse = await productService.get();
-          if (listResponse.status < 400) {
-            dispatch(fillProductListState(listResponse.payload));
-          }
-        }
-      } else if (mode === "edit") {
-        if (!input._id) {
-          triggerModal("Product ID is missing");
-          return;
-        }
-        const response = await productService.update(fields as ProductType);
-        if (!response || response.status >= 400) {
-          triggerModal(response.message || "Couldn't update product");
-        } else {
-          triggerModal(response.message);
-          dispatch(selectProductState(fields));
-          const listResponse = await productService.get();
-          if (listResponse.status < 400) {
-            dispatch(fillProductListState(listResponse.payload));
-          }
-        }
-      }
-      dispatch(setMode("view"));
-    } catch (err) {
+      const response: ResponseType = await mutation.mutateAsync(productData);
+      triggerModal(response.message);
+      dispatch(setMode("idle"));
+      dispatch(deselectProductState());
+    } catch (error) {
       triggerModal("Unexpected error occurred.");
-      dispatch(setMode("view"));
+      dispatch(setMode("idle"));
     }
   };
 

@@ -1,13 +1,16 @@
 import ProductRecord from "./ProductRecord";
-import useProductListState from "../store/hooks/useProductListState";
-import useSearchListState from "../store/hooks/useSearchListState";
 import { ProductType } from "../types/types";
+import { useProducts } from "../store/hooks/useProducts";
 
 const ProductList = () => {
-  const productList =
-    useSearchListState().length > 0
-      ? useSearchListState()
-      : useProductListState();
+  const { data, isLoading, error } = useProducts();
+
+  if (isLoading) return <div>Loading...</div>;
+
+  if (error || !Array.isArray(data?.payload))
+    return <div>Error loading product list.</div>;
+
+  const productList: ProductType[] = data.payload;
 
   return (
     <div className="table-container">
@@ -24,17 +27,17 @@ const ProductList = () => {
           </tr>
         </thead>
         <tbody>
-          {productList[0] === false && (
+          {productList.length === 0 ? (
             <tr>
               <td colSpan={4} className="text-center">
                 Not found
               </td>
             </tr>
+          ) : (
+            productList.map((product: ProductType, key: number) => (
+              <ProductRecord key={key} productProp={product} />
+            ))
           )}
-          {productList[0] !== false &&
-            productList.map((product, key) => (
-              <ProductRecord key={key} productProp={product as ProductType} />
-            ))}
         </tbody>
       </table>
     </div>
