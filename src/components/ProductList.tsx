@@ -18,7 +18,7 @@ const ProductList = () => {
         className="table table-borderless table-hover table-dark"
         style={{ tableLayout: "fixed", width: "100%" }}
       >
-        <thead>
+        <thead className="sticky-top">
           <tr>
             <th style={{ width: "20%" }}>STYLE</th>
             <th style={{ width: "40%" }}>TYPE</th>
