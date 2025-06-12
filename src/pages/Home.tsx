@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <div className="row align-items-center" style={{ overflow: "hidden" }}>
       {showModal && <Modal />}
-      <div className="col-12 px-4 px-md-5 mx-auto col-xxl-7">
+      <div className="col-12 px-4 px-md-5 mx-auto col-xxl-8">
         <div className="row d-none d-md-flex" style={{ height: "660px" }}>
           <LeftSide />
           <SectionDivider />
