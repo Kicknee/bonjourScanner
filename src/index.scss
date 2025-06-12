@@ -60,22 +60,6 @@ body {
   scrollbar-width: thin;
 }
 
-.tbody-wrapper::-webkit-scrollbar {
-  width: 3px;
-}
-
-.tbody-wrapper::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.tbody-wrapper::-webkit-scrollbar-thumb {
-  background: $selection-color;
-}
-
-.tbody-wrapper th {
-  color: $primary;
-}
-
 .product-details-table {
   width: 100%;
   max-width: 400px;
@@ -110,11 +94,6 @@ input:focus {
 
 .search-bar {
   height: 40px;
-}
-
-.product-taskbar button {
-  width: 75px;
-  aspect-ratio: 1 / 1;
 }
 
 button:hover:not(.not-hover) {
