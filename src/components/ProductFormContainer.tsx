@@ -1,4 +1,3 @@
-import { useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +18,7 @@ interface Props {
   productProp?: ProductType;
 }
 
-const ProductSchema = z.object({
+const BaseProductSchema = z.object({
   STYLE: z
     .string()
     .length(5, { message: "STYLE must have 5 characters" })
@@ -65,10 +64,28 @@ const ProductSchema = z.object({
     }),
 });
 
+// get schema with or without _id based on mode (add | edit)
+
+const getProductSchema = (mode: Props["mode"]) => {
+  switch (mode) {
+    case "add":
+      return BaseProductSchema;
+    case "edit":
+      return BaseProductSchema.extend({
+        _id: z
+          .string()
+          .length(24)
+          .regex(/^[a-fA-F0-9]{24}$/)
+          .optional(),
+      });
+    default:
+      const _unreachable: never = mode;
+      return _unreachable;
+  }
+};
+
 const ProductFormContainer = ({ mode, productProp }: Props) => {
-  console.log(productProp);
   const dispatch = useDispatch();
-  // const [input, setInput] = useState<ProductType>(productProp ?? defaultInput);
   const inputFields: (keyof ProductType)[] = [
     "_id",
     "STYLE",
@@ -85,59 +102,14 @@ const ProductFormContainer = ({ mode, productProp }: Props) => {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm<ProductType>({
-    resolver: zodResolver(ProductSchema),
+    resolver: zodResolver(getProductSchema(mode)),
     defaultValues: productProp && productProp,
   });
 
   const mutation = mode === "add" ? addProduct : updateProduct;
 
-  // const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const { id, value } = event.target;
-  //   const leftNumber =
-  //     id === "LEFT" && Number.isInteger(Number(value)) ? Number(value) : null;
-
-  //   if (id === "LEFT" && leftNumber! > 10000) {
-  //     triggerModal("Can't enter more than 10000");
-  //     return;
-  //   }
-
-  //   setInput((prev) => ({
-  //     ...prev,
-  //     [id]: id === "LEFT" ? Math.max(0, leftNumber!) : value.toUpperCase(),
-  //   }));
-  // };
-
-  // const onSubmit = async (data: ProductType) => {
-  //   // const productData = { ...input };
-
-  //   // Validate
-  //   // const allFieldsFilled = Object.entries(productData).every(
-  //   //   ([key, value]) => {
-  //   //     if (key === "_id") return true;
-  //   //     return value !== undefined && value !== null && value !== "";
-  //   //   }
-  //   // );
-
-  //   // if (!allFieldsFilled) {
-  //   //   triggerModal("Fill in all fields");
-  //   //   return;
-  //   // }
-
-  //   try {
-  //     const response: ResponseType = await mutation.mutateAsync(data);
-  //     triggerModal(response.message);
-  //     dispatch(setMode("idle"));
-  //     dispatch(deselectProductState());
-  //   } catch (error) {
-  //     triggerModal("Unexpected error occurred.");
-  //     dispatch(setMode("idle"));
-  //   }
-  // };
-
   const onValid = async (data: ProductType) => {
-    console.log("nowe", data);
     try {
       const response: ResponseType = await mutation.mutateAsync(data);
       triggerModal(response.message);
@@ -167,7 +139,7 @@ const ProductFormContainer = ({ mode, productProp }: Props) => {
       <table className="table table-dark table-borderless fs-5 product-details-table">
         <tbody>
           {inputFields.map((key) => {
-            // if (key === "_id") return null;
+            if (key === "_id") return null;
             const { displayKey } = examineEntries(key);
             return (
               <tr key={key} style={{ height: "48px" }}>
@@ -175,13 +147,7 @@ const ProductFormContainer = ({ mode, productProp }: Props) => {
                 <th>
                   <input
                     id={key}
-                    type={
-                      key === "LEFT"
-                        ? "number"
-                        : key === "_id"
-                        ? "hidden"
-                        : "text"
-                    }
+                    type={key === "LEFT" ? "number" : "text"}
                     {...register(
                       key,
                       key === "LEFT" ? { valueAsNumber: true } : {}
