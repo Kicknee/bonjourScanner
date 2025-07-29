@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import productService from "../../services/productService";
-import { ProductType } from "../../types/types";
+import { ProductType } from "../../lib/types";
 
 // Fetch all products
 export const useProducts = () =>

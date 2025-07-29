@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import ProductFormContainer from "./ProductFormContainer";
 import ProductViewContainer from "./ProductViewContainer";
-import { ProductType } from "../types/types";
+import { ProductType } from "../lib/types";
 
 const Product = () => {
   const product = useSelector((state: RootState) => state.product);

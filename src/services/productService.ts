@@ -1,4 +1,4 @@
-import { ProductType } from "../types/types";
+import { ProductType } from "../lib/types";
 import { apiClient } from "./apiClient";
 
 const productService = {

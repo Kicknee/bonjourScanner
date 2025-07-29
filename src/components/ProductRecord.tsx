@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { selectProductState } from "../store/slices/productSlice";
-import { ProductType } from "../types/types";
+import { ProductType } from "../lib/types";
 import { setMode } from "../store/slices/productModeSlice";
 
 interface Props {

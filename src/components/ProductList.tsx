@@ -1,5 +1,5 @@
 import ProductRecord from "./ProductRecord";
-import { ProductType } from "../types/types";
+import { ProductType } from "../lib/types";
 import { useProducts } from "../store/hooks/useProducts";
 import useSearchInput from "../store/hooks/useSearchInput";
 

@@ -3,12 +3,12 @@ import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 
 import useProductState from "../store/hooks/useProductState";
-import { examineEntries } from "../utils/examineEntries";
-import { triggerModal } from "../utils/triggerModal";
+import { examineEntries } from "../lib/examineEntries";
+import { triggerModal } from "../lib/triggerModal";
 import { setMode } from "../store/slices/productModeSlice";
 import ProductQR from "./ProductQR";
 import { useDeleteProduct } from "../store/hooks/useProducts";
-import { ResponseType } from "../types/types";
+import { ResponseType } from "../lib/types";
 
 const ProductViewContainer = () => {
   const dispatch = useDispatch();

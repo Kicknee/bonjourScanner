@@ -2,9 +2,9 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
 
-import { ProductType, ResponseType } from "../types/types";
-import { examineEntries } from "../utils/examineEntries";
-import { triggerModal } from "../utils/triggerModal";
+import { ProductType, ResponseType } from "../lib/types";
+import { examineEntries } from "../lib/examineEntries";
+import { triggerModal } from "../lib/triggerModal";
 import { deselectProductState } from "../store/slices/productSlice";
 import { setMode } from "../store/slices/productModeSlice";
 import ProductQR from "./ProductQR";

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ModalType } from "../../types/types";
+import { ModalType } from "../../lib/types";
 
 const initialState: ModalType = {
   show: false,
